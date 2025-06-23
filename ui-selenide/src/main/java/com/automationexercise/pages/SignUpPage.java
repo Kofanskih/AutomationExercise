@@ -23,6 +23,7 @@ public class SignUpPage {
     private final SelenideElement ADDRESS_FIELD = $("[id=\"address1\"]");
     private final SelenideElement ADDRESS2_FIELD = $("[id=\"address2\"]");
     private final SelenideElement STATE_FIELD = $("[id=\"state\"]");
+    private final SelenideElement CITY_FIELD = $("[id=\"city\"]");
     private final SelenideElement ZIPCODE_FIELD = $("[id=\"zipcode\"]");
     private final SelenideElement MOBILE_FIELD = $("[id=\"mobile_number\"]");
     private final SelenideElement COUNTRY_DROPDOWN = $("[id=\"country\"]");
@@ -42,7 +43,7 @@ public class SignUpPage {
         return this;
     }
 
-    public SignUpPage fillUserData(RegistrationPageModel registrationPageModel){
+    public SignUpPage fillUserData(RegistrationPageModel registrationPageModel) {
         PASSWORD_FIELD.setValue(registrationPageModel.getUserPassword());
         FIRST_NAME_FIELD.setValue(registrationPageModel.getUserFirstName());
         LAST_NAME_FIELD.setValue(registrationPageModel.getUserLastName());
@@ -50,6 +51,7 @@ public class SignUpPage {
         ADDRESS_FIELD.setValue(registrationPageModel.getUserAddress());
         ADDRESS2_FIELD.setValue(registrationPageModel.getUserAddress2());
         STATE_FIELD.setValue(registrationPageModel.getUserState());
+        CITY_FIELD.setValue(registrationPageModel.getUserCity());
         ZIPCODE_FIELD.setValue(registrationPageModel.getUserZipode());
         MOBILE_FIELD.setValue(registrationPageModel.getUserMobile());
         return this;
@@ -81,8 +83,8 @@ public class SignUpPage {
         return this;
     }
 
-    public SignUpPage clickCreateAccountButton(){
-        CREATE_ACCOUNT_BUTTON.click();
+    public SignUpPage clickCreateAccountButton() {
+        CREATE_ACCOUNT_BUTTON.scrollTo().click();
         return this;
     }
 
