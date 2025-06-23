@@ -1,7 +1,6 @@
 package com.automationexercise.pages;
 
 import com.codeborne.selenide.Selenide;
-
 import static com.automationexercise.utils.ReadUrl.readMainUrl;
 
 public class BasePage {
