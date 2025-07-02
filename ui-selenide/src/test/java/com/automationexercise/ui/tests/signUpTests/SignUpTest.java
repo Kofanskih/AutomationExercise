@@ -1,9 +1,10 @@
-package com.automationexercise.ui.tests.loginSignupTests;
+package com.automationexercise.ui.tests.signUpTests;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
+import com.automationexercise.ui.tests.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
