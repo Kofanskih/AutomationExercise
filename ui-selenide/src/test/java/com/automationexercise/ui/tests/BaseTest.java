@@ -1,4 +1,4 @@
-package com.automationexercise.ui.tests.loginSignupTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.BeforeClass;
