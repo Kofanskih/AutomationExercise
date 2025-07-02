@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPage {
     private final SelenideElement ACCEPT_COOKIES_BUTTON = $("[class=\"fc-button-label\"]");
     private final SelenideElement USER_LOGGED_IN_TEXT = $("[href=\"/logout\"]");
+    private final SelenideElement LOGIN_ERROR_TEXT = $("[style=\"color: red;\"]");
 
     public MainPage acceptCookies(){
         ACCEPT_COOKIES_BUTTON.click();
@@ -18,5 +19,11 @@ public class MainPage {
         USER_LOGGED_IN_TEXT.shouldHave(Condition.exactTextCaseSensitive(loggedInText));
         return this;
     }
+
+    public MainPage checkLoginErrorMessage(String loginErrorMessage){
+        LOGIN_ERROR_TEXT.shouldHave(Condition.exactTextCaseSensitive(loginErrorMessage));
+        return this;
+    }
+
 
 }
