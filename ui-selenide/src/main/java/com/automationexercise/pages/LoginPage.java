@@ -29,4 +29,12 @@ public class LoginPage {
 
         return new MainPage();
     }
+
+    public SignUpPage fillSignUpFormWithExistsUser(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.setValue(registrationPageModel.getUserName());
+        EMAIL_ADDRESS_FIELD.setValue(registrationPageModel.getUserEmailAddress());
+        SIGNUP_BUTTON.click();
+
+        return new SignUpPage();
+    }
 }
