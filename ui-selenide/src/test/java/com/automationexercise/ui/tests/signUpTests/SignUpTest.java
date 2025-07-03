@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 public class SignUpTest extends BaseTest {
     private String loggedUser = "Logout";
+    private String signUpErrorMessage = "Email Address already exist!";
 
     @BeforeMethod
     void preconditionMethod(){
@@ -31,6 +32,16 @@ public class SignUpTest extends BaseTest {
                 .clickCreateAccountButton()
                 .clickContinueButton()
                 .checkUserLoggedIn(loggedUser);
+
+    }
+
+    @Test
+    void userSignUpWithExistData(){
+        new MainPage().acceptCookies();
+        new HeaderPage()
+                .clickLoginButton()
+                .fillSignUpFormWithExistsUser(new RegistrationPageModel().getExistsUserData())
+                .checkSignUpErrorMessage(signUpErrorMessage);
 
     }
 }
