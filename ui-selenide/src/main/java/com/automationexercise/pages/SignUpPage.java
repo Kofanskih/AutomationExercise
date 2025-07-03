@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -28,9 +29,9 @@ public class SignUpPage {
     private final SelenideElement MOBILE_FIELD = $("[id=\"mobile_number\"]");
     private final SelenideElement COUNTRY_DROPDOWN = $("[id=\"country\"]");
     private final SelenideElement COUNTRY_VALUE = $("[value=\"United States\"]");
-    private final SelenideElement CREATE_ACCOUNT_BUTTON= $("[data-qa=\"create-account\"]");
-    private final SelenideElement CONTINUE_BUTTON= $("[data-qa=\"continue-button\"]");
-    //https://automationexercise.com/account_created
+    private final SelenideElement CREATE_ACCOUNT_BUTTON = $("[data-qa=\"create-account\"]");
+    private final SelenideElement CONTINUE_BUTTON = $("[data-qa=\"continue-button\"]");
+    private final SelenideElement SIGNUP_ERROR_MESSAGE = $("[style=\"color: red;\"]");
 
 
     public SignUpPage chooseGenderMale(){
@@ -91,6 +92,11 @@ public class SignUpPage {
     public MainPage clickContinueButton(){
         CONTINUE_BUTTON.click();
         return new MainPage();
+    }
+
+    public SignUpPage checkSignUpErrorMessage(String signUpErrorMessage){
+        SIGNUP_ERROR_MESSAGE.shouldHave(Condition.exactTextCaseSensitive(signUpErrorMessage));
+        return this;
     }
 
 
