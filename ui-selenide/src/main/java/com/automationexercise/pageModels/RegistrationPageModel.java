@@ -39,4 +39,10 @@ public class RegistrationPageModel {
         return this;
     }
 
+    public RegistrationPageModel getExistsUserData(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "kofanskih08@gmail.com";
+        return this;
+    }
+
 }
