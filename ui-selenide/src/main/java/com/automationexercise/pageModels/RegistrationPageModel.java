@@ -45,4 +45,10 @@ public class RegistrationPageModel {
         return this;
     }
 
+    public RegistrationPageModel getInvalidEmail(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "kofanskih08gmail.com";
+        return this;
+    }
+
 }
