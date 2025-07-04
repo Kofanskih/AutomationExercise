@@ -18,4 +18,10 @@ public class LoginPageModel {
         this.userPassword = "1234567";
         return this;
     }
+
+    public LoginPageModel invalidEmailLogin(){
+        this.userEmailAddress = "kofanskih08gmail.com";
+        this.userPassword = "1234567";
+        return this;
+    }
 }
