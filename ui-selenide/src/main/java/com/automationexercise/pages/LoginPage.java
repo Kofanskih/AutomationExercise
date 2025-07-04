@@ -51,10 +51,10 @@ public class LoginPage {
     }
 
 
-    public void checkShowValidationMessageWhenEmailIsEmpty(String expectedInformationMessage) {
+    public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedInformationMessage) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", LOGIN_EMAIL_ADDRESS_FIELD);
-        assertEquals(actualMessage, expectedInformationMessage);
+        assertEquals(expectedInformationMessage, actualMessage);
     }
 
     public LoginPage fillLoginFormWithEmptyPasswordField(LoginPageModel loginPageModel){
@@ -68,7 +68,7 @@ public class LoginPage {
     public void checkShowValidationMessageWhenPasswordIsEmpty(String expectedInformationMessage) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", PASSWORD_FIELD);
-        assertEquals(actualMessage, expectedInformationMessage);
+        assertEquals(expectedInformationMessage, actualMessage);
     }
 
 
@@ -80,10 +80,52 @@ public class LoginPage {
         return new LoginPage();
     }
 
-    public void checkShowValidationMessageWhenEmailIsInvalid(String expectedInformationMessage) {
+    public void checkShowValidationMessageWhenLoginEmailIsInvalid(String expectedInformationMessage) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", LOGIN_EMAIL_ADDRESS_FIELD);
-        assertEquals(actualMessage, expectedInformationMessage);
+        assertEquals(expectedInformationMessage, actualMessage);
+    }
+
+    public LoginPage fillSignUpFormWithEmptyNameField(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.clear();
+        SIGNUP_EMAIL_ADDRESS_FIELD.setValue(registrationPageModel.getUserEmailAddress());
+        SIGNUP_BUTTON.click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenSignUpNameIsEmpty(String expectedInformationMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", SIGN_UP_NAME_FIELD);
+        assertEquals(expectedInformationMessage, actualMessage);
+    }
+
+    public LoginPage fillSignUpFormWithEmptyEmailField(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.setValue(registrationPageModel.getUserName());
+        SIGNUP_EMAIL_ADDRESS_FIELD.clear();
+        SIGNUP_BUTTON.click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenSignUpEmailIsEmpty(String expectedInformationMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", SIGNUP_EMAIL_ADDRESS_FIELD);
+        assertEquals(expectedInformationMessage, actualMessage);
+    }
+
+    public LoginPage fillSignUpFormWithInvalidEmail(RegistrationPageModel registrationPageModel){
+        SIGN_UP_NAME_FIELD.setValue(registrationPageModel.getUserName());
+        SIGNUP_EMAIL_ADDRESS_FIELD.setValue(registrationPageModel.getUserEmailAddress());
+        LOGIN_BUTTON.click();
+
+        return new LoginPage();
+    }
+
+    public void checkShowValidationMessageWhenSignUpEmailIsInvalid(String expectedInformationMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", SIGNUP_EMAIL_ADDRESS_FIELD);
+        assertEquals(expectedInformationMessage, actualMessage);
     }
 
 }
