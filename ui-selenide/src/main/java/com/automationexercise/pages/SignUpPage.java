@@ -94,10 +94,8 @@ public class SignUpPage {
         return new MainPage();
     }
 
-    public SignUpPage checkSignUpErrorMessage(String signUpErrorMessage){
+    public void checkSignUpErrorMessage(String signUpErrorMessage){
         SIGNUP_ERROR_MESSAGE.shouldHave(Condition.exactTextCaseSensitive(signUpErrorMessage));
-        return this;
     }
-
 
 }
