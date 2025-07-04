@@ -44,7 +44,7 @@ public class LoginTest extends BaseTest {
         new HeaderPage()
                 .clickLoginButton()
                 .fillLoginFormWithEmptyEmailField(new LoginPageModel().myLogin())
-                .checkShowValidationMessageWhenEmailIsEmpty(emptyInformationMessage);
+                .checkShowValidationMessageWhenLoginEmailIsEmpty(emptyInformationMessage);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LoginTest extends BaseTest {
         new HeaderPage()
                 .clickLoginButton()
                 .fillLoginFormWithInvalidEmail(new LoginPageModel().invalidEmailLogin())
-                .checkShowValidationMessageWhenEmailIsInvalid(invalidEmailInformationMessage);
+                .checkShowValidationMessageWhenLoginEmailIsInvalid(invalidEmailInformationMessage);
     }
 
     @AfterMethod
