@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 public class SignUpTest extends BaseTest {
     private String loggedUser = "Logout";
     private String signUpErrorMessage = "Email Address already exist!";
+    private String emptyInformationMessage = "Заполните это поле.";
+    private String invalidEmailInformationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"kofanskih08gmail.com\" отсутствует символ \"@\".";
 
     @BeforeMethod
     void preconditionMethod(){
@@ -42,6 +44,36 @@ public class SignUpTest extends BaseTest {
                 .clickLoginButton()
                 .fillSignUpFormWithExistsUser(new RegistrationPageModel().getExistsUserData())
                 .checkSignUpErrorMessage(signUpErrorMessage);
+
+    }
+
+    @Test
+    void userSignUpWithEmptySignUpNameField(){
+        new MainPage().acceptCookies();
+        new HeaderPage()
+                .clickLoginButton()
+                .fillSignUpFormWithEmptyNameField(new RegistrationPageModel().getRandomRegistrationUserData())
+                .checkShowValidationMessageWhenSignUpNameIsEmpty(emptyInformationMessage);
+
+    }
+
+    @Test
+    void userSignUpWithEmptySignUpEmailField(){
+        new MainPage().acceptCookies();
+        new HeaderPage()
+                .clickLoginButton()
+                .fillSignUpFormWithEmptyEmailField(new RegistrationPageModel().getRandomRegistrationUserData())
+                .checkShowValidationMessageWhenSignUpEmailIsEmpty(emptyInformationMessage);
+
+    }
+
+    @Test
+    void userSignUpWithInvalidEmail(){
+        new MainPage().acceptCookies();
+        new HeaderPage()
+                .clickLoginButton()
+                .fillSignUpFormWithInvalidEmail(new RegistrationPageModel().getInvalidEmail())
+                .checkShowValidationMessageWhenSignUpEmailIsInvalid(invalidEmailInformationMessage);
 
     }
 }
