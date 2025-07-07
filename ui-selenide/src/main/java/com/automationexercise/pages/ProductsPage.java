@@ -19,6 +19,7 @@ public class ProductsPage extends BasePage {
     private final SelenideElement KIDS_BUTTON = $("[href=\"#Kids\"]");
     private final SelenideElement TOP_SHIRTS_KIDS_BUTTON = $("[href=\"/category_products/5\"]");
     private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
+    private final SelenideElement BRANDS_MADAME_BUTTON = $("[href=\"/brand_products/Madame\"]");
 
 
     public ProductsPage searchItemOnTheProductsPage(String searchedItem){
@@ -46,7 +47,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void checkModalWindowIsClosedOnTheProductsPage(){
-        MODAL_WINDOW_HIDDEN.exists();
+        MODAL_WINDOW_HIDDEN.shouldBe(Condition.exist);
     }
 
     public ProductsPage clickViewProductOnTheProductsPage(){
@@ -69,6 +70,15 @@ public class ProductsPage extends BasePage {
         CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
     }
 
+    public ProductsPage clickOnTheBrandsMadameCategoryOnTheProductsPage(){
+        BRANDS_MADAME_BUTTON.scrollTo().click();
+        return this;
+    }
 
-    //Brand - Kookie Kids Products
+    public void checkBrandsMadameTitleOnTheProductPage(String title){
+        CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
+    }
+
+
+    // go to cart
 }
