@@ -20,6 +20,7 @@ public class ProductsPage extends BasePage {
     private final SelenideElement TOP_SHIRTS_KIDS_BUTTON = $("[href=\"/category_products/5\"]");
     private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
     private final SelenideElement BRANDS_MADAME_BUTTON = $("[href=\"/brand_products/Madame\"]");
+    private final SelenideElement VIEW_CART_BUTTON = $x("//p/a[@href=\"/view_cart\"]");
 
 
     public ProductsPage searchItemOnTheProductsPage(String searchedItem){
@@ -79,6 +80,8 @@ public class ProductsPage extends BasePage {
         CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
     }
 
-
-    // go to cart
+    public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
+        VIEW_CART_BUTTON.click();
+        return new CartPage();
+    }
 }
