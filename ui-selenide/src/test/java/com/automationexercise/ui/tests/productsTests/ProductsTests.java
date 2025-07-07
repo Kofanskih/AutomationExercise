@@ -4,7 +4,6 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.ui.tests.BaseTest;
-import com.codeborne.selenide.WebDriverRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -12,6 +11,7 @@ public class ProductsTests extends BaseTest {
     private String searchedItem = "Winter Top";
     private String addedMessageOnTheModalWindow = "Added!";
     private final String expectedUrl = "https://automationexercise.com/product_details/2";
+    private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
 
 
     @BeforeMethod
@@ -52,6 +52,15 @@ public class ProductsTests extends BaseTest {
         new HeaderPage().clickProductsButton()
                 .clickViewProductOnTheProductsPage()
                 .checkTitleOnTheProductPage(expectedUrl);
+
+    }
+
+    @Test
+    void goToTopsShirtsKidsCategoryOnTheProductsPage(){
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .clickOnTheKidsTopsCategoryOnTheProductsPage()
+                .checkKidsTitleOnTheProductPage(kidsCategoryTitle);
 
     }
 }
