@@ -4,12 +4,14 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.ui.tests.BaseTest;
+import com.codeborne.selenide.WebDriverRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProductsTests extends BaseTest {
     private String searchedItem = "Winter Top";
     private String addedMessageOnTheModalWindow = "Added!";
+    private final String expectedUrl = "https://automationexercise.com/product_details/2";
 
 
     @BeforeMethod
@@ -22,7 +24,7 @@ public class ProductsTests extends BaseTest {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .searchItemOnTheProductsPage(searchedItem)
-                .checkSearchedItemOnTheProductPage(searchedItem);
+                .checkSearchedItemOnTheProductsPage(searchedItem);
     }
 
     @Test
@@ -30,7 +32,7 @@ public class ProductsTests extends BaseTest {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
-                .checkAddedItemOnTheProductPage(addedMessageOnTheModalWindow);
+                .checkAddedItemOnTheProductsPage(addedMessageOnTheModalWindow);
 
     }
 
@@ -39,8 +41,17 @@ public class ProductsTests extends BaseTest {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
-                .closeAddedModalWindowOnTheProductsPage()
-                .checkModalWindowIsClosedOnTheProductPage();
+                .clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage()
+                .checkModalWindowIsClosedOnTheProductsPage();
+
+    }
+
+    @Test
+    void viewProductDetailsOnTheProductsPage(){
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .clickViewProductOnTheProductsPage()
+                .checkTitleOnTheProductPage(expectedUrl);
 
     }
 }
