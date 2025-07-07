@@ -12,6 +12,7 @@ public class ProductsTests extends BaseTest {
     private String addedMessageOnTheModalWindow = "Added!";
     private final String expectedUrl = "https://automationexercise.com/product_details/2";
     private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
+    private String madameCategoryTitle = "BRAND - MADAME PRODUCTS";
 
 
     @BeforeMethod
@@ -61,6 +62,15 @@ public class ProductsTests extends BaseTest {
         new HeaderPage().clickProductsButton()
                 .clickOnTheKidsTopsCategoryOnTheProductsPage()
                 .checkKidsTitleOnTheProductPage(kidsCategoryTitle);
+
+    }
+
+    @Test
+    void goToBrandsMadameCategoryOnTheProductsPage(){
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .clickOnTheBrandsMadameCategoryOnTheProductsPage()
+                .checkBrandsMadameTitleOnTheProductPage(madameCategoryTitle);
 
     }
 }
