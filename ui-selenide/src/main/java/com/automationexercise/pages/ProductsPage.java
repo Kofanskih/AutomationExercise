@@ -3,7 +3,6 @@ package com.automationexercise.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
@@ -17,6 +16,9 @@ public class ProductsPage extends BasePage {
     private final SelenideElement CONTINUE_SHOPPING_BUTTON = $("[class=\"btn btn-success close-modal btn-block\"]");
     private final SelenideElement MODAL_WINDOW_HIDDEN = $("[class=\"modal fade\"]");
     private final SelenideElement VIEW_PRODUCT_BUTTON = $x("(//i[@class='fa fa-plus-square'])[2]");
+    private final SelenideElement KIDS_BUTTON = $("[href=\"#Kids\"]");
+    private final SelenideElement TOP_SHIRTS_KIDS_BUTTON = $("[href=\"/category_products/5\"]");
+    private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
 
 
     public ProductsPage searchItemOnTheProductsPage(String searchedItem){
@@ -57,10 +59,16 @@ public class ProductsPage extends BasePage {
         assertEquals(expectedUrl, actualUrl);
     }
 
+    public ProductsPage clickOnTheKidsTopsCategoryOnTheProductsPage(){
+        KIDS_BUTTON.click();
+        TOP_SHIRTS_KIDS_BUTTON.click();
+        return this;
+    }
+
+    public void checkKidsTitleOnTheProductPage(String title){
+        CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
+    }
 
 
-
-
-    // Women - Saree Products
     //Brand - Kookie Kids Products
 }
