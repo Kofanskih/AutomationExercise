@@ -33,4 +33,14 @@ public class ProductsTests extends BaseTest {
                 .checkAddedItemOnTheProductPage(addedMessageOnTheModalWindow);
 
     }
+
+    @Test
+    void closeAddedModalWindowOnTheProductsPage(){
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .closeAddedModalWindowOnTheProductsPage()
+                .checkModalWindowIsClosedOnTheProductPage();
+
+    }
 }
