@@ -10,6 +10,8 @@ public class CartPage {
     private final SelenideElement TEXT_TITLE = $("[class=\"active\"]");
     private final SelenideElement EMPTY_TITLE = $("[id=\"empty_cart\"]");
     private final SelenideElement HERE_BUTTON = $x("//u[contains(., 'here')]");
+    private final SelenideElement DELETE_BUTTON = $("[class=\"cart_quantity_delete\"]");
+    private final SelenideElement PROCEED_TO_CHECKOUT_BUTTON = $x("//div//a[@class=\"btn btn-default check_out\"]");
 
     public void checkUserOnTheCartPage(String title) {
         TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
@@ -19,9 +21,20 @@ public class CartPage {
         EMPTY_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
     }
 
-    public CartPage clickHereButtonTheCartPage(){
+    public ProductsPage clickHereButtonTheCartPage(){
         HERE_BUTTON.click();
+        return new ProductsPage();
+    }
+
+    public CartPage deleteItemFromTheCart(){
+        DELETE_BUTTON.click();
         return this;
     }
+
+    public CheckoutPage clickToCheckoutButtonOnTheCartPage(){
+        PROCEED_TO_CHECKOUT_BUTTON.click();
+        return new CheckoutPage();
+    }
+
 
 }
