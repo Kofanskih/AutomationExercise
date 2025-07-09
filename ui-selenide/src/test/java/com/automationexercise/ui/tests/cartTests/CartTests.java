@@ -1,6 +1,7 @@
 package com.automationexercise.ui.tests.cartTests;
 
 import com.automationexercise.pageModels.LoginPageModel;
+import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
@@ -52,6 +53,20 @@ public class CartTests extends BaseTest {
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .checkUrlOnTheCheckoutPage(expectedCheckoutURL);
+    }
+
+    @Test
+    void proceedToCheckoutWithNotLoggedUser() throws InterruptedException {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .goToTheLoginPage()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickCartButton()
                 .clickToCheckoutButtonOnTheCartPage()
                 .checkUrlOnTheCheckoutPage(expectedCheckoutURL);
     }
