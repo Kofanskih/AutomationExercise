@@ -18,6 +18,7 @@ public class LoginPage {
     private final SelenideElement LOGIN_BUTTON = $("[data-qa=\"login-button\"]");
 
 
+
     public SignUpPage fillSignUpForm(RegistrationPageModel registrationPageModel) {
         SIGN_UP_NAME_FIELD.setValue(registrationPageModel.getUserFirstName());
         SIGNUP_EMAIL_ADDRESS_FIELD.setValue(registrationPageModel.getUserEmailAddress());

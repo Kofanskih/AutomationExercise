@@ -10,19 +10,17 @@ public class MainPage {
     private final SelenideElement USER_LOGGED_IN_TEXT = $("[href=\"/logout\"]");
     private final SelenideElement LOGIN_ERROR_TEXT = $("[style=\"color: red;\"]");
 
-    public MainPage acceptCookies(){
+    public void acceptCookies(){
         ACCEPT_COOKIES_BUTTON.click();
-        return new MainPage();
+        new MainPage();
     }
 
-    public MainPage checkUserLoggedIn(String loggedInText){
+    public void checkUserLoggedIn(String loggedInText){
         USER_LOGGED_IN_TEXT.shouldHave(Condition.exactTextCaseSensitive(loggedInText));
-        return this;
     }
 
-    public MainPage checkLoginErrorMessage(String loginErrorMessage){
+    public void checkLoginErrorMessage(String loginErrorMessage){
         LOGIN_ERROR_TEXT.shouldHave(Condition.exactTextCaseSensitive(loginErrorMessage));
-        return this;
     }
 
 

@@ -9,6 +9,7 @@ public class HeaderPage {
     private final SelenideElement HOME_BUTTON = $("[class=\"fa fa-home\"]");
     private final SelenideElement LOGIN_BUTTON = $("[class=\"fa fa-lock\"]");
     private final SelenideElement PRODUCTS_BUTTON = $("[href=\"/products\"]");
+    private final SelenideElement CART_BUTTON = $("[class=\"fa fa-shopping-cart\"]");
 
     public MainPage clickLogo(){
         LOGO.click();
@@ -28,5 +29,10 @@ public class HeaderPage {
     public ProductsPage clickProductsButton(){
         PRODUCTS_BUTTON.click();
         return new ProductsPage();
+    }
+
+    public CartPage clickCartButton(){
+        CART_BUTTON.click();
+        return new CartPage();
     }
 }

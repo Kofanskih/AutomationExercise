@@ -56,7 +56,7 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
-    public void checkTitleOnTheProductPage(String expectedUrl){
+    public void checkUrlOnTheProductPage(String expectedUrl){
         String actualUrl = WebDriverRunner.url();
         assertEquals(expectedUrl, actualUrl);
     }
