@@ -7,9 +7,14 @@ import static com.codeborne.selenide.Selenide.$;
 public class HeaderPage {
     private final SelenideElement LOGO = $("[alt=\"Website for automation practice\"]");
     private final SelenideElement HOME_BUTTON = $("[class=\"fa fa-home\"]");
-    private final SelenideElement LOGIN_BUTTON = $("[class=\"fa fa-lock\"]");
+    private final SelenideElement LOGIN_LOGOUT_BUTTON = $("[class=\"fa fa-lock\"]");
     private final SelenideElement PRODUCTS_BUTTON = $("[href=\"/products\"]");
     private final SelenideElement CART_BUTTON = $("[class=\"fa fa-shopping-cart\"]");
+    private final SelenideElement DELETE_ACCOUNT_BUTTON = $("[class=\"fa fa-trash-o\"]"); //data-qa="account-deleted" Account Deleted! data-qa="continue-button"(return to home page)
+    private final SelenideElement TEST_CASES_BUTTON = $("[href=\"/test_cases\"]");
+    private final SelenideElement API_TESTING_BUTTON = $("[href=\"/api_list\"]");
+    private final SelenideElement VIDEO_TUTORIALS_BUTTON = $("[href=\"https://www.youtube.com/c/AutomationExercise\"]");
+    private final SelenideElement CONTACT_US_BUTTON = $("[href=\"/contact_us\"]");
 
     public MainPage clickLogo(){
         LOGO.click();
@@ -22,7 +27,7 @@ public class HeaderPage {
     }
 
     public LoginPage clickLoginButton(){
-        LOGIN_BUTTON.click();
+        LOGIN_LOGOUT_BUTTON.click();
         return new LoginPage();
     }
 
@@ -34,5 +39,30 @@ public class HeaderPage {
     public CartPage clickCartButton(){
         CART_BUTTON.click();
         return new CartPage();
+    }
+
+    public DeletePage clickDeleteAccountButton(){
+        DELETE_ACCOUNT_BUTTON.click();
+        return new DeletePage();
+    }
+
+    public TestCasesPage clickTestCasesButton(){
+        TEST_CASES_BUTTON.click();
+        return new TestCasesPage();
+    }
+
+    public APITestingPage clickAPITestingButton(){
+        API_TESTING_BUTTON.click();
+        return new APITestingPage();
+    }
+
+    public VideoTutorialsPage clickVideoTutorialsButton(){
+        VIDEO_TUTORIALS_BUTTON.click();
+        return new VideoTutorialsPage();
+    }
+
+    public ContactUsPage clickContactUsButton(){
+        CONTACT_US_BUTTON.click();
+        return new ContactUsPage();
     }
 }
