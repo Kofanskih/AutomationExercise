@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class ProductsTests extends BaseTest {
     private String searchedItem = "Winter Top";
     private String addedMessageOnTheModalWindow = "Added!";
-    private final String expectedProductURL = "https://automationexercise.com/product_details/2";
+    private String expectedProductURL = "https://automationexercise.com/product_details/2";
     private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
     private String madameCategoryTitle = "BRAND - MADAME PRODUCTS";
     private String cartTitle = "Shopping Cart";
