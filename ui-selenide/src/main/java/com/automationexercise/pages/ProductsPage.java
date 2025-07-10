@@ -67,17 +67,13 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
-    public void checkKidsTitleOnTheProductPage(String title){
+    public void checkTitleOnTheProductPage(String title){
         CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
     }
 
     public ProductsPage clickOnTheBrandsMadameCategoryOnTheProductsPage(){
         BRANDS_MADAME_BUTTON.scrollTo().click();
         return this;
-    }
-
-    public void checkBrandsMadameTitleOnTheProductPage(String title){
-        CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
     }
 
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
