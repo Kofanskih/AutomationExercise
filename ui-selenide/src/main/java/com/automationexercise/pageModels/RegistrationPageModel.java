@@ -57,7 +57,7 @@ public class RegistrationPageModel {
     }
 
     public RegistrationPageModel getInvalidSubscribeEmail(){
-        this.userEmailAddress = user.name().firstName();
+        this.userEmailAddress = "kofanskih08gmail.com";
         return this;
     }
 
