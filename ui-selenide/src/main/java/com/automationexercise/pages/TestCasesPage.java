@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class TestCasesPage {
+public class TestCasesPage extends BasePage{
     private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
     private final SelenideElement LIST = $("[href=\"#collapse1\"]");
     private final SelenideElement EXPANDED_BLOCK = $("[class=\"panel-collapse in\"]");

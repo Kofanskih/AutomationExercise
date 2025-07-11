@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class SignUpPage {
+public class SignUpPage extends BasePage{
     private final SelenideElement MALE_RADIOBUTTON = $("[id=\"id_gender1\"]");
     private final SelenideElement FEMALE_RADIOBUTTON = $("[id=\"id_gender2\"]");
     private final SelenideElement DAYS_DROPDOWN = $("[id=\"days\"]");

@@ -1,4 +1,4 @@
 package com.automationexercise.pages;
 
-public class VideoTutorialsPage {
+public class VideoTutorialsPage extends BasePage{
 }
