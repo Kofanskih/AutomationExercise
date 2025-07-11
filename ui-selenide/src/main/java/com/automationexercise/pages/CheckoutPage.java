@@ -6,10 +6,10 @@ import com.codeborne.selenide.WebDriverRunner;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class CheckoutPage {
+public class CheckoutPage extends BasePage{
     private final SelenideElement REGISTER_LOGIN_BUTTON = $x("//p//a[@href=\"/login\"]");
 
-    public void checkUrlOnTheCheckoutPage(String expectedUrl) throws InterruptedException {
+    public void checkUrlOnTheCheckoutPage(String expectedUrl) {
         String actualUrl = WebDriverRunner.url();
         assertEquals(expectedUrl, actualUrl);
     }

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class MainPage {
+public class MainPage extends BasePage{
     private final SelenideElement ACCEPT_COOKIES_BUTTON = $("[class=\"fc-button-label\"]");
     private final SelenideElement USER_LOGGED_IN_TEXT = $("[href=\"/logout\"]");
     private final SelenideElement LOGIN_ERROR_TEXT = $("[style=\"color: red;\"]");

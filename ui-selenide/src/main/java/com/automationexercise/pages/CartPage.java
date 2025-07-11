@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class CartPage {
+public class CartPage extends BasePage{
     private final SelenideElement TEXT_TITLE = $("[class=\"active\"]");
     private final SelenideElement EMPTY_TITLE = $("[id=\"empty_cart\"]");
     private final SelenideElement HERE_BUTTON = $x("//u[contains(., 'here')]");

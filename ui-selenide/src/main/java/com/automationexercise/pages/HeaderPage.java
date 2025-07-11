@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class HeaderPage {
+public class HeaderPage extends BasePage{
     private final SelenideElement LOGO = $("[alt=\"Website for automation practice\"]");
     private final SelenideElement HOME_BUTTON = $("[class=\"fa fa-home\"]");
     private final SelenideElement LOGIN_LOGOUT_BUTTON = $("[class=\"fa fa-lock\"]");
