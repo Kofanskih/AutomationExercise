@@ -1,11 +1,12 @@
 package com.automationexercise.ui.tests.mainPageTests;
 
 import com.automationexercise.pages.*;
+import com.automationexercise.ui.tests.BaseTest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class MainPageTests {
+public class MainPageTests extends BaseTest {
     private String expectedMainURL = "https://automationexercise.com/";
     private String addedMessageOnTheModalWindow = "Added!";
     private String expectedProductURL = "https://automationexercise.com/product_details/3";
