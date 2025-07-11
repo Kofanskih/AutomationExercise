@@ -12,6 +12,8 @@ public class MainPageTests {
     private String menJeansTitle = "MEN - JEANS PRODUCTS";
     private String brandsHMTitle = "BRAND - H&M PRODUCTS";
     private String cartTitle = "Shopping Cart";
+    private String testCasesTitle = "TEST CASES";
+    private String apiTestingTitle = "APIS LIST FOR PRACTICE";
 
     @BeforeMethod
     void preconditionMethod(){
@@ -68,7 +70,7 @@ public class MainPageTests {
     }
 
     @Test
-    void goToBrandsHMCategoryOnTheProductsPage(){
+    void goToBrandsHMCategoryOnTheMainPage(){
         new MainPage().acceptCookies()
                 .clickOnTheBrandsNMCategoryOnTheMainPage()
                 .checkTitleOnTheProductPage(brandsHMTitle);
@@ -76,12 +78,26 @@ public class MainPageTests {
     }
 
     @Test
-    void goToTheCartAfterAddingItemOnTheProductsPage(){
+    void goToTheCartAfterAddingItemOnTheMainPage(){
         new MainPage().acceptCookies()
                 .addItemToTheCartOnTheMainPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .checkUserOnTheCartPage(cartTitle);
 
+    }
+
+    @Test
+    void goToTheTestCasesPageThroughCarouselOnTheMainPage(){
+        new MainPage().acceptCookies()
+                .clickOnTheTestCasesButtonOnTheCarousel()
+                .checkTitleOnTheTestCasesPage(testCasesTitle);
+    }
+
+    @Test
+    void goToTheAPITestingPageThroughCarouselOnTheMainPage(){
+        new MainPage().acceptCookies()
+                .clickOnTheAPITestingButtonOnTheCarousel()
+                .checkTitleOnTheAPITestingPage(apiTestingTitle);
     }
 }
 
