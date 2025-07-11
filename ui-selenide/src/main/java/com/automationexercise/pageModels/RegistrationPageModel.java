@@ -51,4 +51,14 @@ public class RegistrationPageModel {
         return this;
     }
 
+    public RegistrationPageModel getSubscribeEmail(){
+        this.userEmailAddress = user.internet().emailAddress();
+        return this;
+    }
+
+    public RegistrationPageModel getInvalidSubscribeEmail(){
+        this.userEmailAddress = "kofanskih08gmail.com";
+        return this;
+    }
+
 }
