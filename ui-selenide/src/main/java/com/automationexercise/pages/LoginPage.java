@@ -9,14 +9,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     private final SelenideElement SIGN_UP_NAME_FIELD = $("[data-qa=\"signup-name\"]");
     private final SelenideElement SIGNUP_EMAIL_ADDRESS_FIELD = $("[data-qa=\"signup-email\"]");
     private final SelenideElement SIGNUP_BUTTON = $("[data-qa=\"signup-button\"]");
     private final SelenideElement LOGIN_EMAIL_ADDRESS_FIELD = $("[data-qa=\"login-email\"]");
     private final SelenideElement PASSWORD_FIELD = $("[data-qa=\"login-password\"]");
     private final SelenideElement LOGIN_BUTTON = $("[data-qa=\"login-button\"]");
-
 
 
     public SignUpPage fillSignUpForm(RegistrationPageModel registrationPageModel) {
@@ -50,7 +49,6 @@ public class LoginPage {
 
         return new LoginPage();
     }
-
 
     public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedInformationMessage) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
