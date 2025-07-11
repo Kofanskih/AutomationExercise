@@ -21,6 +21,8 @@ public class MainPage {
     private final SelenideElement JEANS_MEN_BUTTON = $("[href=\"/category_products/6\"]");
     private final SelenideElement BRANDS_HM_BUTTON = $("[href=\"/brand_products/H&M\"]");
     private final SelenideElement VIEW_CART_BUTTON = $x("//p/a[@href=\"/view_cart\"]");
+    private final SelenideElement TEST_CASES_CAROUSEL_BUTTON = $x("//div[@class=\"carousel-inner\"]//a[@href=\"/test_cases\"]");
+    private final SelenideElement API_TESTING_CAROUSEL_BUTTON = $x("//div[@class=\"carousel-inner\"]//a[@href=\"/api_list\"]");
 
     public MainPage acceptCookies(){
         ACCEPT_COOKIES_BUTTON.click();
@@ -82,6 +84,16 @@ public class MainPage {
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
         VIEW_CART_BUTTON.click();
         return new CartPage();
+    }
+
+    public TestCasesPage clickOnTheTestCasesButtonOnTheCarousel(){
+        TEST_CASES_CAROUSEL_BUTTON.click();
+        return new TestCasesPage();
+    }
+
+    public APITestingPage clickOnTheAPITestingButtonOnTheCarousel(){
+        API_TESTING_CAROUSEL_BUTTON.click();
+        return new APITestingPage();
     }
 
 }
