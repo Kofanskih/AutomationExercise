@@ -24,4 +24,11 @@ public class LoginPageModel {
         this.userPassword = "1234567";
         return this;
     }
+
+
+    public LoginPageModel loginForDelete(){
+        this.userEmailAddress = "deletingTest@gmail.com";
+        this.userPassword = "12345678";
+        return this;
+    }
 }
