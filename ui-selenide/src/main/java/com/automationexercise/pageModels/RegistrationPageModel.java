@@ -3,8 +3,6 @@ package com.automationexercise.pageModels;
 import lombok.Data;
 import net.datafaker.Faker;
 
-import java.util.Locale;
-
 @Data
 public class RegistrationPageModel {
 
@@ -36,6 +34,22 @@ public class RegistrationPageModel {
         this.userCity = user.address().city();
         this.userZipode = user.address().zipCode();
         this.userMobile = user.phoneNumber().cellPhone();
+        return this;
+    }
+
+    public RegistrationPageModel getRegistrationUserDataForDeleting(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "deletingTest@gmail.com";
+        this.userPassword = "12345678";
+        this.userFirstName = "Anastasiia";
+        this.userLastName = "Bu";
+        this.userCompany = "Company";
+        this.userAddress = "Address one";
+        this.userAddress2 = "Address two";
+        this.userState = "State";
+        this.userCity = "City";
+        this.userZipode = "12345";
+        this.userMobile = "1234567890";
         return this;
     }
 
