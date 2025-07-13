@@ -7,7 +7,6 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SignUpPage extends BasePage{
-    private final SelenideElement MALE_RADIOBUTTON = $("[id=\"id_gender1\"]");
     private final SelenideElement FEMALE_RADIOBUTTON = $("[id=\"id_gender2\"]");
     private final SelenideElement DAYS_DROPDOWN = $("[id=\"days\"]");
     private final SelenideElement DAY_VALUE = $("[id=\"days\"] [value=\"21\"]");
@@ -33,11 +32,6 @@ public class SignUpPage extends BasePage{
     private final SelenideElement CONTINUE_BUTTON = $("[data-qa=\"continue-button\"]");
     private final SelenideElement SIGNUP_ERROR_MESSAGE = $("[style=\"color: red;\"]");
 
-
-    public SignUpPage chooseGenderMale(){
-        MALE_RADIOBUTTON.click();
-        return this;
-    }
 
     public SignUpPage chooseGenderFemale(){
         FEMALE_RADIOBUTTON.click();
