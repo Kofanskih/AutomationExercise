@@ -50,10 +50,10 @@ public class LoginPage extends BasePage{
         return new LoginPage();
     }
 
-    public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedInformationMessage) {
+    public void checkShowValidationMessageWhenLoginEmailIsEmpty(String message) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", LOGIN_EMAIL_ADDRESS_FIELD);
-        assertEquals(expectedInformationMessage, actualMessage);
+        assertEquals(message, actualMessage);
     }
 
     public LoginPage fillLoginFormWithEmptyPasswordField(LoginPageModel loginPageModel){
@@ -64,10 +64,10 @@ public class LoginPage extends BasePage{
         return new LoginPage();
     }
 
-    public void checkShowValidationMessageWhenPasswordIsEmpty(String expectedInformationMessage) {
+    public void checkShowValidationMessageWhenPasswordIsEmpty(String message) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", PASSWORD_FIELD);
-        assertEquals(expectedInformationMessage, actualMessage);
+        assertEquals(message, actualMessage);
     }
 
 
