@@ -27,9 +27,9 @@ public class FooterPage extends BasePage{
         return this;
     }
 
-    public void checkShowValidationMessageUsingInvalidEmailForSubscription(String expectedInformationMessage) {
+    public void checkShowValidationMessageUsingInvalidEmailForSubscription(String message) {
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", SUBSCRIBE_FIELD);
-        assertEquals(expectedInformationMessage, actualMessage);
+        assertEquals(message, actualMessage);
     }
 }
