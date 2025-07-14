@@ -1,14 +1,14 @@
-package com.automationexercise.ui.tests.productsTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ProductsTests extends BaseTest {
+public class ProductsTests {
     private String searchedItem = "Winter Top";
     private String addedMessageOnTheModalWindow = "Added!";
     private String expectedProductURL = "https://automationexercise.com/product_details/2";
@@ -19,6 +19,7 @@ public class ProductsTests extends BaseTest {
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
     }
 
@@ -82,7 +83,7 @@ public class ProductsTests extends BaseTest {
     }
 
     @Test
-    void goToTheCartAfterAddingItemOnTheProductsPage(){
+    void goToTheCartAfterAddingItemOnTheProductsPage() {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
