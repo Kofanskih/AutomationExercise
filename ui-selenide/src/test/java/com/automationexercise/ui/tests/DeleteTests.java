@@ -1,22 +1,23 @@
-package com.automationexercise.ui.tests.deleteTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pageModels.LoginPageModel;
 import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class DeleteTests extends BaseTest {
+public class DeleteTests {
     private String expectedMainURL = "https://automationexercise.com/";
     private String title = "ACCOUNT DELETED!";
     private String loginErrorMessage = "Your email or password is incorrect!";
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
 
         new MainPage().acceptCookies();
