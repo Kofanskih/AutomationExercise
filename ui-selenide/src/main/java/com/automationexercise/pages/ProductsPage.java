@@ -3,6 +3,9 @@ package com.automationexercise.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
@@ -12,7 +15,7 @@ public class ProductsPage extends BasePage {
     private final SelenideElement SEARCH_BUTTON = $("[id=\"submit_search\"]");
     private final SelenideElement SEARCH_RESULT = $x("//p[contains(., 'Winter Top')]");
     private final SelenideElement ADD_ITEM_TO_CART = $("[data-product-id=\"3\"]");
-    private final SelenideElement ADDED_MODAL_WINDOW = $("[class=\"modal-title w-100\"]");
+    private final SelenideElement ADDED_MODAL_WINDOW = $x("//h4[contains(., 'Added!')]");
     private final SelenideElement CONTINUE_SHOPPING_BUTTON = $("[class=\"btn btn-success close-modal btn-block\"]");
     private final SelenideElement MODAL_WINDOW_HIDDEN = $("[class=\"modal fade\"]");
     private final SelenideElement VIEW_PRODUCT_BUTTON = $x("(//i[@class='fa fa-plus-square'])[2]");
@@ -20,7 +23,7 @@ public class ProductsPage extends BasePage {
     private final SelenideElement TOP_SHIRTS_KIDS_BUTTON = $("[href=\"/category_products/5\"]");
     private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
     private final SelenideElement BRANDS_MADAME_BUTTON = $("[href=\"/brand_products/Madame\"]");
-    private final SelenideElement VIEW_CART_BUTTON = $x("//p/a[@href=\"/view_cart\"]");
+    private final SelenideElement VIEW_CART_BUTTON = $x("(//p[@class=\"text-center\"])[2]");
 
 
     public ProductsPage searchItemOnTheProductsPage(String searchedItem){
@@ -39,11 +42,12 @@ public class ProductsPage extends BasePage {
     }
 
     public void checkAddedItemOnTheProductsPage(String infoModalMessage){
-        ADDED_MODAL_WINDOW.shouldHave(Condition.exactTextCaseSensitive(infoModalMessage));
+        ADDED_MODAL_WINDOW.shouldBe(Condition.visible, Duration.ofSeconds(1))
+                .shouldHave(Condition.exactTextCaseSensitive(infoModalMessage));
     }
 
     public ProductsPage clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage(){
-        CONTINUE_SHOPPING_BUTTON.click();
+        CONTINUE_SHOPPING_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return this;
     }
 
@@ -63,7 +67,7 @@ public class ProductsPage extends BasePage {
 
     public ProductsPage clickOnTheKidsTopsCategoryOnTheProductsPage(){
         KIDS_BUTTON.click();
-        TOP_SHIRTS_KIDS_BUTTON.click();
+        TOP_SHIRTS_KIDS_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return this;
     }
 
@@ -76,8 +80,8 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
-    public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
-        VIEW_CART_BUTTON.click();
+    public CartPage clickOnTheViewCartButtonOnTheModalWindow() {
+        VIEW_CART_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return new CartPage();
     }
 }
