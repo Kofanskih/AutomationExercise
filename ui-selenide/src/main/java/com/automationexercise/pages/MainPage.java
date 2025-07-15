@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
@@ -48,11 +50,12 @@ public class MainPage extends BasePage{
     }
 
     public void checkAddedItemOnTheMainPage(String infoModalMessage){
-        ADDED_MODAL_WINDOW.shouldHave(Condition.exactTextCaseSensitive(infoModalMessage));
+        ADDED_MODAL_WINDOW.shouldBe(Condition.visible, Duration.ofSeconds(1))
+                .shouldHave(Condition.exactTextCaseSensitive(infoModalMessage));
     }
 
     public MainPage clickContinueShoppingButtonOnTheModalWindowOnTheMainPage(){
-        CONTINUE_SHOPPING_BUTTON.click();
+        CONTINUE_SHOPPING_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return this;
     }
 
@@ -72,7 +75,7 @@ public class MainPage extends BasePage{
 
     public ProductsPage clickOnTheMenJeansCategoryOnTheMainPage(){
         MEN_BUTTON.click();
-        JEANS_MEN_BUTTON.click();
+        JEANS_MEN_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return new ProductsPage();
     }
 
@@ -82,7 +85,7 @@ public class MainPage extends BasePage{
     }
 
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
-        VIEW_CART_BUTTON.click();
+        VIEW_CART_BUTTON.shouldBe(Condition.visible, Duration.ofSeconds(1)).click();
         return new CartPage();
     }
 
