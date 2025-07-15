@@ -1,15 +1,15 @@
-package com.automationexercise.ui.tests.loginTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pageModels.LoginPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTest {
     private String loggedUser = "Logout";
     private String loginErrorMessage = "Your email or password is incorrect!";
     private String emptyInformationMessage = "Заполните это поле.";
@@ -17,6 +17,7 @@ public class LoginTest extends BaseTest {
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
     }
 

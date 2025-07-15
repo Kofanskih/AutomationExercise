@@ -1,22 +1,22 @@
-package com.automationexercise.ui.tests.cartTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pageModels.LoginPageModel;
-import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CartTests extends BaseTest {
-    private String emptyCartTitle = "Cart is empty! Click here to buy products.";
+public class CartTests {
+    private String emptyCartTitle = "Cart is empty!";
     private String expectedProductsURL = "https://automationexercise.com/products";
     private String expectedCheckoutURL = "https://automationexercise.com/checkout";
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
     }
 
@@ -40,7 +40,7 @@ public class CartTests extends BaseTest {
     }
 
     @Test
-    void deleteItemFromTheCart(){
+    void deleteItemFromTheCart() {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
@@ -51,11 +51,11 @@ public class CartTests extends BaseTest {
     }
 
     @Test
-    void proceedToCheckoutWithLoggedUser() throws InterruptedException {
+    void proceedToCheckoutWithLoggedUser() {
         new MainPage().acceptCookies();
         new HeaderPage()
                 .clickLoginButton()
-                .fillLoginForm(new LoginPageModel().myLogin());// through main page
+                .fillLoginForm(new LoginPageModel().myLogin());
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -64,7 +64,7 @@ public class CartTests extends BaseTest {
     }
 
     @Test
-    void proceedToCheckoutWithNotLoggedUser() throws InterruptedException {
+    void proceedToCheckoutWithNotLoggedUser() {
         new MainPage().acceptCookies();
         new HeaderPage().clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()

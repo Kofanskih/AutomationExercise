@@ -1,20 +1,21 @@
-package com.automationexercise.ui.tests.footerTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.FooterPage;
 import com.automationexercise.pages.MainPage;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class FooterTests extends BaseTest {
+public class FooterTests {
     private String successfullSubscriptionValidationMessage = "You have been successfully subscribed!";
     private String errorValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"kofanskih08gmail.com\" отсутствует символ \"@\".";
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
     }
 

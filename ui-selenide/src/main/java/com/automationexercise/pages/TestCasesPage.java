@@ -4,12 +4,13 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class TestCasesPage extends BasePage{
     private final SelenideElement CENTER_TEXT_TITLE = $("[class=\"title text-center\"]");
     private final SelenideElement LIST = $("[href=\"#collapse1\"]");
-    private final SelenideElement EXPANDED_BLOCK = $("[class=\"panel-collapse in\"]");
-    private final SelenideElement COLLAPSED_BLOCK = $("[class=\"collapsed\"]");
+    private final SelenideElement EXPANDED_BLOCK = $x("//div[@id=\"collapse1\"]/ul[@class=\"list-group\"]");
+    private final SelenideElement COLLAPSED_BLOCK = $x("//div[@id=\"collapse1\"][@class=\"panel-collapse collapsing\"]");
 
     public void checkTitleOnTheTestCasesPage(String title){
         CENTER_TEXT_TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
