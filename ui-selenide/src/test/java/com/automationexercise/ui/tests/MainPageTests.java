@@ -1,12 +1,12 @@
-package com.automationexercise.ui.tests.mainPageTests;
+package com.automationexercise.ui.tests;
 
 import com.automationexercise.pages.*;
-import com.automationexercise.ui.tests.BaseTest;
+import com.automationexercise.utils.ConfigurateBrowserSettings;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class MainPageTests extends BaseTest {
+public class MainPageTests {
     private String expectedMainURL = "https://automationexercise.com/";
     private String addedMessageOnTheModalWindow = "Added!";
     private String expectedProductURL = "https://automationexercise.com/product_details/3";
@@ -18,6 +18,7 @@ public class MainPageTests extends BaseTest {
 
     @BeforeMethod
     void preconditionMethod(){
+        new ConfigurateBrowserSettings().setUp();
         new BasePage().open();
     }
 
