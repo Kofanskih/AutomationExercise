@@ -22,7 +22,7 @@ public class VideoTutorialsTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "Go to the Video Tutorials page")
     void goToTheVideoTutorialsPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickVideoTutorialsButton()
