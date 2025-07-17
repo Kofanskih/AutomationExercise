@@ -39,20 +39,20 @@ public class DeleteTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "Delete user account")
     void deleteUser(){
         new HeaderPage().clickDeleteAccountButton()
                 .clickContinueButtonOnTheDeletePage()
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
-    @Test
+    @Test(description = "Check title after deleting account")
     void checkTitleAfterDeletingAccount(){
         new HeaderPage().clickDeleteAccountButton()
                 .checkTitleAfterDeletingAccount(title);
     }
 
-    @Test
+    @Test(description = "Try to login with deleting account")
     void userTryToLoginAfterDeletingAccount(){
         new HeaderPage().clickDeleteAccountButton()
                 .clickContinueButtonOnTheDeletePage();
