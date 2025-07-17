@@ -5,10 +5,17 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Authentication")
+@Feature("Login")
+@Story("User logs in with different credentials")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-001")
 public class LoginTest {
     private String loggedUser = "Logout";
     private String loginErrorMessage = "Your email or password is incorrect!";
@@ -21,7 +28,12 @@ public class LoginTest {
         new BasePage().open();
     }
 
-    @Test
+    @AfterMethod
+    void postconditionMethod(){
+        new BasePage().close();
+    }
+
+    @Test(description = "User can login with correct credentials")
     void userLogin(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -30,7 +42,7 @@ public class LoginTest {
                 .checkUserLoggedIn(loggedUser);
     }
 
-    @Test
+    @Test(description = "User can't login with incorrect credentials")
     void userIncorrectLogin(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -39,7 +51,7 @@ public class LoginTest {
                 .checkLoginErrorMessage(loginErrorMessage);
     }
 
-    @Test
+    @Test(description = "User can't login with empty email field")
     void userLoginWithEmptyEmailField() {
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -48,7 +60,7 @@ public class LoginTest {
                 .checkShowValidationMessageWhenLoginEmailIsEmpty(emptyInformationMessage);
     }
 
-    @Test
+    @Test(description = "User can't login with empty password field")
     void userLoginWithEmptyPasswordField() {
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -57,18 +69,13 @@ public class LoginTest {
                 .checkShowValidationMessageWhenPasswordIsEmpty(emptyInformationMessage);
     }
 
-    @Test
+    @Test(description = "User can't login with invalid email")
     void userLoginWithInvalidEmail() {
         new MainPage().acceptCookies();
         new HeaderPage()
                 .clickLoginButton()
                 .fillLoginFormWithInvalidEmail(new LoginPageModel().invalidEmailLogin())
                 .checkShowValidationMessageWhenLoginEmailIsInvalid(invalidEmailInformationMessage);
-    }
-
-    @AfterMethod
-    void postconditionMethod(){
-        new BasePage().close();
     }
 
 }
