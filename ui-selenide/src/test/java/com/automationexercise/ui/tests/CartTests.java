@@ -5,10 +5,17 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Cart")
+@Feature("Order")
+@Story("Work with orders")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-005")
 public class CartTests {
     private String emptyCartTitle = "Cart is empty!";
     private String expectedProductsURL = "https://automationexercise.com/products";
