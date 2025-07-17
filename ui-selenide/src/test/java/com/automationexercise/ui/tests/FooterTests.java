@@ -24,13 +24,13 @@ public class FooterTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "User subscribed")
     void userSubscribe(){
         new MainPage().acceptCookies();
         new FooterPage().checkUserIsSubscribed(new RegistrationPageModel().getSubscribeEmail(), successfullSubscriptionValidationMessage);
     }
 
-    @Test
+    @Test(description = "Try to subscribe with invalid email")
     void userSubscribeWithInvalidEmail(){
         new MainPage().acceptCookies();
         new FooterPage().fillSubscribeFieldWithInvalidEmail(new RegistrationPageModel().getInvalidSubscribeEmail())
