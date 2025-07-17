@@ -5,10 +5,17 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Feedback")
+@Feature("Contact us")
+@Story("Feedback")
+@Severity(SeverityLevel.NORMAL)
+@Owner("bukovtseva")
+@TmsLink("TC-008")
 public class ContactUsTests {
     private String successfulMessage = "Success! Your details have been submitted successfully.";
     private String expectedMainURL = "https://automationexercise.com/";
