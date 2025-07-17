@@ -22,14 +22,14 @@ public class APITestingTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "User go to the API Testing page")
     void goToTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
                 .checkTitleOnTheAPITestingPage(APITestingTitle);
     }
 
-    @Test
+    @Test(description = "Expand list on the API Testing page")
     void expandListOnTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
@@ -37,7 +37,7 @@ public class APITestingTests {
                 .checkTheListIsExpanded();
     }
 
-    @Test
+    @Test(description = "Collapse expanded list on the API Testing page")
     void colapseExpandedListOnTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
