@@ -5,10 +5,17 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Feedback")
+@Feature("Contact us")
+@Story("Feedback")
+@Severity(SeverityLevel.NORMAL)
+@Owner("bukovtseva")
+@TmsLink("TC-008")
 public class ContactUsTests {
     private String successfulMessage = "Success! Your details have been submitted successfully.";
     private String expectedMainURL = "https://automationexercise.com/";
@@ -26,7 +33,7 @@ public class ContactUsTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -35,7 +42,7 @@ public class ContactUsTests {
                 .checkMessageWasSent(successfulMessage);
     }
 
-    @Test
+    @Test(description = "Cancel send contact message on the Contact us page")
     void doNotSendContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -44,7 +51,7 @@ public class ContactUsTests {
                 .checkHomeButtonNotAppear();
     }
 
-    @Test
+    @Test(description = "Go to the Home page after sending contact message")
     void goToTheHomePageAfterSendingContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -54,7 +61,7 @@ public class ContactUsTests {
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
-    @Test
+    @Test(description = "Fill contact form with invalid email")
     void fillContactUsformWithInvalidEmail(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -62,7 +69,7 @@ public class ContactUsTests {
                 .checkShowValidationMessageInEmailField(invalidEmailValidationMessage);
     }
 
-    @Test
+    @Test(description = "Fill contact form with empty email field")
     void fillContactUsformWithEmptyEmailField(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()

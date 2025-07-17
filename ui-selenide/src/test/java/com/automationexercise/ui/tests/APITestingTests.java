@@ -4,10 +4,16 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+@Epic("Test cases")
+@Feature("Api test cases")
+@Story("Test cases for API")
+@Severity(SeverityLevel.MINOR)
+@Owner("bukovtseva")
+@TmsLink("TC-009")
 public class APITestingTests {
     private String APITestingTitle = "APIS LIST FOR PRACTICE";
 
@@ -22,14 +28,14 @@ public class APITestingTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "User go to the API Testing page")
     void goToTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
                 .checkTitleOnTheAPITestingPage(APITestingTitle);
     }
 
-    @Test
+    @Test(description = "Expand list on the API Testing page")
     void expandListOnTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
@@ -37,7 +43,7 @@ public class APITestingTests {
                 .checkTheListIsExpanded();
     }
 
-    @Test
+    @Test(description = "Collapse expanded list on the API Testing page")
     void colapseExpandedListOnTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
