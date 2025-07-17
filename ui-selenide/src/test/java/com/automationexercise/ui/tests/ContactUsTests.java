@@ -26,7 +26,7 @@ public class ContactUsTests {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -35,7 +35,7 @@ public class ContactUsTests {
                 .checkMessageWasSent(successfulMessage);
     }
 
-    @Test
+    @Test(description = "Cancel send contact message on the Contact us page")
     void doNotSendContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -44,7 +44,7 @@ public class ContactUsTests {
                 .checkHomeButtonNotAppear();
     }
 
-    @Test
+    @Test(description = "Go to the Home page after sending contact message")
     void goToTheHomePageAfterSendingContactMessage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -54,7 +54,7 @@ public class ContactUsTests {
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
-    @Test
+    @Test(description = "Fill contact form with invalid email")
     void fillContactUsformWithInvalidEmail(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
@@ -62,7 +62,7 @@ public class ContactUsTests {
                 .checkShowValidationMessageInEmailField(invalidEmailValidationMessage);
     }
 
-    @Test
+    @Test(description = "Fill contact form with empty email field")
     void fillContactUsformWithEmptyEmailField(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
