@@ -5,10 +5,16 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+@Epic("Authentication")
+@Feature("User registration")
+@Story("Registration")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-002")
 public class SignUpTest {
     private String loggedUser = "Logout";
     private String signUpErrorMessage = "Email Address already exist!";
@@ -26,7 +32,7 @@ public class SignUpTest {
         new BasePage().close();
     }
 
-    @Test
+    @Test(description = "User registration")
     void userSignUp(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -44,7 +50,7 @@ public class SignUpTest {
 
     }
 
-    @Test
+    @Test(description = "User sign up with exists data")
     void userSignUpWithExistData(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -54,7 +60,7 @@ public class SignUpTest {
 
     }
 
-    @Test
+    @Test(description = "User sign up with empty name field")
     void userSignUpWithEmptySignUpNameField(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -64,7 +70,7 @@ public class SignUpTest {
 
     }
 
-    @Test
+    @Test(description = "User sign up with empty email field")
     void userSignUpWithEmptySignUpEmailField(){
         new MainPage().acceptCookies();
         new HeaderPage()
@@ -74,7 +80,7 @@ public class SignUpTest {
 
     }
 
-    @Test
+    @Test(description = "User sign up with invalid email")
     void userSignUpWithInvalidEmail(){
         new MainPage().acceptCookies();
         new HeaderPage()
