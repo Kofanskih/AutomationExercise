@@ -1,4 +1,4 @@
-package conditions;
+package com.automationexercise.conditions;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;

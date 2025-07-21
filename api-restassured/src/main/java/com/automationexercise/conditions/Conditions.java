@@ -1,4 +1,4 @@
-package conditions;
+package com.automationexercise.conditions;
 
 import org.hamcrest.Matcher;
 
