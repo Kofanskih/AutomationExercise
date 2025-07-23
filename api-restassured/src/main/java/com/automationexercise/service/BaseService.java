@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
-import static utils.OwnerReadUrl.readMainUrl;
+import static utils.OwnerReadMainUrl.readMainUrl;
 
 public class BaseService {
     protected RequestSpecification baseConfiguration(){
