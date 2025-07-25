@@ -11,7 +11,7 @@ import static utils.OwnerReadMainUrl.readMainUrl;
 public class BaseService {
     protected RequestSpecification baseConfiguration(){
         RequestSpecification reqSpec = given()
-                .contentType(ContentType.JSON)
+                .contentType(ContentType.HTML)
                 .baseUri(readMainUrl())
                 .when()
                 .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
