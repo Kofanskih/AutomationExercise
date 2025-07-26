@@ -10,7 +10,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.testng.Assert;
 
-import java.io.IOException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,6 +34,18 @@ public class AssertableResponse {
     }
 
     public <T> void checkHtmlResponseContainsValue(String jsonPathExpr, T expectedValue) {
+        String html = response.getBody().asString();
+        Document doc = Jsoup.parse(html);
+        String jsonText = doc.body().wholeText();
+
+        JsonPath jsonPath = new JsonPath(jsonText);
+        T actualValue = jsonPath.get(jsonPathExpr);
+
+        Assert.assertEquals(actualValue, expectedValue,
+                "Value '" + expectedValue + "' was not found in the list: " + actualValue);
+    }
+
+    public <T> void checkHtmlResponseContainsValueInTheList(String jsonPathExpr, T expectedValue) {
         String html = response.getBody().asString();
         Document doc = Jsoup.parse(html);
         String jsonText = doc.body().wholeText();
