@@ -16,6 +16,13 @@ public class ProductListService extends BaseService {
         return new AssertableResponse(response);
     }
 
+    public AssertableResponse sendPostProductListRequest() throws IOException {
+        Response response =
+                baseConfiguration()
+                .post(getPath(PRODUCT_LIST_PATH)).then().extract().response();
+        return new AssertableResponse(response);
+    }
+
 
 
 }
