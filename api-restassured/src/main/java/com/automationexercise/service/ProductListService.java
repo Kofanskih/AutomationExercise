@@ -12,17 +12,17 @@ public class ProductListService extends BaseService {
     public AssertableResponse sendGetProductListRequest() throws IOException {
         Response response =
                 baseConfiguration()
-                        .get(getPath(PRODUCT_LIST_PATH)).then().extract().response();
+                        .get(getPath(PRODUCT_LIST_PATH))
+                        .then().extract().response();
         return new AssertableResponse(response);
     }
 
     public AssertableResponse sendPostProductListRequest() throws IOException {
         Response response =
                 baseConfiguration()
-                .post(getPath(PRODUCT_LIST_PATH)).then().extract().response();
+                        .post(getPath(PRODUCT_LIST_PATH))
+                        .then().extract().response();
         return new AssertableResponse(response);
     }
-
-
 
 }
