@@ -13,9 +13,16 @@ public class BrandListService extends BaseService{
     public AssertableResponse sendGetBrandListRequest() throws IOException {
         Response response =
                 baseConfiguration()
-                        .get(getPath(BRAND_LIST_PATH)).then().extract().response();
+                        .get(getPath(BRAND_LIST_PATH))
+                        .then().extract().response();
         return new AssertableResponse(response);
     }
 
-
+    public AssertableResponse sendPutBrandListRequest() throws IOException {
+        Response response =
+                baseConfiguration()
+                        .put(getPath(BRAND_LIST_PATH))
+                        .then().extract().response();
+        return new AssertableResponse(response);
+    }
 }
