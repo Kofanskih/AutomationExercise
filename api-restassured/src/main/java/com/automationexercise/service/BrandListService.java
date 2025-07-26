@@ -2,27 +2,27 @@ package com.automationexercise.service;
 
 import com.automationexercise.conditions.AssertableResponse;
 import io.restassured.response.Response;
+
 import java.io.IOException;
 
 import static utils.GetPath.getPath;
 
-public class ProductListService extends BaseService {
-    private final String PRODUCT_LIST_PATH = "product.list";
+public class BrandListService extends BaseService{
+    private final String BRAND_LIST_PATH = "brands.list";
 
-    public AssertableResponse sendGetProductListRequest() throws IOException {
+    public AssertableResponse sendGetBrandListRequest() throws IOException {
         Response response =
                 baseConfiguration()
-                        .get(getPath(PRODUCT_LIST_PATH))
+                        .get(getPath(BRAND_LIST_PATH))
                         .then().extract().response();
         return new AssertableResponse(response);
     }
 
-    public AssertableResponse sendPostProductListRequest() throws IOException {
+    public AssertableResponse sendPutBrandListRequest() throws IOException {
         Response response =
                 baseConfiguration()
-                        .post(getPath(PRODUCT_LIST_PATH))
+                        .put(getPath(BRAND_LIST_PATH))
                         .then().extract().response();
         return new AssertableResponse(response);
     }
-
 }
