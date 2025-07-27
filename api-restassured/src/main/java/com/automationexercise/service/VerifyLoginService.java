@@ -33,4 +33,13 @@ public class VerifyLoginService extends BaseService {
         return new AssertableResponse(response);
     }
 
+    public AssertableResponse sendPostVerifyLoginRequestOnlyWithPasswordParam(String password) throws IOException {
+        Response response =
+                baseConfiguration()
+                        .contentType(X_WWW_FORM_URLENCODED)
+                        .formParam(PASSWORD_PARAM, password)
+                        .post(getPath(VERIFY_LOGIN_PATH))
+                        .then().extract().response();
+        return new AssertableResponse(response);
+    }
 }
