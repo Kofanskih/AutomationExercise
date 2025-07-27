@@ -16,6 +16,8 @@ public class DeleteAccountTests {
     private final String PASSWORD = "12345678";
     private final String PATH_RESPONSE_CODE = "responseCode";
     private final int RESPONSE_CODE_200 = 200;
+    private final String PATH_MESSAGE = "message";
+    private final String USER_DELETED_MESSAGE = "Account deleted!";
 
     @BeforeMethod
     public void createUserForDeleting() throws IOException{
@@ -31,4 +33,12 @@ public class DeleteAccountTests {
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
     }
+
+    @Test
+    public void verifyCorrectDeleteAccountInfoMessage() throws IOException {
+        new DeleteAccountService().sendDeleteAccountRequest(EMAIL, PASSWORD)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_MESSAGE, USER_DELETED_MESSAGE);
+    }
+
 }
