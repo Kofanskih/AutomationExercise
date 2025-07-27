@@ -21,4 +21,13 @@ public class SearchProductService extends BaseService {
                         .then().extract().response();
         return new AssertableResponse(response);
     }
+
+    public AssertableResponse sendPostEmptySearchRequest() throws IOException {
+        Response response =
+                baseConfiguration()
+                        .contentType(X_WWW_FORM_URLENCODED)
+                        .post(getPath(SEARCH_PRODUCT_PATH))
+                        .then().extract().response();
+        return new AssertableResponse(response);
+    }
 }
