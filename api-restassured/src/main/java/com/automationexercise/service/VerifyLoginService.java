@@ -22,4 +22,15 @@ public class VerifyLoginService extends BaseService {
                         .then().extract().response();
         return new AssertableResponse(response);
     }
+
+    public AssertableResponse sendPostVerifyLoginRequestOnlyWithEmailParam(String email) throws IOException {
+        Response response =
+                baseConfiguration()
+                        .contentType(X_WWW_FORM_URLENCODED)
+                        .formParam(EMAIL_PARAM, email)
+                        .post(getPath(VERIFY_LOGIN_PATH))
+                        .then().extract().response();
+        return new AssertableResponse(response);
+    }
+
 }
