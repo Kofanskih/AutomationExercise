@@ -57,4 +57,24 @@ public class AssertableResponse {
                 "Value '" + expectedValue + "' was not found in the list: " + values);
     }
 
+    public <T> void checkHtmlResponseContainsSearchedValueInTheList(String jsonPathExpr, T expectedValue) {
+        String html = response.getBody().asString();
+        Document doc = Jsoup.parse(html);
+        String jsonText = doc.body().wholeText();
+
+        JsonPath jsonPath = new JsonPath(jsonText);
+        List<String> values = jsonPath.getList(jsonPathExpr);
+
+        boolean found = false;
+        for (String value : values) {
+            if (value != null && value.toLowerCase().contains(expectedValue.toString().toLowerCase())) {
+                found = true;
+                break;
+            }
+        }
+
+        Assert.assertTrue(found,
+                "Value '" + expectedValue + "' was not found in any element of the list: " + values);
+    }
+
 }
