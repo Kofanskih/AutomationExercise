@@ -42,4 +42,13 @@ public class VerifyLoginService extends BaseService {
                         .then().extract().response();
         return new AssertableResponse(response);
     }
+
+    public AssertableResponse sendDeleteVerifyLoginRequest() throws IOException {
+        Response response =
+                baseConfiguration()
+                        .contentType(X_WWW_FORM_URLENCODED)
+                        .delete(getPath(VERIFY_LOGIN_PATH))
+                        .then().extract().response();
+        return new AssertableResponse(response);
+    }
 }
