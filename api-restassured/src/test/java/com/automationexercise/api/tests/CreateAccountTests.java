@@ -12,8 +12,10 @@ import static com.automationexercise.conditions.Conditions.statusCode;
 public class CreateAccountTests {
     private final String PATH_MESSAGE = "message";
     private final String USER_CREATED_MESSAGE = "User created!";
+    private final String BAD_REQUEST_NAME_MESSAGE = "Bad request, name parameter is missing in POST request.";
     private final String PATH_RESPONSE_CODE = "responseCode";
-    private final int RESPONSE_CODE_200 = 201;
+    private final int RESPONSE_CODE_201 = 201;
+    private final int RESPONSE_CODE_400 = 400;
 
     @Test
     public void verifyCreateUserCorrectInfoMessage() throws IOException {
@@ -32,7 +34,30 @@ public class CreateAccountTests {
         new CreateAccountService()
                 .sendPostCreateUserRequest(userData)
                 .shouldHave(statusCode(200))
-                .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
+                .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_201);
     }
+
+    @Test
+    public void verifyCorrectInfoMessageWithoutNameInCreateUserForm() throws IOException {
+        CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
+        Map<String, String> userData = user.toMap();
+        userData.remove("name");
+        new CreateAccountService()
+                .sendPostCreateUserRequest(userData)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_NAME_MESSAGE);
+    }
+
+    @Test
+    public void verifyCorrectResponseCodeWithoutNameInCreateUserForm() throws IOException {
+        CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
+        Map<String, String> userData = user.toMap();
+        userData.remove("name");
+        new CreateAccountService()
+                .sendPostCreateUserRequest(userData)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
+    }
+
 
 }
