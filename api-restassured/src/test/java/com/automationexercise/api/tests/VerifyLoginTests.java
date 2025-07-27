@@ -85,4 +85,20 @@ public class VerifyLoginTests {
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
     }
+
+    @Test
+    public void verifyCorrectLoginMessageOnlyWithPasswordParam() throws IOException {
+        new VerifyLoginService()
+                .sendPostVerifyLoginRequestOnlyWithPasswordParam(CORRECT_PASSWORD)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_MESSAGE);
+    }
+
+    @Test
+    public void verifyCorrectLoginResponseCodeOnlyWithPasswordParam() throws IOException {
+        new VerifyLoginService()
+                .sendPostVerifyLoginRequestOnlyWithPasswordParam(CORRECT_PASSWORD)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
+    }
 }
