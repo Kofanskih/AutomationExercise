@@ -15,6 +15,7 @@ public class UpdateAccountTests {
     private final String ACCOUNT_NOT_FOUND_MESSAGE = "Account not found!";
     private final String PATH_RESPONSE_CODE = "responseCode";
     private final int RESPONSE_CODE_200 = 200;
+    private final int RESPONSE_CODE_404 = 404;
 
 
     @Test
@@ -47,5 +48,14 @@ public class UpdateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, ACCOUNT_NOT_FOUND_MESSAGE);
     }
 
+    @Test
+    public void verifyUpdateNotExistUserCorrectResponseCode() throws IOException {
+        UpdateUserModel user = new UpdateUserModel().getRandomUpdateNotExistsUserData();
+        Map<String, String> userData = user.toMap();
+        new UpdateAccountService()
+                .sendPutUpdateUserRequest(userData)
+                .shouldHave(statusCode(200))
+                .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_404);
+    }
 
 }
