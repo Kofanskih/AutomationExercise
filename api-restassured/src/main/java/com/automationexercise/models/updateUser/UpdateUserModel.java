@@ -48,6 +48,26 @@ public class UpdateUserModel {
         return this;
     }
 
+    public UpdateUserModel getRandomUpdateNotExistsUserData(){
+        this.userName = user.name().username();
+        this.userEmailAddress = "1234567890test1234567890test@test.com";
+        this.userPassword = "12345678";
+        this.userTitle = "Mr";
+        this.userBirthDate = String.valueOf(user.number().numberBetween(1, 28));
+        this.userBirthMonth = String.valueOf(user.number().numberBetween(1, 12));
+        this.userBirthYear = String.valueOf(user.number().numberBetween(1970, 2000));
+        this.userFirstName = user.name().firstName();
+        this.userLastName = user.name().lastName();
+        this.userCompany = user.company().name();
+        this.userAddress = user.address().streetAddress();
+        this.userAddress2 = user.address().secondaryAddress();
+        this.userCountry = "Canada";
+        this.userZipcode = user.address().zipCode();
+        this.userState = user.address().state();
+        this.userCity = user.address().city();
+        this.userMobile = user.phoneNumber().cellPhone();
+        return this;
+    }
 
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
