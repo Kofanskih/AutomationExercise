@@ -19,7 +19,9 @@ public class VerifyLoginService extends BaseService {
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParams(EMAIL_PARAM, email, PASSWORD_PARAM, password)
                         .post(getPath(VERIFY_LOGIN_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
@@ -29,7 +31,9 @@ public class VerifyLoginService extends BaseService {
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParam(EMAIL_PARAM, email)
                         .post(getPath(VERIFY_LOGIN_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
@@ -39,7 +43,9 @@ public class VerifyLoginService extends BaseService {
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParam(PASSWORD_PARAM, password)
                         .post(getPath(VERIFY_LOGIN_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
@@ -48,7 +54,9 @@ public class VerifyLoginService extends BaseService {
                 baseConfiguration()
                         .contentType(X_WWW_FORM_URLENCODED)
                         .delete(getPath(VERIFY_LOGIN_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }
