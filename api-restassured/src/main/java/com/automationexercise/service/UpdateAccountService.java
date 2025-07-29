@@ -18,7 +18,9 @@ public class UpdateAccountService extends BaseService{
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParams(userData)
                         .put(getPath(UPDATE_ACCOUNT_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }
