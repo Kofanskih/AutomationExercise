@@ -13,7 +13,9 @@ public class ProductListService extends BaseService {
         Response response =
                 baseConfiguration()
                         .get(getPath(PRODUCT_LIST_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
@@ -21,7 +23,9 @@ public class ProductListService extends BaseService {
         Response response =
                 baseConfiguration()
                         .post(getPath(PRODUCT_LIST_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
