@@ -19,7 +19,7 @@ public class CreateAccountTests {
     private final int RESPONSE_CODE_201 = 201;
     private final int RESPONSE_CODE_400 = 400;
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyCreateAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -28,7 +28,7 @@ public class CreateAccountTests {
                 .shouldHave(statusCode(200),contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Verify correct info message after create user")
     public void verifyCorrectInfoMessageAfterCreateUser() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -38,7 +38,7 @@ public class CreateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, USER_CREATED_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after create user")
     public void verifyCorrectResponseCodeAfterCreateUser() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -48,7 +48,7 @@ public class CreateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_201);
     }
 
-    @Test
+    @Test(description = "Verify correct info message without name in create user form")
     public void verifyCorrectInfoMessageWithoutNameInCreateUserForm() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -59,7 +59,7 @@ public class CreateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_NAME_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code without name in create user form")
     public void verifyCorrectResponseCodeWithoutNameInCreateUserForm() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -70,7 +70,7 @@ public class CreateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
     }
 
-    @Test
+    @Test(description = "Verify correct info message without password in create user form")
     public void verifyCorrectInfoMessageWithoutPasswordInCreateUserForm() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
@@ -81,7 +81,7 @@ public class CreateAccountTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_PASSWORD_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code without password in create user form")
     public void verifyCorrectResponseCodeWithoutPasswordInCreateUserForm() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
