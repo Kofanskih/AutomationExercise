@@ -1,6 +1,7 @@
 package com.automationexercise.service;
 
 import com.automationexercise.conditions.AssertableResponse;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ public class DeleteAccountService extends BaseService{
     private final String EMAIL_PARAM = "email";
     private final String PASSWORD_PARAM = "password";
 
+    @Step("API send delete account request")
     public AssertableResponse sendDeleteAccountRequest(String email, String password) throws IOException {
         Response response =
                 baseConfiguration()
