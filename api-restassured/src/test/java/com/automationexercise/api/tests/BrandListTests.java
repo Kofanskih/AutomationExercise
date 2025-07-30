@@ -18,8 +18,7 @@ public class BrandListTests {
     private final String PATH_MESSAGE = "message";
     private final String MESSAGE = "This request method is not supported.";
 
-
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyBrandsList() throws IOException {
         new BrandListService()
                 .sendGetBrandListRequest()
@@ -27,7 +26,7 @@ public class BrandListTests {
                 .shouldHave(contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Check HTML response contains brand id")
     public void checkHtmlResponseContainsBrandId() throws IOException {
         new BrandListService()
                 .sendGetBrandListRequest()
@@ -35,7 +34,7 @@ public class BrandListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_ID, BRAND_ID);
     }
 
-    @Test
+    @Test(description = "Check HTML response contains brand")
     public void checkHtmlResponseContainsBrand() throws IOException {
         new BrandListService()
                 .sendGetBrandListRequest()
@@ -43,7 +42,7 @@ public class BrandListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_BRAND, BRAND);
     }
 
-    @Test
+    @Test(description = "Verify response code in put request for brand list")
     public void verifyResponseCodeInPutRequestForBrandsList() throws IOException {
         new BrandListService()
                 .sendPutBrandListRequest()
@@ -51,7 +50,7 @@ public class BrandListTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE);
     }
 
-    @Test
+    @Test(description = "Verify message in put request for brand list")
     public void verifyMessageInPuttRequestForBrandsList() throws IOException {
         new BrandListService()
                 .sendPutBrandListRequest()
