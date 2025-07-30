@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
 
 public class VerifyLoginTests {
@@ -23,6 +24,12 @@ public class VerifyLoginTests {
     private final String BAD_REQUEST_MESSAGE = "Bad request, email or password parameter is missing in POST request.";
     private final String NOT_SUPPORTED_MESSAGE = "This request method is not supported.";
 
+    @Test
+    public void verifyCorrectLogin() throws IOException {
+        new VerifyLoginService()
+                .sendPostVerifyLoginRequest(CORRECT_LOGIN, CORRECT_PASSWORD)
+                .shouldHave(statusCode(200), contentType("text/html"));
+    }
 
     @Test
     public void verifyCorrectLoginInfoMessage() throws IOException {
