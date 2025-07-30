@@ -20,8 +20,9 @@ public class GetUserDetailByEmailTests  {
 
     @Test
     public void verifyGetUserDetailByEmail() throws IOException {
-        new GetUserDetailByEmailService().sendGetUserDetailByEmailRequest(EXIST_USER_EMAIL)
-                .shouldHave(statusCode(200)).shouldHave(contentType("text/html"));
+        new GetUserDetailByEmailService()
+                .sendGetUserDetailByEmailRequest(EXIST_USER_EMAIL)
+                .shouldHave(statusCode(200),contentType("text/html"));
     }
 
     @Test

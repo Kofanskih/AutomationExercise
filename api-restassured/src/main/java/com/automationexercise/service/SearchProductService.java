@@ -18,7 +18,9 @@ public class SearchProductService extends BaseService {
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParam(PARAM, searchRequest)
                         .post(getPath(SEARCH_PRODUCT_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 
@@ -27,7 +29,9 @@ public class SearchProductService extends BaseService {
                 baseConfiguration()
                         .contentType(X_WWW_FORM_URLENCODED)
                         .post(getPath(SEARCH_PRODUCT_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }

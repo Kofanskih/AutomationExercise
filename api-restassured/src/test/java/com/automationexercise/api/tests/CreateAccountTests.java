@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
 
 public class CreateAccountTests {
@@ -19,7 +20,16 @@ public class CreateAccountTests {
     private final int RESPONSE_CODE_400 = 400;
 
     @Test
-    public void verifyCreateUserCorrectInfoMessage() throws IOException {
+    public void verifyCreateAccount() throws IOException {
+        CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
+        Map<String, String> userData = user.toMap();
+        new CreateAccountService()
+                .sendPostCreateUserRequest(userData)
+                .shouldHave(statusCode(200),contentType("text/html"));
+    }
+
+    @Test
+    public void verifyCorrectInfoMessageAfterCreateUser() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
         new CreateAccountService()
@@ -29,7 +39,7 @@ public class CreateAccountTests {
     }
 
     @Test
-    public void verifyCreateUserCorrectResponseCode() throws IOException {
+    public void verifyCorrectResponseCodeAfterCreateUser() throws IOException {
         CreateUserModel user = new CreateUserModel().getRandomCreateUserData();
         Map<String, String> userData = user.toMap();
         new CreateAccountService()

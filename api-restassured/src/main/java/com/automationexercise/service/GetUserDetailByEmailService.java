@@ -16,7 +16,9 @@ public class GetUserDetailByEmailService extends BaseService{
                 baseConfiguration()
                         .param(EMAIL_PARAM, email)
                         .get(getPath(GET_USER_DETAIL_BY_EMAIL_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }

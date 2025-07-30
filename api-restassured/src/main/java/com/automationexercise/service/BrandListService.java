@@ -14,7 +14,9 @@ public class BrandListService extends BaseService{
         Response response =
                 baseConfiguration()
                         .get(getPath(BRAND_LIST_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 

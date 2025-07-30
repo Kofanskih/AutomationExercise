@@ -18,7 +18,9 @@ public class CreateAccountService extends BaseService{
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParams(userData)
                         .post(getPath(CREATE_ACCOUNT_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }

@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
 
 public class UpdateAccountTests {
@@ -17,11 +18,21 @@ public class UpdateAccountTests {
     private final int RESPONSE_CODE_200 = 200;
     private final int RESPONSE_CODE_404 = 404;
 
+    @Test
+    public void verifyUpdateUser() throws IOException {
+        UpdateUserModel user = new UpdateUserModel().getRandomUpdateExistsUserData();
+        Map<String, String> userData = user.toMap();
+
+        new UpdateAccountService()
+                .sendPutUpdateUserRequest(userData)
+                .shouldHave(statusCode(200), contentType("text/html"));
+    }
 
     @Test
     public void verifyUpdateUserCorrectInfoMessage() throws IOException {
         UpdateUserModel user = new UpdateUserModel().getRandomUpdateExistsUserData();
         Map<String, String> userData = user.toMap();
+
         new UpdateAccountService()
                 .sendPutUpdateUserRequest(userData)
                 .shouldHave(statusCode(200))
@@ -32,6 +43,7 @@ public class UpdateAccountTests {
     public void verifyUpdateUserCorrectResponseCode() throws IOException {
         UpdateUserModel user = new UpdateUserModel().getRandomUpdateExistsUserData();
         Map<String, String> userData = user.toMap();
+
         new UpdateAccountService()
                 .sendPutUpdateUserRequest(userData)
                 .shouldHave(statusCode(200))
@@ -42,6 +54,7 @@ public class UpdateAccountTests {
     public void verifyUpdateNotExistUserCorrectInfoMessage() throws IOException {
         UpdateUserModel user = new UpdateUserModel().getRandomUpdateNotExistsUserData();
         Map<String, String> userData = user.toMap();
+
         new UpdateAccountService()
                 .sendPutUpdateUserRequest(userData)
                 .shouldHave(statusCode(200))
@@ -52,6 +65,7 @@ public class UpdateAccountTests {
     public void verifyUpdateNotExistUserCorrectResponseCode() throws IOException {
         UpdateUserModel user = new UpdateUserModel().getRandomUpdateNotExistsUserData();
         Map<String, String> userData = user.toMap();
+
         new UpdateAccountService()
                 .sendPutUpdateUserRequest(userData)
                 .shouldHave(statusCode(200))

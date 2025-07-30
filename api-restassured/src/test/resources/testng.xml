@@ -3,7 +3,14 @@
 <suite name="Automation Exercise Suite">
     <test name="API Tests">
         <classes>
+            <class name="com.automationexercise.api.tests.BrandListTests"/>
+            <class name="com.automationexercise.api.tests.CreateAccountTests"/>
+            <class name="com.automationexercise.api.tests.DeleteAccountTests"/>
+            <class name="com.automationexercise.api.tests.GetUserDetailByEmailTests"/>
             <class name="com.automationexercise.api.tests.ProductListTests"/>
+            <class name="com.automationexercise.api.tests.SearchProductTests"/>
+            <class name="com.automationexercise.api.tests.UpdateAccountTests"/>
+            <class name="com.automationexercise.api.tests.VerifyLoginTests"/>
         </classes>
     </test>
     <listeners>

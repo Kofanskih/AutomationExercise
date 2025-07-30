@@ -19,7 +19,9 @@ public class DeleteAccountService extends BaseService{
                         .contentType(X_WWW_FORM_URLENCODED)
                         .formParams(EMAIL_PARAM, email, PASSWORD_PARAM, password)
                         .delete(getPath(DELETE_ACCOUNT_PATH))
-                        .then().extract().response();
+                        .then()
+                        .extract()
+                        .response();
         return new AssertableResponse(response);
     }
 }
