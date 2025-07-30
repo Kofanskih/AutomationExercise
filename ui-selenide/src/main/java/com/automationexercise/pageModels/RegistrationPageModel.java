@@ -1,5 +1,6 @@
 package com.automationexercise.pageModels;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import net.datafaker.Faker;
 
@@ -20,7 +21,7 @@ public class RegistrationPageModel {
     private String userZipode;
     private String userMobile;
 
-
+    @Step("Use random user registration data")
     public RegistrationPageModel getRandomRegistrationUserData(){
         this.userName = user.name().firstName();
         this.userEmailAddress = user.internet().emailAddress();
@@ -37,6 +38,7 @@ public class RegistrationPageModel {
         return this;
     }
 
+    @Step("Use user registration data for deleting")
     public RegistrationPageModel getRegistrationUserDataForDeleting(){
         this.userName = "Anastasiia";
         this.userEmailAddress = "deletingTest@gmail.com";
@@ -53,23 +55,27 @@ public class RegistrationPageModel {
         return this;
     }
 
+    @Step("Use user data for deleting")
     public RegistrationPageModel getExistsUserData(){
         this.userName = "Anastasiia";
         this.userEmailAddress = "kofanskih08@gmail.com";
         return this;
     }
 
+    @Step("Use user data with invalid email")
     public RegistrationPageModel getInvalidEmail(){
         this.userName = "Anastasiia";
         this.userEmailAddress = "kofanskih08gmail.com";
         return this;
     }
 
+    @Step("Use user data with subscribe email")
     public RegistrationPageModel getSubscribeEmail(){
         this.userEmailAddress = user.internet().emailAddress();
         return this;
     }
 
+    @Step("Use user data with invalid subscribe email")
     public RegistrationPageModel getInvalidSubscribeEmail(){
         this.userEmailAddress = "kofanskih08gmail.com";
         return this;
