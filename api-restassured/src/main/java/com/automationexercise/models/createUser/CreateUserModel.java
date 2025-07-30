@@ -1,5 +1,6 @@
 package com.automationexercise.models.createUser;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import net.datafaker.Faker;
 
@@ -27,7 +28,7 @@ public class CreateUserModel {
     private String userZipcode;
     private String userMobile;
 
-
+    @Step("Use user random create data")
     public CreateUserModel getRandomCreateUserData(){
         this.userName = user.name().username();
         this.userEmailAddress = user.internet().emailAddress();
@@ -49,6 +50,7 @@ public class CreateUserModel {
         return this;
     }
 
+    @Step("Use user random create data for deleting account")
     public CreateUserModel getCreateUserDataForDeletingAccount(){
         this.userName = user.name().username();
         this.userEmailAddress = "test123test123test123@test.com";
@@ -70,6 +72,7 @@ public class CreateUserModel {
         return this;
     }
 
+    @Step("CreateUserModel to Map")
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         map.put("name", userName);
