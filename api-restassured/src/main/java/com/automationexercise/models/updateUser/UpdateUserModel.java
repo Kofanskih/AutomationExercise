@@ -1,5 +1,6 @@
 package com.automationexercise.models.updateUser;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import net.datafaker.Faker;
 
@@ -27,6 +28,7 @@ public class UpdateUserModel {
     private String userZipcode;
     private String userMobile;
 
+    @Step("Use random update data exist user data")
     public UpdateUserModel getRandomUpdateExistsUserData(){
         this.userName = user.name().username();
         this.userEmailAddress = "test1234567890test@test.com";
@@ -48,6 +50,7 @@ public class UpdateUserModel {
         return this;
     }
 
+    @Step("Use random update data not exist user")
     public UpdateUserModel getRandomUpdateNotExistsUserData(){
         this.userName = user.name().username();
         this.userEmailAddress = "1234567890test1234567890test@test.com";
@@ -69,6 +72,7 @@ public class UpdateUserModel {
         return this;
     }
 
+    @Step("UpdateUserModel to Map")
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         map.put("name", userName);
