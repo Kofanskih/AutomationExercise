@@ -22,7 +22,7 @@ public class DeleteAccountTests {
     private final String ACCOUNT_DELETED_MESSAGE = "Account deleted!";
     private final String ACCOUNT_NOT_FOUND_MESSAGE = "Account not found!";
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyDeleteAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
         Map<String, String> userData = user.toMap();
@@ -34,7 +34,7 @@ public class DeleteAccountTests {
                 .shouldHave(statusCode(200),contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Verify correct response code after deleting account")
     public void verifyCorrectResponseCodeAfterDeletingAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
         Map<String, String> userData = user.toMap();
@@ -47,7 +47,7 @@ public class DeleteAccountTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after deleting account")
     public void verifyCorrectInfoMessageAfterDeletingAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
         Map<String, String> userData = user.toMap();
@@ -60,7 +60,7 @@ public class DeleteAccountTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, ACCOUNT_DELETED_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after deleting not exists account")
     public void verifyCorrectResponseCodeAfterDeletingNotExistsAccount() throws IOException {
         new DeleteAccountService()
                 .sendDeleteAccountRequest(INCORRECT_EMAIL, PASSWORD)
@@ -68,7 +68,7 @@ public class DeleteAccountTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_404);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after deleting not exists account")
     public void verifyCorrectInfoMessageAfterDeletingNotExistsAccount() throws IOException {
         new DeleteAccountService()
                 .sendDeleteAccountRequest(EMAIL, PASSWORD)
