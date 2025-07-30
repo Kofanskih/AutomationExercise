@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
 
 public class SearchProductTests {
@@ -14,6 +15,13 @@ public class SearchProductTests {
     private final int RESPONSE_CODE = 400;
     private final String PATH_MESSAGE = "message";
     private final String MESSAGE = "Bad request, search_product parameter is missing in POST request.";
+
+    @Test
+    public void verifySearchProduct() throws IOException {
+        new SearchProductService()
+                .sendPostSearchProductRequest(SEARCH_REQUEST)
+                .shouldHave(statusCode(200), contentType("text/html"));
+    }
 
     @Test
     public void verifyCorrectSearch() throws IOException {
