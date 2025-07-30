@@ -18,14 +18,14 @@ public class GetUserDetailByEmailTests  {
     private final String PATH_MESSAGE = "message";
     private final String ACCOUNT_NOT_FOUND_INFO_MESSAGE = "Account not found with this email, try another email!";
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyGetUserDetailByEmail() throws IOException {
         new GetUserDetailByEmailService()
                 .sendGetUserDetailByEmailRequest(EXIST_USER_EMAIL)
                 .shouldHave(statusCode(200),contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Verify correct info message for exist user")
     public void verifyCorrectInfoMessageForExistUser() throws IOException {
         new GetUserDetailByEmailService()
                 .sendGetUserDetailByEmailRequest(EXIST_USER_EMAIL)
@@ -33,7 +33,7 @@ public class GetUserDetailByEmailTests  {
                 .checkHtmlResponseContainsValue(PATH_EMAIL, EXIST_USER_EMAIL);
     }
 
-    @Test
+    @Test(description = "Verify correct response code for exist user")
     public void verifyCorrectResponseCodeForExistUser() throws IOException {
         new GetUserDetailByEmailService()
                 .sendGetUserDetailByEmailRequest(EXIST_USER_EMAIL)
@@ -41,7 +41,7 @@ public class GetUserDetailByEmailTests  {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
     }
 
-    @Test
+    @Test(description = "Verify correct info message for not exist user")
     public void verifyCorrectInfoMessageForNotExistUser() throws IOException {
         new GetUserDetailByEmailService()
                 .sendGetUserDetailByEmailRequest(NOT_EXIST_USER_EMAIL)
@@ -49,7 +49,7 @@ public class GetUserDetailByEmailTests  {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, ACCOUNT_NOT_FOUND_INFO_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code for not exist user")
     public void verifyCorrectResponseCodeForNotExistUser() throws IOException {
         new GetUserDetailByEmailService()
                 .sendGetUserDetailByEmailRequest(NOT_EXIST_USER_EMAIL)
