@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
 
 public class DeleteAccountTests {
@@ -21,41 +22,56 @@ public class DeleteAccountTests {
     private final String ACCOUNT_DELETED_MESSAGE = "Account deleted!";
     private final String ACCOUNT_NOT_FOUND_MESSAGE = "Account not found!";
 
-
     @Test
-    public void verifyCorrectDeleteAccountResponseCode() throws IOException {
+    public void verifyDeleteAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
         Map<String, String> userData = user.toMap();
         new CreateAccountService()
                 .sendPostCreateUserRequest(userData);
 
-        new DeleteAccountService().sendDeleteAccountRequest(EMAIL, PASSWORD)
+        new DeleteAccountService()
+                .sendDeleteAccountRequest(EMAIL, PASSWORD)
+                .shouldHave(statusCode(200),contentType("text/html"));
+    }
+
+    @Test
+    public void verifyCorrectResponseCodeAfterDeletingAccount() throws IOException {
+        CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
+        Map<String, String> userData = user.toMap();
+        new CreateAccountService()
+                .sendPostCreateUserRequest(userData);
+
+        new DeleteAccountService()
+                .sendDeleteAccountRequest(EMAIL, PASSWORD)
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
     }
 
     @Test
-    public void verifyCorrectDeleteAccountInfoMessage() throws IOException {
+    public void verifyCorrectInfoMessageAfterDeletingAccount() throws IOException {
         CreateUserModel user = new CreateUserModel().getCreateUserDataForDeletingAccount();
         Map<String, String> userData = user.toMap();
         new CreateAccountService()
                 .sendPostCreateUserRequest(userData);
 
-        new DeleteAccountService().sendDeleteAccountRequest(EMAIL, PASSWORD)
+        new DeleteAccountService()
+                .sendDeleteAccountRequest(EMAIL, PASSWORD)
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, ACCOUNT_DELETED_MESSAGE);
     }
 
     @Test
-    public void verifyCorrectResponseCodeDeleteAccount() throws IOException {
-        new DeleteAccountService().sendDeleteAccountRequest(INCORRECT_EMAIL, PASSWORD)
+    public void verifyCorrectResponseCodeAfterDeletingNotExistsAccount() throws IOException {
+        new DeleteAccountService()
+                .sendDeleteAccountRequest(INCORRECT_EMAIL, PASSWORD)
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_404);
     }
 
     @Test
-    public void verifyCorrectInfoMessageDeleteAccount() throws IOException {
-        new DeleteAccountService().sendDeleteAccountRequest(EMAIL, PASSWORD)
+    public void verifyCorrectInfoMessageAfterDeletingNotExistsAccount() throws IOException {
+        new DeleteAccountService()
+                .sendDeleteAccountRequest(EMAIL, PASSWORD)
                 .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, ACCOUNT_NOT_FOUND_MESSAGE);
     }
