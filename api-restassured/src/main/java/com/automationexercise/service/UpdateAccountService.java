@@ -1,6 +1,7 @@
 package com.automationexercise.service;
 
 import com.automationexercise.conditions.AssertableResponse;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ public class UpdateAccountService extends BaseService{
     private final String UPDATE_ACCOUNT_PATH = "update.account";
     private final String X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
 
+    @Step("API send put update user request")
     public AssertableResponse sendPutUpdateUserRequest(Map<String, String> userData) throws IOException {
         Response response =
                 baseConfiguration()
