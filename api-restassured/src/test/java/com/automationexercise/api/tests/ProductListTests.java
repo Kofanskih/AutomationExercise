@@ -24,34 +24,38 @@ public class ProductListTests {
     @Test
     public void verifyProductList() throws IOException {
         new ProductListService().sendGetProductListRequest()
-                .shouldHave(statusCode(200)).shouldHave(contentType("text/html"));
+                .shouldHave(statusCode(200),contentType("text/html"));
     }
 
     @Test
     public void checkHtmlResponseContainsProductName() throws IOException {
         new ProductListService()
-                .sendGetProductListRequest().shouldHave(statusCode(200))
+                .sendGetProductListRequest()
+                .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValueInTheList(PATH_NAME, PRODUCT_NAME);
     }
 
     @Test
     public void checkHtmlResponseContainsProductId() throws IOException {
         new ProductListService()
-                .sendGetProductListRequest().shouldHave(statusCode(200))
+                .sendGetProductListRequest()
+                .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValueInTheList(PATH_ID, PRODUCT_ID);
     }
 
     @Test
     public void checkHtmlResponseContainsProductBrand() throws IOException {
         new ProductListService()
-                .sendGetProductListRequest().shouldHave(statusCode(200))
+                .sendGetProductListRequest()
+                .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValueInTheList(PATH_BRAND, PRODUCT_BRAND);
     }
 
     @Test
     public void checkHtmlResponseContainsProductCategory() throws IOException {
         new ProductListService()
-                .sendGetProductListRequest().shouldHave(statusCode(200))
+                .sendGetProductListRequest()
+                .shouldHave(statusCode(200))
                 .checkHtmlResponseContainsValueInTheList(PATH_CATEGORY, PRODUCT_CATEGORY);
     }
 
