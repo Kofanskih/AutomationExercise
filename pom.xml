@@ -15,7 +15,6 @@
 
     <build>
         <plugins>
-            <!-- Плагин Maven Surefire для запуска тестов -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -23,7 +22,6 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <!-- Если используете TestNG xml-файл -->
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
@@ -32,7 +30,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Allure Maven Plugin для генерации отчёта -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -57,6 +54,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
     </properties>
 
     <dependencies>
