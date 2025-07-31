@@ -1,13 +1,19 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.GetUserDetailByEmailService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("User")
+@Feature("Account")
+@Story("Get user detail by email")
+@Severity(SeverityLevel.TRIVIAL)
+@Owner("bukovtseva")
+@TmsLink("TC-019")
 public class GetUserDetailByEmailTests  {
     private final String PATH_EMAIL = "user.email";
     private final String EXIST_USER_EMAIL = "test1234567890test@test.com";
