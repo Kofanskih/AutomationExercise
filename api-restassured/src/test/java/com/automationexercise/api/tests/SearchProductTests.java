@@ -16,14 +16,14 @@ public class SearchProductTests {
     private final String PATH_MESSAGE = "message";
     private final String MESSAGE = "Bad request, search_product parameter is missing in POST request.";
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifySearchProduct() throws IOException {
         new SearchProductService()
                 .sendPostSearchProductRequest(SEARCH_REQUEST)
                 .shouldHave(statusCode(200), contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Check HTML response contains searched product")
     public void verifyCorrectSearch() throws IOException {
         new SearchProductService()
                 .sendPostSearchProductRequest(SEARCH_REQUEST)
@@ -31,7 +31,7 @@ public class SearchProductTests {
                 .checkHtmlResponseContainsSearchedValueInTheList(SEARCH_PATH, SEARCH_REQUEST);
     }
 
-    @Test
+    @Test(description = "Verify correct response code in empty search post request")
     public void verifyResponseCodeInTheEmptySearch() throws IOException {
         new SearchProductService()
                 .sendPostEmptySearchRequest()
@@ -39,7 +39,7 @@ public class SearchProductTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE);
     }
 
-    @Test
+    @Test(description = "Verify correct info message in empty search post request")
     public void verifyMessageInPutRequestInTheEmptySearch() throws IOException {
         new SearchProductService()
                 .sendPostEmptySearchRequest()
