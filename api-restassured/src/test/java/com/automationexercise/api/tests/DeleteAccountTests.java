@@ -3,6 +3,7 @@ package com.automationexercise.api.tests;
 import com.automationexercise.models.createUser.CreateUserModel;
 import com.automationexercise.service.CreateAccountService;
 import com.automationexercise.service.DeleteAccountService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -10,7 +11,12 @@ import java.util.Map;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("User login")
+@Feature("Account")
+@Story("Delete account")
+@Severity(SeverityLevel.MINOR)
+@Owner("bukovtseva")
+@TmsLink("TC-018")
 public class DeleteAccountTests {
     private final String EMAIL = "test123test123test123@test.com";
     private final String INCORRECT_EMAIL = "1test123test123test123@test.com";
