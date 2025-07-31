@@ -24,14 +24,14 @@ public class VerifyLoginTests {
     private final String BAD_REQUEST_MESSAGE = "Bad request, email or password parameter is missing in POST request.";
     private final String NOT_SUPPORTED_MESSAGE = "This request method is not supported.";
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyCorrectLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(CORRECT_LOGIN, CORRECT_PASSWORD)
                 .shouldHave(statusCode(200), contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Verify correct info message after post login request")
     public void verifyCorrectLoginInfoMessage() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(CORRECT_LOGIN, CORRECT_PASSWORD)
@@ -39,7 +39,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, USER_EXISTS_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after post login request")
     public void verifyCorrectLoginResponseCode() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(CORRECT_LOGIN, CORRECT_PASSWORD)
@@ -47,7 +47,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_200);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after post login request with invalid email")
     public void verifyCorrectInfoMessageWithInvalidEmailLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(INCORRECT_LOGIN, CORRECT_PASSWORD)
@@ -55,7 +55,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, USER_NOT_FOUND_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after post login request with invalid email")
     public void verifyCorrectResponseCodeWithInvalidEmailLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(INCORRECT_LOGIN, CORRECT_PASSWORD)
@@ -63,7 +63,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_404);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after post login request with invalid password")
     public void verifyCorrectInfoMessageWithInvalidPasswordLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(CORRECT_LOGIN, INCORRECT_PASSWORD)
@@ -71,7 +71,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, USER_NOT_FOUND_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after post login request with invalid password")
     public void verifyCorrectResponseCodeWithInvalidPasswordLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequest(CORRECT_LOGIN, INCORRECT_PASSWORD)
@@ -79,7 +79,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_404);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after post login request only with email param")
     public void verifyCorrectInfoMessageOnlyWithEmailParamLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequestOnlyWithEmailParam(CORRECT_LOGIN)
@@ -87,7 +87,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after post login request only with email param")
     public void verifyCorrectLoginResponseCodeOnlyWithEmailParamLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequestOnlyWithEmailParam(CORRECT_LOGIN)
@@ -95,7 +95,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after post login request only with password param")
     public void verifyCorrectInfoMessageOnlyWithPasswordParamLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequestOnlyWithPasswordParam(CORRECT_PASSWORD)
@@ -103,7 +103,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, BAD_REQUEST_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after post login request only with password param")
     public void verifyCorrectResponseCodeOnlyWithPasswordParamLogin() throws IOException {
         new VerifyLoginService()
                 .sendPostVerifyLoginRequestOnlyWithPasswordParam(CORRECT_PASSWORD)
@@ -111,7 +111,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE_400);
     }
 
-    @Test
+    @Test(description = "Verify correct info message after delete login request")
     public void verifyCorrectInfoMessageForLoginWithDeleteMethod() throws IOException {
         new VerifyLoginService()
                 .sendDeleteVerifyLoginRequest()
@@ -119,7 +119,7 @@ public class VerifyLoginTests {
                 .checkHtmlResponseContainsValue(PATH_MESSAGE, NOT_SUPPORTED_MESSAGE);
     }
 
-    @Test
+    @Test(description = "Verify correct response code after delete login request")
     public void verifyCorrectResponseCodeForLoginWithDeleteMethod() throws IOException {
         new VerifyLoginService()
                 .sendDeleteVerifyLoginRequest()
