@@ -1,12 +1,18 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.ProductListService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.*;
-
+@Epic("Products")
+@Feature("Products list")
+@Story("Products list")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-012")
 public class ProductListTests {
     private final String PATH_NAME = "products.name";
     private final String PRODUCT_NAME = "Men Tshirt";
@@ -21,13 +27,13 @@ public class ProductListTests {
     private final String PATH_MESSAGE = "message";
     private final String MESSAGE = "This request method is not supported.";
 
-    @Test
+    @Test(description = "Verify status code and content type")
     public void verifyProductList() throws IOException {
         new ProductListService().sendGetProductListRequest()
                 .shouldHave(statusCode(200),contentType("text/html"));
     }
 
-    @Test
+    @Test(description = "Check HTML response contains product name")
     public void checkHtmlResponseContainsProductName() throws IOException {
         new ProductListService()
                 .sendGetProductListRequest()
@@ -35,7 +41,7 @@ public class ProductListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_NAME, PRODUCT_NAME);
     }
 
-    @Test
+    @Test(description = "Check HTML response contains product id")
     public void checkHtmlResponseContainsProductId() throws IOException {
         new ProductListService()
                 .sendGetProductListRequest()
@@ -43,7 +49,7 @@ public class ProductListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_ID, PRODUCT_ID);
     }
 
-    @Test
+    @Test(description = "Check HTML response contains product brand")
     public void checkHtmlResponseContainsProductBrand() throws IOException {
         new ProductListService()
                 .sendGetProductListRequest()
@@ -51,7 +57,7 @@ public class ProductListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_BRAND, PRODUCT_BRAND);
     }
 
-    @Test
+    @Test(description = "Check HTML response contains product category")
     public void checkHtmlResponseContainsProductCategory() throws IOException {
         new ProductListService()
                 .sendGetProductListRequest()
@@ -59,7 +65,7 @@ public class ProductListTests {
                 .checkHtmlResponseContainsValueInTheList(PATH_CATEGORY, PRODUCT_CATEGORY);
     }
 
-    @Test
+    @Test(description = "Verify correct response code in product list post request")
     public void verifyResponseCodeInPostRequestForProductList() throws IOException {
         new ProductListService()
                 .sendPostProductListRequest()
@@ -67,7 +73,7 @@ public class ProductListTests {
                 .checkHtmlResponseContainsValue(PATH_RESPONSE_CODE, RESPONSE_CODE);
     }
 
-    @Test
+    @Test(description = "Verify correct info message in product list post request")
     public void verifyMessageInPostRequestForProductList() throws IOException {
         new ProductListService()
                 .sendPostProductListRequest()

@@ -1,6 +1,7 @@
 package com.automationexercise.service;
 
 import com.automationexercise.conditions.AssertableResponse;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ public class SearchProductService extends BaseService {
     private final String PARAM = "search_product";
     private final String X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
 
+    @Step("API send post search product request")
     public AssertableResponse sendPostSearchProductRequest(String searchRequest) throws IOException {
         Response response =
                 baseConfiguration()
@@ -24,6 +26,7 @@ public class SearchProductService extends BaseService {
         return new AssertableResponse(response);
     }
 
+    @Step("API send post empty search request")
     public AssertableResponse sendPostEmptySearchRequest() throws IOException {
         Response response =
                 baseConfiguration()

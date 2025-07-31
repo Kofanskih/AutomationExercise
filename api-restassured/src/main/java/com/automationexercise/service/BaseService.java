@@ -1,5 +1,6 @@
 package com.automationexercise.service;
 
+import io.qameta.allure.Step;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
@@ -9,6 +10,8 @@ import static io.restassured.RestAssured.given;
 import static utils.OwnerReadMainUrl.readMainUrl;
 
 public class BaseService {
+
+    @Step("API base configuration")
     protected RequestSpecification baseConfiguration(){
         RequestSpecification reqSpec = given()
                 .contentType(ContentType.HTML)

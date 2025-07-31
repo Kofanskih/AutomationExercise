@@ -25,7 +25,7 @@ public class AssertableResponse {
         return this;
     }
 
-    @Step
+    @Step("Api response shouldHave {conditions}")
     public AssertableResponse shouldHave(Condition... condition){
         for (Condition cond : condition) {
             cond.check(response);
@@ -33,6 +33,7 @@ public class AssertableResponse {
         return this;
     }
 
+    @Step("HTML response contains {value}")
     public <T> void checkHtmlResponseContainsValue(String jsonPathExpr, T expectedValue) {
         String html = response.getBody().asString();
         Document doc = Jsoup.parse(html);
@@ -45,6 +46,7 @@ public class AssertableResponse {
                 "Value '" + expectedValue + "' was not found in the list: " + actualValue);
     }
 
+    @Step("HTML response contains {value}")
     public <T> void checkHtmlResponseContainsValueInTheList(String jsonPathExpr, T expectedValue) {
         String html = response.getBody().asString();
         Document doc = Jsoup.parse(html);
@@ -57,6 +59,7 @@ public class AssertableResponse {
                 "Value '" + expectedValue + "' was not found in the list: " + values);
     }
 
+    @Step("HTML response contains searched {value}")
     public <T> void checkHtmlResponseContainsSearchedValueInTheList(String jsonPathExpr, T expectedValue) {
         String html = response.getBody().asString();
         Document doc = Jsoup.parse(html);
