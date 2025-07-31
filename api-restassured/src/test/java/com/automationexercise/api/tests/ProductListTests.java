@@ -10,7 +10,7 @@ import static com.automationexercise.conditions.Conditions.*;
 @Epic("Products")
 @Feature("Products list")
 @Story("Products list")
-@Severity(SeverityLevel.CRITICAL)
+@Severity(SeverityLevel.BLOCKER)
 @Owner("bukovtseva")
 @TmsLink("TC-012")
 public class ProductListTests {
