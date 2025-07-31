@@ -2,6 +2,7 @@ package com.automationexercise.api.tests;
 
 import com.automationexercise.models.createUser.CreateUserModel;
 import com.automationexercise.service.CreateAccountService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -9,7 +10,12 @@ import java.util.Map;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("User login")
+@Feature("Account")
+@Story("Create account")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-015")
 public class CreateAccountTests {
     private final String PATH_MESSAGE = "message";
     private final String USER_CREATED_MESSAGE = "User created!";
