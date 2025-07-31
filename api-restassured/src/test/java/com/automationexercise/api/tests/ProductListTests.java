@@ -1,12 +1,18 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.ProductListService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.*;
-
+@Epic("Products")
+@Feature("Products list")
+@Story("Products list")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-012")
 public class ProductListTests {
     private final String PATH_NAME = "products.name";
     private final String PRODUCT_NAME = "Men Tshirt";
