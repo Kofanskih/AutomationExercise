@@ -2,6 +2,7 @@ package com.automationexercise.api.tests;
 
 import com.automationexercise.models.updateUser.UpdateUserModel;
 import com.automationexercise.service.UpdateAccountService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -9,7 +10,12 @@ import java.util.Map;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("User login")
+@Feature("Account")
+@Story("Update account")
+@Severity(SeverityLevel.MINOR)
+@Owner("bukovtseva")
+@TmsLink("TC-017")
 public class UpdateAccountTests {
     private final String PATH_MESSAGE = "message";
     private final String USER_UPDATED_MESSAGE = "User updated!";
