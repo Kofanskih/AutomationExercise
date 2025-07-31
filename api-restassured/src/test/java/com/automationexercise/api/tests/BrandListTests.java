@@ -1,13 +1,19 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.BrandListService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("Products")
+@Feature("Brands list")
+@Story("Brands list")
+@Severity(SeverityLevel.NORMAL)
+@Owner("bukovtseva")
+@TmsLink("TC-014")
 public class BrandListTests {
     private final String PATH_ID = "brands.id";
     private final int BRAND_ID = 8;
