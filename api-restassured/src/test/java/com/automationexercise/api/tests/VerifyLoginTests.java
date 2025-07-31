@@ -1,13 +1,19 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.VerifyLoginService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("User login")
+@Feature("Account")
+@Story("Login")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-016")
 public class VerifyLoginTests {
     private final String CORRECT_LOGIN = "1test1test@test.com";
     private final String CORRECT_PASSWORD = "12345678";
