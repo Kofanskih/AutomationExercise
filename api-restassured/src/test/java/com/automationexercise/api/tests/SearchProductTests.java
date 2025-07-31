@@ -1,13 +1,19 @@
 package com.automationexercise.api.tests;
 
 import com.automationexercise.service.SearchProductService;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.automationexercise.conditions.Conditions.contentType;
 import static com.automationexercise.conditions.Conditions.statusCode;
-
+@Epic("Products")
+@Feature("Search product")
+@Story("Search product")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-013")
 public class SearchProductTests {
     private final String SEARCH_PATH = "products.name";
     private final String SEARCH_REQUEST = "TOP";
