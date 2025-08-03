@@ -34,7 +34,7 @@ public class LoginPage extends BasePage{
         return driver.findElement(LOGIN_ERROR_TEXT).getText();
     }
 
-    public MainPage fillLoginFormWithExistsUser(LoginPageModel loginPageModel){
+    public MainPage fillLoginForm(LoginPageModel loginPageModel){
         emailInput().sendKeys(loginPageModel.getUserEmailAddress());
         passwordInput().sendKeys(loginPageModel.getUserPassword());
         loginButton().click();
@@ -79,5 +79,14 @@ public class LoginPage extends BasePage{
     public void checkErrorMessage(String expected){
         String actualText = getLoginErrorText();
         assertEquals(expected, actualText);
+    }
+
+    public void checkShowValidationMessageWhenEmailIsInvalid(String expectedMessage) {
+        WebElement emailField = emailInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", emailField);
+        assertEquals(expectedMessage, actualMessage);
     }
 }
