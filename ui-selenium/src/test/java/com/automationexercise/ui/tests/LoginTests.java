@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest{
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().incorrectDataLogin());
         new LoginPage(driver)
-                .checkErrorMessage(LOGIN_ERROR_MESSAGE);
+                .checkLoginErrorMessage(LOGIN_ERROR_MESSAGE);
     }
 
     @Test
