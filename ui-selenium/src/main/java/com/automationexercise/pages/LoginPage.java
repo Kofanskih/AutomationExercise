@@ -17,6 +17,7 @@ public class LoginPage extends BasePage{
     private final By SIGN_UP_NAME_FIELD = By.cssSelector("[data-qa=\"signup-name\"]");
     private final By SIGNUP_EMAIL_ADDRESS_FIELD = By.cssSelector("[data-qa=\"signup-email\"]");
     private final By SIGNUP_BUTTON = By.cssSelector("[data-qa=\"signup-button\"]");
+    private final By SIGNUP_ERROR_MESSAGE = By.cssSelector("[style=\"color: red;\"]");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -48,6 +49,9 @@ public class LoginPage extends BasePage{
 
     public String getLoginErrorText() {
         return driver.findElement(LOGIN_ERROR_TEXT).getText();
+    }
+    public String getSignUpErrorText() {
+        return driver.findElement(SIGNUP_ERROR_MESSAGE).getText();
     }
 
     public MainPage fillLoginForm(LoginPageModel loginPageModel){
@@ -92,7 +96,7 @@ public class LoginPage extends BasePage{
         assertEquals(expectedMessage, actualMessage);
     }
 
-    public void checkErrorMessage(String expected){
+    public void checkLoginErrorMessage(String expected){
         String actualText = getLoginErrorText();
         assertEquals(expected, actualText);
     }
@@ -112,5 +116,69 @@ public class LoginPage extends BasePage{
         signUpButton().click();
 
         return new SignUpPage(driver);
+    }
+
+    public SignUpPage fillSignUpFormWithExistsUser(RegistrationPageModel registrationPageModel) {
+        signUpNameInput().sendKeys(registrationPageModel.getUserName());
+        signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
+        signUpButton().click();
+
+        return new SignUpPage(driver);
+    }
+
+    public void checkSignUpErrorMessage(String expected){
+        String actualText = getSignUpErrorText();
+        assertEquals(expected, actualText);
+    }
+
+    public LoginPage fillSignUpFormWithEmptyNameField(RegistrationPageModel registrationPageModel){
+        signUpNameInput().clear();
+        signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
+        signUpButton().click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenSignUpNameIsEmpty(String expectedMessage) {
+        WebElement signUpName = signUpNameInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", signUpName);
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    public LoginPage fillSignUpFormWithEmptyEmailField(RegistrationPageModel registrationPageModel){
+        signUpNameInput().sendKeys(registrationPageModel.getUserFirstName());
+        signUpEmailInput().clear();
+        signUpButton().click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenSignUpEmailIsEmpty(String expectedMessage) {
+        WebElement signUpEmail = signUpEmailInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", signUpEmail);
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    public LoginPage fillSignUpFormWithInvalidEmail(RegistrationPageModel registrationPageModel){
+        signUpNameInput().sendKeys(registrationPageModel.getUserName());
+        signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
+        signUpButton().click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenSignUpEmailIsInvalid(String expectedMessage) {
+        WebElement signUpEmail = signUpEmailInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", signUpEmail);
+        assertEquals(expectedMessage, actualMessage);
     }
 }
