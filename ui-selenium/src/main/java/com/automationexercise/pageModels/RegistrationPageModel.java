@@ -35,4 +35,15 @@ public class RegistrationPageModel {
         return this;
     }
 
+    public RegistrationPageModel getExistsUserData(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "1test1test@test.com";
+        return this;
+    }
+
+    public RegistrationPageModel getInvalidEmail(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "1test1testtest.com";
+        return this;
+    }
 }
