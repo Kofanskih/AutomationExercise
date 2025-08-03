@@ -183,5 +183,4 @@ public class SignUpPage extends BasePage{
         continueButton().click();
         return new MainPage(driver);
     }
-
 }
