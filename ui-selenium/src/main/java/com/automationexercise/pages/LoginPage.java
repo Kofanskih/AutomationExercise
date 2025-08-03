@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.LoginPageModel;
+import com.automationexercise.pageModels.RegistrationPageModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,9 @@ public class LoginPage extends BasePage{
     private final By PASSWORD_FIELD = By.cssSelector("[data-qa=\"login-password\"]");
     private final By LOGIN_BUTTON = By.cssSelector("[data-qa=\"login-button\"]");
     private final By LOGIN_ERROR_TEXT = By.cssSelector("[style='color: red;']");
+    private final By SIGN_UP_NAME_FIELD = By.cssSelector("[data-qa=\"signup-name\"]");
+    private final By SIGNUP_EMAIL_ADDRESS_FIELD = By.cssSelector("[data-qa=\"signup-email\"]");
+    private final By SIGNUP_BUTTON = By.cssSelector("[data-qa=\"signup-button\"]");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -28,6 +32,18 @@ public class LoginPage extends BasePage{
 
     private WebElement loginButton() {
         return driver.findElement(LOGIN_BUTTON);
+    }
+
+    private WebElement signUpNameInput() {
+        return driver.findElement(SIGN_UP_NAME_FIELD);
+    }
+
+    private WebElement signUpEmailInput() {
+        return driver.findElement(SIGNUP_EMAIL_ADDRESS_FIELD);
+    }
+
+    private WebElement signUpButton() {
+        return driver.findElement(SIGNUP_BUTTON);
     }
 
     public String getLoginErrorText() {
@@ -88,5 +104,13 @@ public class LoginPage extends BasePage{
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", emailField);
         assertEquals(expectedMessage, actualMessage);
+    }
+
+    public SignUpPage fillSignUpForm(RegistrationPageModel registrationPageModel) {
+        signUpNameInput().sendKeys(registrationPageModel.getUserFirstName());
+        signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
+        signUpButton().click();
+
+        return new SignUpPage(driver);
     }
 }
