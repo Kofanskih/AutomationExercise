@@ -14,8 +14,14 @@ public class LoginPageModel {
     }
 
     public LoginPageModel incorrectDataLogin(){
-        this.userEmailAddress = "kofanskih08@gmail.com";
+        this.userEmailAddress = "1test1test@test.com";
         this.userPassword = "1234567";
+        return this;
+    }
+
+    public LoginPageModel invalidEmailLogin(){
+        this.userEmailAddress = "1test1testtest.com";
+        this.userPassword = "12345678";
         return this;
     }
 }
