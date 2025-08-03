@@ -10,6 +10,8 @@ public class LoginTests extends BaseTest{
     private final String USER_LOGGED_IN_TEXT = "Logged in as";
     private final String EMPTY_INFO_MESSAGE = "Заполните это поле.";
     private final String LOGIN_ERROR_MESSAGE = "Your email or password is incorrect!";
+    private final String INVALID_EMAIL_INFO_MESSAGE  = "Адрес электронной почты должен содержать символ \"@\". В адресе \"1test1testtest.com\" отсутствует символ \"@\".";
+
 
     @Test
     public void userLogin(){
@@ -17,7 +19,7 @@ public class LoginTests extends BaseTest{
                 .acceptCookies();
         new HeaderPage(driver)
                 .clickLoginLogoutButton()
-                .fillLoginFormWithExistsUser(new LoginPageModel().existUserLogin())
+                .fillLoginForm(new LoginPageModel().existUserLogin())
                 .checkUserLoggedIn(USER_LOGGED_IN_TEXT);
     }
 
@@ -27,7 +29,7 @@ public class LoginTests extends BaseTest{
                 .acceptCookies();
         new HeaderPage(driver)
                 .clickLoginLogoutButton()
-                .fillLoginFormWithExistsUser(new LoginPageModel().incorrectDataLogin());
+                .fillLoginForm(new LoginPageModel().incorrectDataLogin());
         new LoginPage(driver)
                 .checkErrorMessage(LOGIN_ERROR_MESSAGE);
     }
@@ -50,6 +52,17 @@ public class LoginTests extends BaseTest{
                 .clickLoginLogoutButton()
                 .fillLoginFormWithEmptyPasswordField(new LoginPageModel().existUserLogin())
                 .checkShowValidationMessageWhenLoginPasswordIsEmpty(EMPTY_INFO_MESSAGE);
+    }
+
+    @Test
+    public void userLoginWithInvalidEmail(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().invalidEmailLogin());
+        new LoginPage(driver)
+                .checkShowValidationMessageWhenEmailIsInvalid(INVALID_EMAIL_INFO_MESSAGE);
     }
 
 }
