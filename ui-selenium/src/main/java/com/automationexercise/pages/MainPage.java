@@ -1,16 +1,10 @@
 package com.automationexercise.pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -26,6 +20,7 @@ public class MainPage extends BasePage{
     private final By JEANS_MEN_BUTTON = By.cssSelector("[href=\"/category_products/6\"]");
     private final By BRANDS_HM_BUTTON = By.cssSelector("[href=\"/brand_products/H&M\"]");
     private final By VIEW_CART_BUTTON = By.xpath("//p/a[@href=\"/view_cart\"]");
+    private final By TEST_CASES_CAROUSEL_BUTTON = By.xpath("//div[@class=\"carousel-inner\"]//a[@href=\"/test_cases\"]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -105,5 +100,10 @@ public class MainPage extends BasePage{
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
         waitUntilClickable(VIEW_CART_BUTTON).click();
         return new CartPage(driver);
+    }
+
+    public TestCasesPage clickOnTheTestCasesButtonOnTheCarousel(){
+        waitUntilClickable(TEST_CASES_CAROUSEL_BUTTON).click();
+        return new TestCasesPage(driver);
     }
 }
