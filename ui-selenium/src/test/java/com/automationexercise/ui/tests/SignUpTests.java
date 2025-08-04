@@ -28,7 +28,7 @@ public class SignUpTests extends BaseTest{
                 .markSpecialOfferCheckbox()
                 .clickCreateAccountButton()
                 .clickContinueButton()
-                .checkUserLoggedIn(USER_LOGGED_IN_TEXT);
+                .checkUserLoggedInText(USER_LOGGED_IN_TEXT);
 
     }
 
