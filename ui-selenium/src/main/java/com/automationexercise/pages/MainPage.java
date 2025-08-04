@@ -1,7 +1,7 @@
 package com.automationexercise.pages;
 
-import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,6 +15,7 @@ public class MainPage extends BasePage{
     private final By ADDED_MODAL_WINDOW_TEXT = By.xpath("//div[@class='modal-body']//p[@class='text-center']");
     private final By CONTINUE_SHOPPING_BUTTON = By.cssSelector("[class=\"btn btn-success close-modal btn-block\"]");
     private final By MODAL_WINDOW_HIDDEN = By.cssSelector("[class=\"modal fade\"]");
+    private final By VIEW_PRODUCT_BUTTON = By.xpath("(//i[@class='fa fa-plus-square'])[3]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -64,5 +65,17 @@ public class MainPage extends BasePage{
 
     public void checkModalWindowIsClosedOnTheMainPage(){
         modalWindowIsHiddenElement().isDisplayed();
+    }
+
+    public MainPage clickViewProductOnTheMainPage(){
+        WebElement element = driver.findElement(VIEW_PRODUCT_BUTTON);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        waitUntilClickable(VIEW_PRODUCT_BUTTON).click();
+        return this;
+    }
+
+    public void checkUrlOnTheProductPage(String expectedUrl){
+        String actualUrl = driver.getCurrentUrl();
+        assertEquals(actualUrl, expectedUrl);
     }
 }
