@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest{
         new HeaderPage(driver)
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin())
-                .checkUserLoggedIn(USER_LOGGED_IN_TEXT);
+                .checkUserLoggedInText(USER_LOGGED_IN_TEXT);
     }
 
     @Test
