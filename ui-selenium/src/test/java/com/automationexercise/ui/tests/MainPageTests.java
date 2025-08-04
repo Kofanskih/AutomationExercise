@@ -12,6 +12,7 @@ public class MainPageTests extends BaseTest{
     private String brandsHMTitle = "BRAND - H&M PRODUCTS";
     private String cartTitle = "Shopping Cart";
     private String testCasesTitle = "TEST CASES";
+    private String apiTestingTitle = "APIS LIST FOR PRACTICE";
 
     @Test
     void clickLogoOnTheMainPage(){
@@ -87,5 +88,13 @@ public class MainPageTests extends BaseTest{
                 .acceptCookies()
                 .clickOnTheTestCasesButtonOnTheCarousel()
                 .checkTitleOnTheTestCasesPage(testCasesTitle);
+    }
+
+    @Test
+    void goToTheAPITestingPageThroughCarouselOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies()
+                .clickOnTheAPITestingButtonOnTheCarousel()
+                .checkTitleOnTheAPITestingPage(apiTestingTitle);
     }
 }
