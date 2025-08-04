@@ -16,6 +16,8 @@ public class MainPage extends BasePage{
     private final By CONTINUE_SHOPPING_BUTTON = By.cssSelector("[class=\"btn btn-success close-modal btn-block\"]");
     private final By MODAL_WINDOW_HIDDEN = By.cssSelector("[class=\"modal fade\"]");
     private final By VIEW_PRODUCT_BUTTON = By.xpath("(//i[@class='fa fa-plus-square'])[3]");
+    private final By MEN_BUTTON = By.cssSelector("[href=\"#Men\"]");
+    private final By JEANS_MEN_BUTTON = By.cssSelector("[href=\"/category_products/6\"]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -77,5 +79,11 @@ public class MainPage extends BasePage{
     public void checkUrlOnTheProductPage(String expectedUrl){
         String actualUrl = driver.getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
+    }
+
+    public ProductsPage clickOnTheMenJeansCategoryOnTheMainPage(){
+        waitUntilClickable(MEN_BUTTON).click();
+        waitUntilVisible(JEANS_MEN_BUTTON).click();
+        return new ProductsPage(driver);
     }
 }
