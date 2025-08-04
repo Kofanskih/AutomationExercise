@@ -9,6 +9,8 @@ public class MainPageTests extends BaseTest{
     private String expectedMainURL = "https://automationexercise.com/";
     private String expectedProductURL = "https://automationexercise.com/product_details/3";
     private String menJeansTitle = "MEN - JEANS PRODUCTS";
+    private String brandsHMTitle = "BRAND - H&M PRODUCTS";
+    private String cartTitle = "Shopping Cart";
 
     @Test
     void clickLogoOnTheMainPage(){
@@ -59,5 +61,22 @@ public class MainPageTests extends BaseTest{
                 .acceptCookies()
                 .clickOnTheMenJeansCategoryOnTheMainPage()
                 .checkTitleOnTheProductPage(menJeansTitle);
+    }
+
+    @Test
+    void goToBrandsHMCategoryOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies()
+                .clickOnTheBrandsNMCategoryOnTheMainPage()
+                .checkTitleOnTheProductPage(brandsHMTitle);
+    }
+
+    @Test
+    void goToTheCartAfterAddingItemOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies()
+                .addItemToTheCartOnTheMainPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .checkUserOnTheCartPage(cartTitle);
     }
 }
