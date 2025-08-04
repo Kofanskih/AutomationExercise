@@ -1,10 +1,16 @@
 package com.automationexercise.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -18,6 +24,8 @@ public class MainPage extends BasePage{
     private final By VIEW_PRODUCT_BUTTON = By.xpath("(//i[@class='fa fa-plus-square'])[3]");
     private final By MEN_BUTTON = By.cssSelector("[href=\"#Men\"]");
     private final By JEANS_MEN_BUTTON = By.cssSelector("[href=\"/category_products/6\"]");
+    private final By BRANDS_HM_BUTTON = By.cssSelector("[href=\"/brand_products/H&M\"]");
+    private final By VIEW_CART_BUTTON = By.xpath("//p/a[@href=\"/view_cart\"]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -85,5 +93,17 @@ public class MainPage extends BasePage{
         waitUntilClickable(MEN_BUTTON).click();
         waitUntilVisible(JEANS_MEN_BUTTON).click();
         return new ProductsPage(driver);
+    }
+
+    public ProductsPage clickOnTheBrandsNMCategoryOnTheMainPage(){
+        WebElement element = driver.findElement(BRANDS_HM_BUTTON);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        waitUntilClickable(BRANDS_HM_BUTTON).click();
+        return new ProductsPage(driver);
+    }
+
+    public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
+        waitUntilClickable(VIEW_CART_BUTTON).click();
+        return new CartPage(driver);
     }
 }
