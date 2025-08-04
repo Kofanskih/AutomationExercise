@@ -15,4 +15,25 @@ public class APITestingTests extends BaseTest{
                 .clickAPITestingButton()
                 .checkTitleOnTheAPITestingPage(APITestingTitle);
     }
+
+    @Test
+    void expandListOnTheAPITestingPage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickAPITestingButton()
+                .expandCollapsedList()
+                .checkTheListIsExpanded();
+    }
+
+    @Test
+    void colapseExpandedListOnTheAPITestingPage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickAPITestingButton()
+                .expandCollapsedList()
+                .collapseExpandedList()
+                .checkTheListIsCollapsed();
+    }
 }
