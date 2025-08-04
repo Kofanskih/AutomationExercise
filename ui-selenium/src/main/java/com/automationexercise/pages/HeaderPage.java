@@ -2,20 +2,21 @@ package com.automationexercise.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class HeaderPage extends BasePage{
-    private final By LOGIN_LOGOUT_BUTTON = By.cssSelector(".fa.fa-lock");;
+    private final By LOGIN_LOGOUT_BUTTON = By.cssSelector(".fa.fa-lock");
+    private final By LOGO = By.xpath("//div[@class=\"logo pull-left\"]");
     public HeaderPage(WebDriver driver) {
         super(driver);
     }
 
-    public WebElement loginLogoutButton() {
-        return driver.findElement(LOGIN_LOGOUT_BUTTON);
+    public MainPage clickLogo(){
+        waitUntilClickable(LOGO).click();
+        return new MainPage(driver);
     }
 
     public LoginPage clickLoginLogoutButton(){
-        loginLogoutButton().click();
+        waitUntilClickable(LOGIN_LOGOUT_BUTTON).click();
         return new LoginPage(driver);
     }
 }
