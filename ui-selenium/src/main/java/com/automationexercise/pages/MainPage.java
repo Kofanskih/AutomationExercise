@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,8 @@ public class MainPage extends BasePage{
     private final By LOGGED_IN_TEXT = By.xpath("//a[contains(text(), 'Logged in as')]");
     private final By ADD_ITEM_TO_CART = By.cssSelector("[data-product-id=\"3\"]");
     private final By ADDED_MODAL_WINDOW_TEXT = By.xpath("//div[@class='modal-body']//p[@class='text-center']");
+    private final By CONTINUE_SHOPPING_BUTTON = By.cssSelector("[class=\"btn btn-success close-modal btn-block\"]");
+    private final By MODAL_WINDOW_HIDDEN = By.cssSelector("[class=\"modal fade\"]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -48,5 +51,18 @@ public class MainPage extends BasePage{
     public void checkProductAddedMessage(String infoModalMessage) {
         String actualText = addedModalWindow().getText();
         assertEquals(actualText, infoModalMessage);
+    }
+
+    public MainPage clickContinueShoppingButtonOnTheModalWindowOnTheMainPage(){
+        waitUntilClickable(CONTINUE_SHOPPING_BUTTON).click();
+        return this;
+    }
+
+    public WebElement modalWindowIsHiddenElement(){
+        return driver.findElement(MODAL_WINDOW_HIDDEN);
+    }
+
+    public void checkModalWindowIsClosedOnTheMainPage(){
+        modalWindowIsHiddenElement().isDisplayed();
     }
 }
