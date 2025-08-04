@@ -7,6 +7,8 @@ public class HeaderPage extends BasePage{
     private final By LOGIN_LOGOUT_BUTTON = By.cssSelector(".fa.fa-lock");
     private final By LOGO = By.xpath("//div[@class=\"logo pull-left\"]");
     private final By HOME_BUTTON = By.cssSelector(".fa.fa-home");
+    private final By API_TESTING_BUTTON = By.cssSelector("[href=\"/api_list\"]");
+
     public HeaderPage(WebDriver driver) {
         super(driver);
     }
@@ -24,5 +26,10 @@ public class HeaderPage extends BasePage{
     public LoginPage clickLoginLogoutButton(){
         waitUntilClickable(LOGIN_LOGOUT_BUTTON).click();
         return new LoginPage(driver);
+    }
+
+    public APITestingPage clickAPITestingButton(){
+        waitUntilClickable(API_TESTING_BUTTON).click();
+        return new APITestingPage(driver);
     }
 }

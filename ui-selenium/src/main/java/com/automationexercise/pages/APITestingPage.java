@@ -7,6 +7,9 @@ import static org.testng.Assert.assertEquals;
 
 public class APITestingPage extends BasePage{
     private final By CENTER_TEXT_TITLE = By.cssSelector("[class=\"title text-center\"]");
+    private final By LIST = By.cssSelector("[href=\"#collapse1\"]");
+    private final By EXPANDED_BLOCK = By.xpath("//div[@id=\"collapse1\"]/ul[@class=\"list-group\"]");
+    private final By COLLAPSED_BLOCK = By.xpath("//div[@id=\"collapse1\"][@class=\"panel-collapse collapsing\"]");
 
     public APITestingPage(WebDriver driver) {
         super(driver);
@@ -15,5 +18,24 @@ public class APITestingPage extends BasePage{
     public void checkTitleOnTheAPITestingPage(String title){
         String actualText = waitUntilVisible(CENTER_TEXT_TITLE).getText();
         assertEquals(actualText, title);
+    }
+
+    public APITestingPage expandCollapsedList(){
+        waitUntilClickable(LIST).click();
+        return this;
+    }
+
+    public void checkTheListIsExpanded(){
+        waitUntilVisible(EXPANDED_BLOCK).isDisplayed();
+    }
+
+    public APITestingPage collapseExpandedList(){
+        waitUntilVisible(EXPANDED_BLOCK).isDisplayed();
+        waitUntilClickable(LIST).click();
+        return this;
+    }
+
+    public void checkTheListIsCollapsed(){
+        waitUntilVisible(COLLAPSED_BLOCK).isDisplayed();
     }
 }
