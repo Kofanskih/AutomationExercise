@@ -21,6 +21,7 @@ public class MainPage extends BasePage{
     private final By BRANDS_HM_BUTTON = By.cssSelector("[href=\"/brand_products/H&M\"]");
     private final By VIEW_CART_BUTTON = By.xpath("//p/a[@href=\"/view_cart\"]");
     private final By TEST_CASES_CAROUSEL_BUTTON = By.xpath("//div[@class=\"carousel-inner\"]//a[@href=\"/test_cases\"]");
+    private final By API_TESTING_CAROUSEL_BUTTON = By.xpath("//div[@class=\"carousel-inner\"]//a[@href=\"/api_list\"]");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -105,5 +106,10 @@ public class MainPage extends BasePage{
     public TestCasesPage clickOnTheTestCasesButtonOnTheCarousel(){
         waitUntilClickable(TEST_CASES_CAROUSEL_BUTTON).click();
         return new TestCasesPage(driver);
+    }
+
+    public APITestingPage clickOnTheAPITestingButtonOnTheCarousel(){
+        waitUntilClickable(API_TESTING_CAROUSEL_BUTTON).click();
+        return new APITestingPage(driver);
     }
 }
