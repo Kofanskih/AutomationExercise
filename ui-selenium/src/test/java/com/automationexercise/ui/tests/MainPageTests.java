@@ -27,10 +27,19 @@ public class MainPageTests extends BaseTest{
     }
 
     @Test
-    public void addItemToTheCartOnTheMainPage() {
+    void addItemToTheCartOnTheMainPage() {
         new MainPage(driver)
                 .acceptCookies()
                 .addItemToTheCartOnTheMainPage()
                 .checkProductAddedMessage(addedMessageOnTheModalWindow);
+    }
+
+    @Test
+    void closeAddedModalWindowOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies()
+                .addItemToTheCartOnTheMainPage()
+                .clickContinueShoppingButtonOnTheModalWindowOnTheMainPage()
+                .checkModalWindowIsClosedOnTheMainPage();
     }
 }
