@@ -31,6 +31,11 @@ public class MainPage extends BasePage{
         assertTrue(actualText.contains(expectedSubstring));
     }
 
+    public void checkUrlOnTheMainPage(String expectedUrl){
+        String actualUrl = driver.getCurrentUrl();
+        assertEquals(actualUrl, expectedUrl);
+    }
+
     public MainPage addItemToTheCartOnTheMainPage() {
         waitUntilClickable(ADD_ITEM_TO_CART).click();
         return this;
