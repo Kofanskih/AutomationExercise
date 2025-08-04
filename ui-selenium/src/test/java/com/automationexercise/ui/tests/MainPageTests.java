@@ -16,6 +16,16 @@ public class MainPageTests extends BaseTest{
                 .clickLogo()
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
+
+    @Test
+    void clickHomeButtonOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickHomeButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
+    }
+
     @Test
     public void addItemToTheCartOnTheMainPage() {
         new MainPage(driver)
