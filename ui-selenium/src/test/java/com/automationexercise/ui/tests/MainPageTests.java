@@ -11,6 +11,7 @@ public class MainPageTests extends BaseTest{
     private String menJeansTitle = "MEN - JEANS PRODUCTS";
     private String brandsHMTitle = "BRAND - H&M PRODUCTS";
     private String cartTitle = "Shopping Cart";
+    private String testCasesTitle = "TEST CASES";
 
     @Test
     void clickLogoOnTheMainPage(){
@@ -78,5 +79,13 @@ public class MainPageTests extends BaseTest{
                 .addItemToTheCartOnTheMainPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .checkUserOnTheCartPage(cartTitle);
+    }
+
+    @Test
+    void goToTheTestCasesPageThroughCarouselOnTheMainPage(){
+        new MainPage(driver)
+                .acceptCookies()
+                .clickOnTheTestCasesButtonOnTheCarousel()
+                .checkTitleOnTheTestCasesPage(testCasesTitle);
     }
 }
