@@ -19,6 +19,8 @@ public class ProductsPage extends BasePage{
     private final By VIEW_PRODUCT_BUTTON = By.xpath("(//i[@class='fa fa-plus-square'])[2]");
     private final By KIDS_BUTTON = By.cssSelector("[href=\"#Kids\"]");
     private final By TOP_SHIRTS_KIDS_BUTTON = By.cssSelector("[href=\"/category_products/5\"]");
+    private final By BRANDS_MADAME_BUTTON = By.cssSelector("[href=\"/brand_products/Madame\"]");
+    private final By VIEW_CART_BUTTON = By.xpath("(//p[@class=\"text-center\"])[2]");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -87,4 +89,15 @@ public class ProductsPage extends BasePage{
         return this;
     }
 
+    public ProductsPage clickOnTheBrandsMadameCategoryOnTheProductsPage(){
+        WebElement element = driver.findElement(BRANDS_MADAME_BUTTON);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        waitUntilClickable(BRANDS_MADAME_BUTTON).click();
+        return this;
+    }
+
+    public CartPage clickOnTheViewCartButtonOnTheModalWindow() {
+        waitUntilVisible(VIEW_CART_BUTTON).click();
+        return new CartPage(driver);
+    }
 }
