@@ -27,4 +27,17 @@ public class CartTests extends BaseTest{
                 .checkUrlOnTheProductPage(expectedProductsURL);
     }
 
+    @Test
+    void deleteItemFromTheCart() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .deleteItemFromTheCart()
+                .checkTheCartIsEmpty(emptyCartTitle);
+
+    }
+
 }
