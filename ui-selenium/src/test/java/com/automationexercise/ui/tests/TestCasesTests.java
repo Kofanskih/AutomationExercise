@@ -4,34 +4,34 @@ import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import org.testng.annotations.Test;
 
-public class APITestingTests extends BaseTest{
-    private String APITestingTitle = "APIS LIST FOR PRACTICE";
+public class TestCasesTests extends BaseTest{
+    private String testCasesTitle = "TEST CASES";
 
     @Test
-    void goToTheAPITestingPage(){
+    void goToTheTestCasesPage(){
         new MainPage(driver)
                 .acceptCookies();
         new HeaderPage(driver)
-                .clickAPITestingButton()
-                .checkTitleOnTheAPITestingPage(APITestingTitle);
+                .clickTestCasesButton()
+                .checkTitleOnTheTestCasesPage(testCasesTitle);
     }
 
     @Test
-    void expandListOnTheAPITestingPage(){
+    void expandListOnTheTestCasesPage(){
         new MainPage(driver)
                 .acceptCookies();
         new HeaderPage(driver)
-                .clickAPITestingButton()
+                .clickTestCasesButton()
                 .expandCollapsedList()
                 .checkTheListIsExpanded();
     }
 
     @Test
-    void collapseExpandedListOnTheAPITestingPage(){
+    void collapseExpandedListOnTheTestCasesPage(){
         new MainPage(driver)
                 .acceptCookies();
         new HeaderPage(driver)
-                .clickAPITestingButton()
+                .clickTestCasesButton()
                 .expandCollapsedList()
                 .collapseExpandedList()
                 .checkTheListIsCollapsed();
