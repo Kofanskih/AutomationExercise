@@ -71,7 +71,6 @@ public class ProductsTests extends BaseTest{
                 .clickProductsButton()
                 .clickOnTheBrandsMadameCategoryOnTheProductsPage()
                 .checkTitleOnTheProductPage(madameCategoryTitle);
-
     }
 
     @Test
@@ -82,6 +81,5 @@ public class ProductsTests extends BaseTest{
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .checkUserOnTheCartPage(cartTitle);
-
     }
 }
