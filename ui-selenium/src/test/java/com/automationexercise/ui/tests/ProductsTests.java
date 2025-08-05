@@ -9,6 +9,8 @@ public class ProductsTests extends BaseTest{
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
     private String expectedProductURL = "https://automationexercise.com/product_details/2";
     private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
+    private String madameCategoryTitle = "BRAND - MADAME PRODUCTS";
+    private String cartTitle = "Shopping Cart";
 
     @Test
     void searchItemOnTheProductsPage(){
@@ -59,5 +61,27 @@ public class ProductsTests extends BaseTest{
                 .clickProductsButton()
                 .clickOnTheKidsTopsCategoryOnTheProductsPage()
                 .checkTitleOnTheProductPage(kidsCategoryTitle);
+    }
+
+    @Test
+    void goToBrandsMadameCategoryOnTheProductsPage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .clickOnTheBrandsMadameCategoryOnTheProductsPage()
+                .checkTitleOnTheProductPage(madameCategoryTitle);
+
+    }
+
+    @Test
+    void goToTheCartAfterAddingItemOnTheProductsPage() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver).clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .checkUserOnTheCartPage(cartTitle);
+
     }
 }
