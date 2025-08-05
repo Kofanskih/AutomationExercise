@@ -27,7 +27,7 @@ public class APITestingTests extends BaseTest{
     }
 
     @Test
-    void colapseExpandedListOnTheAPITestingPage(){
+    void collapseExpandedListOnTheAPITestingPage(){
         new MainPage(driver)
                 .acceptCookies();
         new HeaderPage(driver)
