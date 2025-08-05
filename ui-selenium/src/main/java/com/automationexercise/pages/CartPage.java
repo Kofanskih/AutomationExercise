@@ -7,6 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class CartPage extends BasePage{
     private final By TITLE = By.cssSelector("[class=\"active\"]");
+    private final By EMPTY_TITLE = By.xpath("//b[contains(., 'Cart is empty!')]");
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -14,6 +15,11 @@ public class CartPage extends BasePage{
 
     public void checkUserOnTheCartPage(String title) {
         String actualText = waitUntilVisible(TITLE).getText();
+        assertEquals(actualText, title);
+    }
+
+    public void checkTheCartIsEmpty(String title) {
+        String actualText =waitUntilVisible(EMPTY_TITLE).getText();
         assertEquals(actualText, title);
     }
 }
