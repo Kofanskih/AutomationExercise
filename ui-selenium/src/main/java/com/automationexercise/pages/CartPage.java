@@ -10,6 +10,7 @@ public class CartPage extends BasePage{
     private final By EMPTY_TITLE = By.xpath("//b[contains(., 'Cart is empty!')]");
     private final By HERE_BUTTON = By.xpath("//u[contains(., 'here')]");
     private final By DELETE_BUTTON = By.xpath("//a[@class=\"cart_quantity_delete\"]");
+    private final By PROCEED_TO_CHECKOUT_BUTTON = By.xpath("//div//a[@class=\"btn btn-default check_out\"]");
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -21,7 +22,7 @@ public class CartPage extends BasePage{
     }
 
     public void checkTheCartIsEmpty(String title) {
-        String actualText =waitUntilVisible(EMPTY_TITLE).getText();
+        String actualText = waitUntilVisible(EMPTY_TITLE).getText();
         assertEquals(actualText, title);
     }
 
@@ -33,5 +34,10 @@ public class CartPage extends BasePage{
     public CartPage deleteItemFromTheCart(){
         waitUntilClickable(DELETE_BUTTON).click();
         return this;
+    }
+
+    public CheckoutPage clickToCheckoutButtonOnTheCartPage(){
+        waitUntilClickable(PROCEED_TO_CHECKOUT_BUTTON).click();
+        return new CheckoutPage(driver);
     }
 }
