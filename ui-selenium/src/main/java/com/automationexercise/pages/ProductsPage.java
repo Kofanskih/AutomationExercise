@@ -14,6 +14,11 @@ public class ProductsPage extends BasePage{
     private final By SEARCH_RESULT = By.xpath("//p[contains(., 'Winter Top')]");
     private final By ADD_ITEM_TO_CART = By.cssSelector("[data-product-id=\"3\"]");
     private final By ADDED_MODAL_WINDOW_TEXT = By.xpath("//div[@class='modal-body']//p[@class='text-center']");
+    private final By CONTINUE_SHOPPING_BUTTON = By.cssSelector("[class=\"btn btn-success close-modal btn-block\"]");
+    private final By MODAL_WINDOW_HIDDEN = By.cssSelector("[class=\"modal fade\"]");
+    private final By VIEW_PRODUCT_BUTTON = By.xpath("(//i[@class='fa fa-plus-square'])[2]");
+    private final By KIDS_BUTTON = By.cssSelector("[href=\"#Kids\"]");
+    private final By TOP_SHIRTS_KIDS_BUTTON = By.cssSelector("[href=\"/category_products/5\"]");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -49,6 +54,37 @@ public class ProductsPage extends BasePage{
     public void checkAddedItemOnTheProductsPage(String infoModalMessage) {
         String actualText = addedModalWindow().getText();
         assertEquals(actualText, infoModalMessage);
+    }
+
+    public ProductsPage clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage(){
+        waitUntilVisible(CONTINUE_SHOPPING_BUTTON).click();
+        return this;
+    }
+
+    public WebElement modalWindowIsHiddenElement(){
+        return driver.findElement(MODAL_WINDOW_HIDDEN);
+    }
+
+    public void checkModalWindowIsClosedOnTheProductsPage(){
+        modalWindowIsHiddenElement().isDisplayed();
+    }
+
+    public ProductsPage clickViewProductOnTheProductsPage(){
+        WebElement element = driver.findElement(VIEW_PRODUCT_BUTTON);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        waitUntilClickable(VIEW_PRODUCT_BUTTON).click();
+        return this;
+    }
+
+    public void checkUrlOnTheProductPage(String expectedUrl){
+        String actualUrl = driver.getCurrentUrl();
+        assertEquals(actualUrl, expectedUrl);
+    }
+
+    public ProductsPage clickOnTheKidsTopsCategoryOnTheProductsPage(){
+        waitUntilClickable(KIDS_BUTTON).click();
+        waitUntilVisible(TOP_SHIRTS_KIDS_BUTTON).click();
+        return this;
     }
 
 }
