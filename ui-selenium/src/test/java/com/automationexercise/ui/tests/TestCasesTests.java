@@ -26,4 +26,14 @@ public class TestCasesTests extends BaseTest{
                 .checkTheListIsExpanded();
     }
 
+    @Test
+    void collapseExpandedListOnTheTestCasesPage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickTestCasesButton()
+                .expandCollapsedList()
+                .collapseExpandedList()
+                .checkTheListIsCollapsed();
+    }
 }
