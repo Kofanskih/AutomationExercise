@@ -2,8 +2,10 @@ package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.PaymentPageModel;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.AssertJUnit;
 
 import static org.testng.Assert.assertEquals;
 
@@ -67,5 +69,24 @@ public class PaymentPage extends BasePage{
     public void checkPlaceOrderTitle(String title) {
         String actualText = placeOrderTitle().getText();
         assertEquals(actualText, title);
+    }
+
+    public PaymentPage fillPaymentFormWithEmptyName(PaymentPageModel paymentPageModel){
+        nameInput().clear();
+        cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
+        cvcInput().sendKeys(paymentPageModel.getCvc());
+        monthInput().sendKeys(paymentPageModel.getMonth());
+        yearInput().sendKeys(paymentPageModel.getYear());
+        payConfirmButton().click();
+
+        return this;
+    }
+    public void checkShowValidationMessageWhenNameOnCardIsEmpty(String expectedMessage) {
+        WebElement nameField = nameInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", nameField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 }
