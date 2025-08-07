@@ -89,4 +89,23 @@ public class PaymentPage extends BasePage{
                 "return arguments[0].validationMessage;", nameField);
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
+
+    public PaymentPage fillPaymentFormWithEmptyCardNumber(PaymentPageModel paymentPageModel){
+        nameInput().sendKeys(paymentPageModel.getNameOnCard());
+        cardNumberInput().clear();
+        cvcInput().sendKeys(paymentPageModel.getCvc());
+        monthInput().sendKeys(paymentPageModel.getMonth());
+        yearInput().sendKeys(paymentPageModel.getYear());
+        payConfirmButton().click();
+
+        return this;
+    }
+    public void checkShowValidationMessageWhenNameOnCardNumberIsEmpty(String expectedMessage) {
+        WebElement cardNumberField = cardNumberInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", cardNumberField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
 }
