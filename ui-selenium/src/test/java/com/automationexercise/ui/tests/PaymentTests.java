@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class PaymentTests extends BaseTest{
     private String title = "ORDER PLACED!";
+    private String emptyInfoMessage = "Заполните это поле.";
 
     @Test
     void payAndConfirmOrderWithCorrectData() {
@@ -24,5 +25,22 @@ public class PaymentTests extends BaseTest{
                 .clickPlaceOrderButton()
                 .fillPaymentForm(new PaymentPageModel().existPaymentData())
                 .checkPlaceOrderTitle(title);
+    }
+
+    @Test
+    void verifyInfoMessageWhenNameOnCardIsEmpty() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().existUserLogin());
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyName(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
 }
