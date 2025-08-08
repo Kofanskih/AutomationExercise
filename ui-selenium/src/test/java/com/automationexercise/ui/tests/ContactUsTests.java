@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 public class ContactUsTests extends BaseTest{
     private String successfulMessage = "Success! Your details have been submitted successfully.";
+    private String expectedMainURL = "https://automationexercise.com/";
 
     @Test
     void sendContactMessage(){
@@ -28,5 +29,17 @@ public class ContactUsTests extends BaseTest{
                 .fillMessageForm(new ContactUsPageModel().messageForm())
                 .clickCancelButton()
                 .checkHomeButtonNotAppear();
+    }
+
+    @Test
+    void goToTheHomePageAfterSendingContactMessage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickContactUsButton()
+                .fillMessageForm(new ContactUsPageModel().messageForm())
+                .clickOKButton()
+                .clickHomeButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
     }
 }
