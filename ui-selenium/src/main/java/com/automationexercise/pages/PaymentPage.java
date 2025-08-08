@@ -17,6 +17,7 @@ public class PaymentPage extends BasePage{
     private final By EXPIRY_YEAR_FIELD = By.cssSelector("[data-qa=\"expiry-year\"]");
     private final By PAY_AND_CONFIRM_BUTTON = By.cssSelector("[data-qa=\"pay-button\"]");
     private final By TITLE = By.cssSelector("[data-qa=\"order-placed\"]");
+    private final By CONTINUE_BUTTON = By.cssSelector("[data-qa=\"continue-button\"]");
 
     public PaymentPage(WebDriver driver) {
         super(driver);
@@ -81,6 +82,7 @@ public class PaymentPage extends BasePage{
 
         return this;
     }
+
     public void checkShowValidationMessageWhenNameOnCardIsEmpty(String expectedMessage) {
         WebElement nameField = nameInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -100,6 +102,7 @@ public class PaymentPage extends BasePage{
 
         return this;
     }
+
     public void checkShowValidationMessageWhenCardNumberIsEmpty(String expectedMessage) {
         WebElement cardNumberField = cardNumberInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -119,12 +122,59 @@ public class PaymentPage extends BasePage{
 
         return this;
     }
+
     public void checkShowValidationMessageWhenCVCIsEmpty(String expectedMessage) {
-        WebElement cvcField = cardNumberInput();
+        WebElement cvcField = cvcInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", cvcField);
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
+
+    public PaymentPage fillPaymentFormWithEmptyMonth(PaymentPageModel paymentPageModel){
+        nameInput().sendKeys(paymentPageModel.getNameOnCard());
+        cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
+        cvcInput().sendKeys(paymentPageModel.getCvc());
+        monthInput().clear();
+        yearInput().sendKeys(paymentPageModel.getYear());
+        payConfirmButton().click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenMonthIsEmpty(String expectedMessage) {
+        WebElement monthField = monthInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", monthField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
+
+    public PaymentPage fillPaymentFormWithEmptyYear(PaymentPageModel paymentPageModel){
+        nameInput().sendKeys(paymentPageModel.getNameOnCard());
+        cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
+        cvcInput().sendKeys(paymentPageModel.getCvc());
+        monthInput().sendKeys(paymentPageModel.getMonth());
+        yearInput().clear();
+        payConfirmButton().click();
+
+        return this;
+    }
+
+    public void checkShowValidationMessageWhenYearIsEmpty(String expectedMessage) {
+        WebElement yearField = yearInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", yearField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
+
+    public MainPage clickContinueButton(){
+        waitUntilClickable(CONTINUE_BUTTON).click();
+
+        return new MainPage(driver);
     }
 }
