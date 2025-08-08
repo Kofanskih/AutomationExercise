@@ -2,8 +2,10 @@ package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.ContactUsPageModel;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.AssertJUnit;
 
 import java.util.List;
 
@@ -75,5 +77,14 @@ public class ContactUsPage extends BasePage{
     public MainPage clickHomeButton(){
         waitUntilClickable(HOME_BUTTON).click();
         return new MainPage(driver);
+    }
+
+    public void checkShowValidationMessageInEmailField(String expectedMessage) {
+        WebElement emailField = emailInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", emailField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 }
