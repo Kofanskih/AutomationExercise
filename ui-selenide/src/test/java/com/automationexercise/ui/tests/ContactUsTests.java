@@ -62,7 +62,7 @@ public class ContactUsTests {
     }
 
     @Test(description = "Fill contact form with invalid email")
-    void fillContactUsformWithInvalidEmail(){
+    void fillContactUsFormWithInvalidEmail(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageFormInvalidEmail())
@@ -70,7 +70,7 @@ public class ContactUsTests {
     }
 
     @Test(description = "Fill contact form with empty email field")
-    void fillContactUsformWithEmptyEmailField(){
+    void fillContactUsFormWithEmptyEmailField(){
         new MainPage().acceptCookies();
         new HeaderPage().clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageFormEmptyEmail())
