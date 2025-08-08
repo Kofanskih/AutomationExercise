@@ -16,4 +16,12 @@ public class ContactUsPageModel {
         this.userMessage = "Message Message Message Message Message Message Message Message";
         return this;
     }
+
+    public ContactUsPageModel messageFormInvalidEmail(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "brbrbbrbr.com";
+        this.userSubject = "Message";
+        this.userMessage = "Message Message Message Message Message Message Message Message";
+        return this;
+    }
 }
