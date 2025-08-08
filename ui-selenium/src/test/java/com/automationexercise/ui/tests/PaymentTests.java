@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 
 public class PaymentTests extends BaseTest{
     private String title = "ORDER PLACED!";
-    private String emptyInfoMessage = "1Заполните это поле.";
+    private String emptyInfoMessage = "Заполните это поле.";
+    private String expectedMainURL = "https://automationexercise.com/";
 
     @Test
     void payAndConfirmOrderWithCorrectData() {
@@ -58,6 +59,74 @@ public class PaymentTests extends BaseTest{
                 .clickToCheckoutButtonOnTheCartPage()
                 .clickPlaceOrderButton()
                 .fillPaymentFormWithEmptyCardNumber(new PaymentPageModel().existPaymentData())
-                .checkShowValidationMessageWhenNameOnCardNumberIsEmpty(emptyInfoMessage);
+                .checkShowValidationMessageWhenCardNumberIsEmpty(emptyInfoMessage);
+    }
+
+    @Test
+    void verifyInfoMessageWhenCVCIsEmpty() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().existUserLogin());
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyCVC(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
+    }
+
+    @Test
+    void verifyInfoMessageWhenMonthIsEmpty() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().existUserLogin());
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyMonth(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
+    }
+
+    @Test
+    void verifyInfoMessageWhenYearIsEmpty() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().existUserLogin());
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyYear(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenYearIsEmpty(emptyInfoMessage);
+    }
+
+    @Test
+    void verifyUserIsOnTheMainPageAfterFinishPayment() {
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillLoginForm(new LoginPageModel().existUserLogin());
+        new HeaderPage(driver)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentForm(new PaymentPageModel().existPaymentData())
+                .clickContinueButton().checkUrlOnTheMainPage(expectedMainURL);
     }
 }
