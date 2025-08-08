@@ -12,6 +12,7 @@ public class HeaderPage extends BasePage{
     private final By CART_BUTTON = By.cssSelector("[class=\"fa fa-shopping-cart\"]");
     private final By TEST_CASES_BUTTON = By.cssSelector("[href=\"/test_cases\"]");
     private final By API_TESTING_BUTTON = By.cssSelector("[href=\"/api_list\"]");
+    private final By CONTACT_US_BUTTON = By.cssSelector("[href=\"/contact_us\"]");
 
     public HeaderPage(WebDriver driver) {
         super(driver);
@@ -50,5 +51,10 @@ public class HeaderPage extends BasePage{
     public APITestingPage clickAPITestingButton(){
         waitUntilClickable(API_TESTING_BUTTON).click();
         return new APITestingPage(driver);
+    }
+
+    public ContactUsPage clickContactUsButton(){
+        waitUntilClickable(CONTACT_US_BUTTON).click();
+        return new ContactUsPage(driver);
     }
 }
