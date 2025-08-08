@@ -10,10 +10,23 @@ public class ContactUsTests extends BaseTest{
 
     @Test
     void sendContactMessage(){
-        new MainPage(driver).acceptCookies();
-        new HeaderPage(driver).clickContactUsButton()
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageForm())
                 .clickOKButton()
                 .checkMessageWasSent(successfulMessage);
+    }
+
+    @Test
+    void doNotSendContactMessage(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickContactUsButton()
+                .fillMessageForm(new ContactUsPageModel().messageForm())
+                .clickCancelButton()
+                .checkHomeButtonNotAppear();
     }
 }
