@@ -71,4 +71,9 @@ public class ContactUsPage extends BasePage{
         List<WebElement> elements = driver.findElements(HOME_BUTTON);
         assertTrue(elements.isEmpty(), "Button HOME is displayed");
     }
+
+    public MainPage clickHomeButton(){
+        waitUntilClickable(HOME_BUTTON).click();
+        return new MainPage(driver);
+    }
 }
