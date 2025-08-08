@@ -5,7 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class ContactUsPage extends BasePage{
     private final By NAME_FIELD = By.cssSelector("[data-qa=\"name\"]");
@@ -14,6 +17,7 @@ public class ContactUsPage extends BasePage{
     private final By MESSAGE_FIELD = By.cssSelector("[data-qa=\"message\"]");
     private final By SUBMIT_BUTTON = By.cssSelector("[data-qa=\"submit-button\"]");
     private final By ALERT_SUCCESS = By.cssSelector("[class=\"status alert alert-success\"]");
+    private final By HOME_BUTTON = By.cssSelector("[class=\"fa fa-angle-double-left\"]");
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
@@ -56,5 +60,15 @@ public class ContactUsPage extends BasePage{
     public void checkMessageWasSent(String title) {
         String actualText = waitUntilVisible(ALERT_SUCCESS).getText();
         assertEquals(actualText, title);
+    }
+
+    public ContactUsPage clickCancelButton(){
+        driver.switchTo().alert().dismiss();
+        return this;
+    }
+
+    public void checkHomeButtonNotAppear() {
+        List<WebElement> elements = driver.findElements(HOME_BUTTON);
+        assertTrue(elements.isEmpty(), "Button HOME is displayed");
     }
 }
