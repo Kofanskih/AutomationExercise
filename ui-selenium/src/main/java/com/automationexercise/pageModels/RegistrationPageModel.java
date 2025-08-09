@@ -46,4 +46,20 @@ public class RegistrationPageModel {
         this.userEmailAddress = "1test1testtest.com";
         return this;
     }
+
+    public RegistrationPageModel getRegistrationUserDataForDeleting(){
+        this.userName = "Anastasiia";
+        this.userEmailAddress = "deletingTest@gmail.com";
+        this.userPassword = "12345678";
+        this.userFirstName = "Anastasiia";
+        this.userLastName = "Bu";
+        this.userCompany = "Company";
+        this.userAddress = "Address one";
+        this.userAddress2 = "Address two";
+        this.userState = "State";
+        this.userCity = "City";
+        this.userZipode = "12345";
+        this.userMobile = "1234567890";
+        return this;
+    }
 }
