@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 public class DeleteTests extends BaseTest{
     private String expectedMainURL = "https://automationexercise.com/";
+    private String title = "ACCOUNT DELETED!";
 
     @Test
     public void deleteUser(){
@@ -27,5 +28,25 @@ public class DeleteTests extends BaseTest{
                 .clickDeleteAccountButton()
                 .clickContinueButtonOnTheDeletePage()
                 .checkUrlOnTheMainPage(expectedMainURL);
+    }
+
+    @Test
+    void checkTitleAfterDeletingAccount(){
+        new MainPage(driver)
+                .acceptCookies();
+        new HeaderPage(driver)
+                .clickLoginLogoutButton()
+                .fillSignUpForm(new RegistrationPageModel().getRegistrationUserDataForDeleting())
+                .chooseGenderFemale()
+                .fillUserData(new RegistrationPageModel().getRegistrationUserDataForDeleting())
+                .chooseCountry()
+                .fillDateOfBirthDropdowns()
+                .markNewsletterCheckbox()
+                .markSpecialOfferCheckbox()
+                .clickCreateAccountButton()
+                .clickContinueButton();
+        new HeaderPage(driver)
+                .clickDeleteAccountButton()
+                .checkTitleAfterDeletingAccount(title);
     }
 }
