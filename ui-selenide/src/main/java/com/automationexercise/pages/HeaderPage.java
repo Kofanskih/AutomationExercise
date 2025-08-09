@@ -11,7 +11,7 @@ public class HeaderPage extends BasePage{
     private final SelenideElement LOGIN_LOGOUT_BUTTON = $("[class=\"fa fa-lock\"]");
     private final SelenideElement PRODUCTS_BUTTON = $("[href=\"/products\"]");
     private final SelenideElement CART_BUTTON = $("[class=\"fa fa-shopping-cart\"]");
-    private final SelenideElement DELETE_ACCOUNT_BUTTON = $("[class=\"fa fa-trash-o\"]"); //data-qa="account-deleted" Account Deleted! data-qa="continue-button"(return to home page)
+    private final SelenideElement DELETE_ACCOUNT_BUTTON = $("[class=\"fa fa-trash-o\"]");
     private final SelenideElement TEST_CASES_BUTTON = $("[href=\"/test_cases\"]");
     private final SelenideElement API_TESTING_BUTTON = $("[href=\"/api_list\"]");
     private final SelenideElement VIDEO_TUTORIALS_BUTTON = $("[href=\"https://www.youtube.com/c/AutomationExercise\"]");
