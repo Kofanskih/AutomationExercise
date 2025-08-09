@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 
 public class HeaderPage extends BasePage{
-    private final By LOGIN_LOGOUT_BUTTON = By.cssSelector(".fa.fa-lock");
     private final By LOGO = By.xpath("//div[@class=\"logo pull-left\"]");
     private final By HOME_BUTTON = By.cssSelector(".fa.fa-home");
     private final By PRODUCTS_BUTTON = By.cssSelector("[href=\"/products\"]");
     private final By CART_BUTTON = By.cssSelector("[class=\"fa fa-shopping-cart\"]");
+    private final By LOGIN_LOGOUT_BUTTON = By.cssSelector(".fa.fa-lock");
+    private final By DELETE_ACCOUNT_BUTTON = By.cssSelector("[class=\"fa fa-trash-o\"]");
     private final By TEST_CASES_BUTTON = By.cssSelector("[href=\"/test_cases\"]");
     private final By API_TESTING_BUTTON = By.cssSelector("[href=\"/api_list\"]");
     private final By CONTACT_US_BUTTON = By.cssSelector("[href=\"/contact_us\"]");
@@ -41,6 +42,11 @@ public class HeaderPage extends BasePage{
     public LoginPage clickLoginLogoutButton(){
         waitUntilClickable(LOGIN_LOGOUT_BUTTON).click();
         return new LoginPage(driver);
+    }
+
+    public DeletePage clickDeleteAccountButton(){
+        waitUntilClickable(DELETE_ACCOUNT_BUTTON).click();
+        return new DeletePage(driver);
     }
 
     public TestCasesPage clickTestCasesButton(){
