@@ -2,7 +2,10 @@ package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.AssertJUnit;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -22,4 +25,21 @@ public class FooterPage extends BasePage{
         assertEquals(message, actualText);
     }
 
+    public FooterPage fillSubscribeFieldWithInvalidEmail(RegistrationPageModel registrationPageModel){
+        waitUntilClickable(SUBSCRIBE_FIELD).sendKeys(registrationPageModel.getUserEmailAddress());
+        return this;
+    }
+
+    private WebElement subscribeInput() {
+        return driver.findElement(SUBSCRIBE_FIELD);
+    }
+
+    public void checkShowValidationMessageUsingInvalidEmailForSubscription(String expectedMessage) {
+        WebElement subscribeField = subscribeInput();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        String actualMessage = (String) jsExecutor.executeScript(
+                "return arguments[0].validationMessage;", subscribeField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
 }
