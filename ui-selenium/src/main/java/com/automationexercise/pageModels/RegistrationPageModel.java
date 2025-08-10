@@ -62,4 +62,9 @@ public class RegistrationPageModel {
         this.userMobile = "1234567890";
         return this;
     }
+
+    public RegistrationPageModel getSubscribeEmail(){
+        this.userEmailAddress = user.internet().emailAddress();
+        return this;
+    }
 }
