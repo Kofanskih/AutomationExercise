@@ -13,6 +13,7 @@ public class HeaderPage extends BasePage{
     private final By DELETE_ACCOUNT_BUTTON = By.cssSelector("[class=\"fa fa-trash-o\"]");
     private final By TEST_CASES_BUTTON = By.cssSelector("[href=\"/test_cases\"]");
     private final By API_TESTING_BUTTON = By.cssSelector("[href=\"/api_list\"]");
+    private final By VIDEO_TUTORIALS_BUTTON = By.cssSelector("[href=\"https://www.youtube.com/c/AutomationExercise\"]");
     private final By CONTACT_US_BUTTON = By.cssSelector("[href=\"/contact_us\"]");
 
     public HeaderPage(WebDriver driver) {
@@ -57,6 +58,11 @@ public class HeaderPage extends BasePage{
     public APITestingPage clickAPITestingButton(){
         waitUntilClickable(API_TESTING_BUTTON).click();
         return new APITestingPage(driver);
+    }
+
+    public VideoTutorialsPage clickVideoTutorialsButton(){
+        waitUntilClickable(VIDEO_TUTORIALS_BUTTON).click();
+        return new VideoTutorialsPage(driver);
     }
 
     public ContactUsPage clickContactUsButton(){
