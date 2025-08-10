@@ -77,8 +77,7 @@ public class RegistrationPageModel {
 
     @Step("Use user data with invalid subscribe email")
     public RegistrationPageModel getInvalidSubscribeEmail(){
-        this.userEmailAddress = "kofanskih08gmail.com";
+        this.userEmailAddress = "test.com";
         return this;
     }
-
 }
