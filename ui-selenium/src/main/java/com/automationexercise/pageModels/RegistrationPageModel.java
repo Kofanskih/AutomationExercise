@@ -67,4 +67,9 @@ public class RegistrationPageModel {
         this.userEmailAddress = user.internet().emailAddress();
         return this;
     }
+
+    public RegistrationPageModel getInvalidSubscribeEmail(){
+        this.userEmailAddress = "test.com";
+        return this;
+    }
 }
