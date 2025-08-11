@@ -114,5 +114,4 @@ public class MainPage extends BasePage{
         API_TESTING_CAROUSEL_BUTTON.click();
         return new APITestingPage();
     }
-
 }
