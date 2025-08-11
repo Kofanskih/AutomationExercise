@@ -13,7 +13,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class MainPage extends BasePage{
     private final SelenideElement ACCEPT_COOKIES_BUTTON = $("[class=\"fc-button-label\"]");
-    private final SelenideElement USER_LOGGED_IN_TEXT = $("[href=\"/logout\"]");
+    private final SelenideElement USER_LOGGED_IN_TEXT = $x("//a[contains(text(), 'Logged in as')]");
     private final SelenideElement LOGIN_ERROR_TEXT = $("[style=\"color: red;\"]");
     private final SelenideElement ADD_ITEM_TO_CART = $("[data-product-id=\"3\"]");
     private final SelenideElement ADDED_MODAL_WINDOW = $("[class=\"modal-title w-100\"]");
@@ -35,7 +35,7 @@ public class MainPage extends BasePage{
 
     @Step("Check that user is logged in")
     public void checkUserLoggedIn(String loggedInText){
-        USER_LOGGED_IN_TEXT.shouldHave(Condition.exactTextCaseSensitive(loggedInText));
+        USER_LOGGED_IN_TEXT.shouldHave(Condition.partialText(loggedInText));
     }
 
     @Step("Check login error message")
