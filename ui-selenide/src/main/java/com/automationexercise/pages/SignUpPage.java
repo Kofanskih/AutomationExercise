@@ -49,7 +49,7 @@ public class SignUpPage extends BasePage{
         ADDRESS2_FIELD.setValue(registrationPageModel.getUserAddress2());
         STATE_FIELD.setValue(registrationPageModel.getUserState());
         CITY_FIELD.setValue(registrationPageModel.getUserCity());
-        ZIPCODE_FIELD.setValue(registrationPageModel.getUserZipode());
+        ZIPCODE_FIELD.setValue(registrationPageModel.getUserZipCode());
         MOBILE_FIELD.setValue(registrationPageModel.getUserMobile());
         return this;
     }
