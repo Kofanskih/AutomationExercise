@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-007")
 public class FooterTests {
     private String successfulSubscriptionValidationMessage = "You have been successfully subscribed!";
-    private String errorValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"kofanskih08gmail.com\" отсутствует символ \"@\".";
+    private String errorValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"test.com\" отсутствует символ \"@\".";
 
     @BeforeMethod
     void preconditionMethod(){

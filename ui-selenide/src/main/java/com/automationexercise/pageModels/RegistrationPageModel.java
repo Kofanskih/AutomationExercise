@@ -18,7 +18,7 @@ public class RegistrationPageModel {
     private String userAddress2;
     private String userState;
     private String userCity;
-    private String userZipode;
+    private String userZipCode;
     private String userMobile;
 
     @Step("Use random user registration data")
@@ -33,7 +33,7 @@ public class RegistrationPageModel {
         this.userAddress2 = user.address().secondaryAddress();
         this.userState = user.address().state();
         this.userCity = user.address().city();
-        this.userZipode = user.address().zipCode();
+        this.userZipCode = user.address().zipCode();
         this.userMobile = user.phoneNumber().cellPhone();
         return this;
     }
@@ -50,7 +50,7 @@ public class RegistrationPageModel {
         this.userAddress2 = "Address two";
         this.userState = "State";
         this.userCity = "City";
-        this.userZipode = "12345";
+        this.userZipCode = "12345";
         this.userMobile = "1234567890";
         return this;
     }
@@ -58,14 +58,14 @@ public class RegistrationPageModel {
     @Step("Use user data for deleting")
     public RegistrationPageModel getExistsUserData(){
         this.userName = "Anastasiia";
-        this.userEmailAddress = "kofanskih08@gmail.com";
+        this.userEmailAddress = "1test1test@test.com";
         return this;
     }
 
     @Step("Use user data with invalid email")
     public RegistrationPageModel getInvalidEmail(){
         this.userName = "Anastasiia";
-        this.userEmailAddress = "kofanskih08gmail.com";
+        this.userEmailAddress = "1test1testtest.com";
         return this;
     }
 
