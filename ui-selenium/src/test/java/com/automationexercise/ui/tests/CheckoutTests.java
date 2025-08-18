@@ -3,12 +3,19 @@ package com.automationexercise.ui.tests;
 import com.automationexercise.pageModels.LoginPageModel;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+@Epic("Complete order")
+@Feature("Checkout")
+@Story("Checkout")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-012")
 public class CheckoutTests extends BaseTest{
     private String expectedPaymentURL = "https://automationexercise.com/payment";
 
-    @Test
+    @Test(description = "Place order with logged user")
     void placeOrderWithLoggedUser() {
         new MainPage(driver)
                 .acceptCookies();
@@ -24,7 +31,7 @@ public class CheckoutTests extends BaseTest{
                 .checkUrlOnThePaymentPage(expectedPaymentURL);
     }
 
-    @Test
+    @Test(description = "Place order with no logged user")
     void placeOrderWithNotLoggedUser() {
         new MainPage(driver)
                 .acceptCookies();
