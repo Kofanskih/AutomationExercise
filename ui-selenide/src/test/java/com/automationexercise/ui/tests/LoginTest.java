@@ -17,10 +17,10 @@ import org.testng.annotations.Test;
 @Owner("bukovtseva")
 @TmsLink("TC-001")
 public class LoginTest {
-    private String loggedUser = "Logout";
+    private String loggedUser = "Logged in as";
     private String loginErrorMessage = "Your email or password is incorrect!";
     private String emptyInformationMessage = "Заполните это поле.";
-    private String invalidEmailInformationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"kofanskih08gmail.com\" отсутствует символ \"@\".";
+    private String invalidEmailInformationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"1test1testtest.com\" отсутствует символ \"@\".";
 
     @BeforeMethod
     void preconditionMethod(){
