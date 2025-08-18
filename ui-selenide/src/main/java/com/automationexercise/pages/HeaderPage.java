@@ -17,7 +17,7 @@ public class HeaderPage extends BasePage{
     private final SelenideElement VIDEO_TUTORIALS_BUTTON = $("[href=\"https://www.youtube.com/c/AutomationExercise\"]");
     private final SelenideElement CONTACT_US_BUTTON = $("[href=\"/contact_us\"]");
 
-    @Step("Click the main button on the header")
+    @Step("Click the logo button on the header")
     public MainPage clickLogo(){
         LOGO.click();
         return new MainPage();
