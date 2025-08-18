@@ -2,8 +2,15 @@ package com.automationexercise.ui.tests;
 
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+@Epic("Products")
+@Feature("Products list")
+@Story("Work with products")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-004")
 public class ProductsTests extends BaseTest{
     private String searchedItem = "Winter Top";
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
@@ -12,7 +19,7 @@ public class ProductsTests extends BaseTest{
     private String madameCategoryTitle = "BRAND - MADAME PRODUCTS";
     private String cartTitle = "Shopping Cart";
 
-    @Test
+    @Test(description = "Search item on the Products page")
     void searchItemOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -22,7 +29,7 @@ public class ProductsTests extends BaseTest{
                 .checkSearchedItemOnTheProductsPage(searchedItem);
     }
 
-    @Test
+    @Test(description = "Add item to the cart on the Products page")
     void addItemToTheCartOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -32,7 +39,7 @@ public class ProductsTests extends BaseTest{
                 .checkAddedItemOnTheProductsPage(addedMessageOnTheModalWindow);
     }
 
-    @Test
+    @Test(description = "Click continue shopping after adding item")
     void closeAddedModalWindowOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -43,7 +50,7 @@ public class ProductsTests extends BaseTest{
                 .checkModalWindowIsClosedOnTheProductsPage();
     }
 
-    @Test
+    @Test(description = "Click view product details on the main page")
     void viewProductDetailsOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -53,7 +60,7 @@ public class ProductsTests extends BaseTest{
                 .checkUrlOnTheProductPage(expectedProductURL);
     }
 
-    @Test
+    @Test(description = "Go to Kids Tops category from the Products page")
     void goToTopsShirtsKidsCategoryOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -63,7 +70,7 @@ public class ProductsTests extends BaseTest{
                 .checkTitleOnTheProductPage(kidsCategoryTitle);
     }
 
-    @Test
+    @Test(description = "Go to Brands Madame category from the Products page")
     void goToBrandsMadameCategoryOnTheProductsPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -73,7 +80,7 @@ public class ProductsTests extends BaseTest{
                 .checkTitleOnTheProductPage(madameCategoryTitle);
     }
 
-    @Test
+    @Test(description = "Go to the cart after adding item on the Products page")
     void goToTheCartAfterAddingItemOnTheProductsPage() {
         new MainPage(driver)
                 .acceptCookies();
