@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,26 +17,31 @@ public class CartPage extends BasePage{
         super(driver);
     }
 
+    @Step("Check that user is on the cart page")
     public void checkUserOnTheCartPage(String title) {
         String actualText = waitUntilVisible(TITLE).getText();
         assertEquals(actualText, title);
     }
 
+    @Step("Check that cart is empty")
     public void checkTheCartIsEmpty(String title) {
         String actualText = waitUntilVisible(EMPTY_TITLE).getText();
         assertEquals(actualText, title);
     }
 
+    @Step("Click here button on the empty cart page")
     public ProductsPage clickHereButtonTheCartPage(){
         waitUntilClickable(HERE_BUTTON).click();
         return new ProductsPage(driver);
     }
 
+    @Step("Delete item on the cart page")
     public CartPage deleteItemFromTheCart(){
         waitUntilClickable(DELETE_BUTTON).click();
         return this;
     }
 
+    @Step("Click checkout button on the cart page")
     public CheckoutPage clickToCheckoutButtonOnTheCartPage(){
         waitUntilClickable(PROCEED_TO_CHECKOUT_BUTTON).click();
         return new CheckoutPage(driver);
