@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,26 +16,31 @@ public class TestCasesPage extends BasePage{
         super(driver);
     }
 
+    @Step("Check correct title on the Test cases page")
     public void checkTitleOnTheTestCasesPage(String title){
         String actualText = waitUntilVisible(CENTER_TEXT_TITLE).getText();
         assertEquals(actualText, title);
     }
 
+    @Step("Expand the collapsed list")
     public TestCasesPage expandCollapsedList(){
         waitUntilClickable(LIST).click();
         return this;
     }
 
+    @Step("Check the list is expanded")
     public void checkTheListIsExpanded(){
         waitUntilVisible(EXPANDED_BLOCK).isDisplayed();
     }
 
+    @Step("Collapse the expanded list")
     public TestCasesPage collapseExpandedList(){
         waitUntilVisible(EXPANDED_BLOCK).isDisplayed();
         waitUntilClickable(LIST).click();
         return this;
     }
 
+    @Step("Check the list is collapsed")
     public void checkTheListIsCollapsed(){
         waitUntilVisible(COLLAPSED_BLOCK).isDisplayed();
     }
