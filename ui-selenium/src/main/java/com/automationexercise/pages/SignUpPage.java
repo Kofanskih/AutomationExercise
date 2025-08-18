@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -127,11 +128,13 @@ public class SignUpPage extends BasePage{
         return driver.findElement(CONTINUE_BUTTON);
     }
 
+    @Step("Choose female gender")
     public SignUpPage chooseGenderFemale(){
         femaleRadioButton().click();
         return this;
     }
 
+    @Step("Fill sign up form")
     public SignUpPage fillUserData(RegistrationPageModel registrationPageModel) {
         passwordField().sendKeys(registrationPageModel.getUserPassword());
         firstNameField().sendKeys(registrationPageModel.getUserFirstName());
@@ -146,12 +149,14 @@ public class SignUpPage extends BasePage{
         return this;
     }
 
+    @Step("Choose country")
     public SignUpPage chooseCountry(){
         countryDropdown().click();
         countryValue().click();
         return this;
     }
 
+    @Step("Fill date of birth dropdowns")
     public SignUpPage fillDateOfBirthDropdowns(){
         daysDropdown().click();
         dayValue().click();
@@ -162,16 +167,19 @@ public class SignUpPage extends BasePage{
         return this;
     }
 
+    @Step("Mark newsletter checkbox")
     public SignUpPage markNewsletterCheckbox(){
         newsletterCheckbox().click();
         return this;
     }
 
+    @Step("Mark special offer checkbox")
     public SignUpPage markSpecialOfferCheckbox(){
         specialOfferCheckbox().click();
         return this;
     }
 
+    @Step("Click create account button")
     public SignUpPage clickCreateAccountButton() {
         WebElement button = createAccountButton();
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
@@ -179,6 +187,7 @@ public class SignUpPage extends BasePage{
         return this;
     }
 
+    @Step("Click continue account button")
     public MainPage clickContinueButton(){
         continueButton().click();
         return new MainPage(driver);
