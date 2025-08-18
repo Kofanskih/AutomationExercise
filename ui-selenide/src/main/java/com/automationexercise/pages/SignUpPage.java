@@ -39,7 +39,7 @@ public class SignUpPage extends BasePage{
         return this;
     }
 
-    @Step("Fill sugn up form")
+    @Step("Fill sign up form")
     public SignUpPage fillUserData(RegistrationPageModel registrationPageModel) {
         PASSWORD_FIELD.setValue(registrationPageModel.getUserPassword());
         FIRST_NAME_FIELD.setValue(registrationPageModel.getUserFirstName());
@@ -100,5 +100,4 @@ public class SignUpPage extends BasePage{
     public void checkSignUpErrorMessage(String signUpErrorMessage){
         SIGNUP_ERROR_MESSAGE.shouldHave(Condition.exactTextCaseSensitive(signUpErrorMessage));
     }
-
 }
