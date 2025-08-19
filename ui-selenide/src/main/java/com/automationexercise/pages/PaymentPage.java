@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.AssertJUnit.assertEquals;
@@ -39,5 +40,24 @@ public class PaymentPage extends BasePage{
     @Step("Check place order title")
     public void checkPlaceOrderTitle(String title) {
         TITLE.shouldHave(Condition.exactTextCaseSensitive(title));
+    }
+
+    @Step("Fill payment form with empty name on card")
+    public PaymentPage fillPaymentFormWithEmptyName(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.clear();
+        CARD_NUMBER_FIELD.setValue(paymentPageModel.getCardNumber());
+        CVC_FIELD.sendKeys(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.sendKeys(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD .sendKeys(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if name on card is empty")
+    public void checkShowValidationMessageWhenNameOnCardIsEmpty(String expectedMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", NAME_ON_CARD_FIELD);
+        assertEquals(expectedMessage, actualMessage);
     }
 }
