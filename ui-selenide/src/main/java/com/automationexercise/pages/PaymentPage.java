@@ -60,4 +60,42 @@ public class PaymentPage extends BasePage{
                 .executeScript("return arguments[0].validationMessage;", NAME_ON_CARD_FIELD);
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Step("Fill payment form with empty card number")
+    public PaymentPage fillPaymentFormWithEmptyCardNumber(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.setValue(paymentPageModel.getNameOnCard());
+        CARD_NUMBER_FIELD.clear();
+        CVC_FIELD.setValue(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.sendKeys(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD .sendKeys(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if card number is empty")
+    public void checkShowValidationMessageWhenCardNumberIsEmpty(String expectedMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", CARD_NUMBER_FIELD);
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Step("Fill payment form with empty cvc")
+    public PaymentPage fillPaymentFormWithEmptyCVC(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.setValue(paymentPageModel.getNameOnCard());
+        CARD_NUMBER_FIELD.setValue(paymentPageModel.getCardNumber());
+        CVC_FIELD.clear();
+        EXPIRY_MONTH_FIELD.sendKeys(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD .sendKeys(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if cvc is empty")
+    public void checkShowValidationMessageWhenCVCIsEmpty(String expectedMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", CVC_FIELD);
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
