@@ -18,7 +18,7 @@ public class LoginPage extends BasePage{
     private final SelenideElement PASSWORD_FIELD = $("[data-qa=\"login-password\"]");
     private final SelenideElement LOGIN_BUTTON = $("[data-qa=\"login-button\"]");
 
-    @Step ("Fiil sign up form and click sign up button")
+    @Step ("Fill sign up form and click sign up button")
     public SignUpPage fillSignUpForm(RegistrationPageModel registrationPageModel) {
         SIGN_UP_NAME_FIELD.setValue(registrationPageModel.getUserFirstName());
         SIGNUP_EMAIL_ADDRESS_FIELD.setValue(registrationPageModel.getUserEmailAddress());
@@ -140,5 +140,4 @@ public class LoginPage extends BasePage{
                 .executeScript("return arguments[0].validationMessage;", SIGNUP_EMAIL_ADDRESS_FIELD);
         assertEquals(expectedInformationMessage, actualMessage);
     }
-
 }

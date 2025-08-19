@@ -2,8 +2,15 @@ package com.automationexercise.ui.tests;
 
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+@Epic("Products")
+@Feature("Main page")
+@Story("Main page")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-003")
 public class MainPageTests extends BaseTest{
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
     private String expectedMainURL = "https://automationexercise.com/";
@@ -14,7 +21,7 @@ public class MainPageTests extends BaseTest{
     private String testCasesTitle = "TEST CASES";
     private String apiTestingTitle = "APIS LIST FOR PRACTICE";
 
-    @Test
+    @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -23,7 +30,7 @@ public class MainPageTests extends BaseTest{
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
-    @Test
+    @Test(description = "Click home button on the main page")
     void clickHomeButtonOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies();
@@ -32,7 +39,7 @@ public class MainPageTests extends BaseTest{
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
-    @Test
+    @Test(description = "Add item to the cart on the main page")
     void addItemToTheCartOnTheMainPage() {
         new MainPage(driver)
                 .acceptCookies()
@@ -40,7 +47,7 @@ public class MainPageTests extends BaseTest{
                 .checkProductAddedMessage(addedMessageOnTheModalWindow);
     }
 
-    @Test
+    @Test(description = "Click continue shopping after adding item")
     void closeAddedModalWindowOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -49,7 +56,7 @@ public class MainPageTests extends BaseTest{
                 .checkModalWindowIsClosedOnTheMainPage();
     }
 
-    @Test
+    @Test(description = "Click view product details on the main page")
     void viewProductDetailsOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -57,7 +64,7 @@ public class MainPageTests extends BaseTest{
                 .checkUrlOnTheProductPage(expectedProductURL);
     }
 
-    @Test
+    @Test(description = "Go to Men Jeans category from the main page")
     void goToMenJeansCategoryOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -65,7 +72,7 @@ public class MainPageTests extends BaseTest{
                 .checkTitleOnTheProductPage(menJeansTitle);
     }
 
-    @Test
+    @Test(description = "Go to Brands H&M category from the main page")
     void goToBrandsHMCategoryOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -73,7 +80,7 @@ public class MainPageTests extends BaseTest{
                 .checkTitleOnTheProductPage(brandsHMTitle);
     }
 
-    @Test
+    @Test(description = "Go to the cart after adding item on the main page")
     void goToTheCartAfterAddingItemOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -82,7 +89,7 @@ public class MainPageTests extends BaseTest{
                 .checkUserOnTheCartPage(cartTitle);
     }
 
-    @Test
+    @Test(description = "Go to the Test cases page through button on the carousel on the main page")
     void goToTheTestCasesPageThroughCarouselOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()
@@ -90,7 +97,7 @@ public class MainPageTests extends BaseTest{
                 .checkTitleOnTheTestCasesPage(testCasesTitle);
     }
 
-    @Test
+    @Test(description = "Go to the API Testing page through button on the carousel on the main page")
     void goToTheAPITestingPageThroughCarouselOnTheMainPage(){
         new MainPage(driver)
                 .acceptCookies()

@@ -12,6 +12,7 @@ public class ReadConfigs {
         return CONFIG.mainUrl();
     }
 
+    @Step("Read browser Chrome from configuration")
     public static String getBrowserCh() {
         return CONFIG.browserCh();
     }

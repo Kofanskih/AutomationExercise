@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,11 +14,13 @@ public class DeletePage extends BasePage{
         super(driver);
     }
 
+    @Step("Click Continue button on the Delete page")
     public MainPage clickContinueButtonOnTheDeletePage(){
         waitUntilClickable(CONTINUE_BUTTON).click();
         return new MainPage(driver);
     }
 
+    @Step("Check the title after deleting account")
     public void checkTitleAfterDeletingAccount(String title){
         String actualText = waitUntilVisible(ACCOUNT_DELETED_TITLE).getText();
         assertEquals(actualText, title);

@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.ContactUsPageModel;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -45,6 +46,7 @@ public class ContactUsPage extends BasePage{
         return driver.findElement(SUBMIT_BUTTON);
     }
 
+    @Step("Fill message form")
     public ContactUsPage fillMessageForm(ContactUsPageModel contactUsPageModel){
         nameInput().sendKeys(contactUsPageModel.getUserName());
         emailInput().sendKeys(contactUsPageModel.getUserEmailAddress());
@@ -54,31 +56,37 @@ public class ContactUsPage extends BasePage{
         return this;
     }
 
+    @Step("Click OK button")
     public ContactUsPage clickOKButton() {
         driver.switchTo().alert().accept();
         return this;
     }
 
+    @Step("Check the message was sent")
     public void checkMessageWasSent(String title) {
         String actualText = waitUntilVisible(ALERT_SUCCESS).getText();
         assertEquals(actualText, title);
     }
 
+    @Step("Click Cancel button")
     public ContactUsPage clickCancelButton(){
         driver.switchTo().alert().dismiss();
         return this;
     }
 
+    @Step("Check Home button doesn't appear")
     public void checkHomeButtonNotAppear() {
         List<WebElement> elements = driver.findElements(HOME_BUTTON);
         assertTrue(elements.isEmpty(), "Button HOME is displayed");
     }
 
+    @Step("Click Home button")
     public MainPage clickHomeButton(){
         waitUntilClickable(HOME_BUTTON).click();
         return new MainPage(driver);
     }
 
+    @Step("Check validation message shows")
     public void checkShowValidationMessageInEmailField(String expectedMessage) {
         WebElement emailField = emailInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;

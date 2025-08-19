@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.PaymentPageModel;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class PaymentPage extends BasePage{
         super(driver);
     }
 
+    @Step("Check URL on the Payment page")
     public void checkUrlOnThePaymentPage(String expectedUrl){
         String actualUrl = driver.getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
@@ -56,6 +58,7 @@ public class PaymentPage extends BasePage{
         return driver.findElement(TITLE);
     }
 
+    @Step("Fill payment form")
     public PaymentPage fillPaymentForm(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
         cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
@@ -67,11 +70,13 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check place order title")
     public void checkPlaceOrderTitle(String title) {
         String actualText = placeOrderTitle().getText();
         assertEquals(actualText, title);
     }
 
+    @Step("Fill payment form with empty name on card")
     public PaymentPage fillPaymentFormWithEmptyName(PaymentPageModel paymentPageModel){
         nameInput().clear();
         cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
@@ -83,6 +88,7 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check validation message if name on card is empty")
     public void checkShowValidationMessageWhenNameOnCardIsEmpty(String expectedMessage) {
         WebElement nameField = nameInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -92,6 +98,7 @@ public class PaymentPage extends BasePage{
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step("Fill payment form with empty card number")
     public PaymentPage fillPaymentFormWithEmptyCardNumber(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
         cardNumberInput().clear();
@@ -103,6 +110,7 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check validation message if card name is empty")
     public void checkShowValidationMessageWhenCardNumberIsEmpty(String expectedMessage) {
         WebElement cardNumberField = cardNumberInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -112,6 +120,7 @@ public class PaymentPage extends BasePage{
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step("Fill payment form with empty cvc")
     public PaymentPage fillPaymentFormWithEmptyCVC(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
         cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
@@ -123,6 +132,7 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check validation message if cvc is empty")
     public void checkShowValidationMessageWhenCVCIsEmpty(String expectedMessage) {
         WebElement cvcField = cvcInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -132,6 +142,7 @@ public class PaymentPage extends BasePage{
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step("Fill payment form with empty month")
     public PaymentPage fillPaymentFormWithEmptyMonth(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
         cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
@@ -143,6 +154,7 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check validation message if month is empty")
     public void checkShowValidationMessageWhenMonthIsEmpty(String expectedMessage) {
         WebElement monthField = monthInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -152,6 +164,7 @@ public class PaymentPage extends BasePage{
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step("Fill payment form with empty year")
     public PaymentPage fillPaymentFormWithEmptyYear(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
         cardNumberInput().sendKeys(paymentPageModel.getCardNumber());
@@ -163,6 +176,7 @@ public class PaymentPage extends BasePage{
         return this;
     }
 
+    @Step("Check validation message if year is empty")
     public void checkShowValidationMessageWhenYearIsEmpty(String expectedMessage) {
         WebElement yearField = yearInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -172,6 +186,7 @@ public class PaymentPage extends BasePage{
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step("Click continue button")
     public MainPage clickContinueButton(){
         waitUntilClickable(CONTINUE_BUTTON).click();
 

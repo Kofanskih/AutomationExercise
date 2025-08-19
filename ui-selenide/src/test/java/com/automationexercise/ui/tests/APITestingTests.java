@@ -44,7 +44,7 @@ public class APITestingTests {
     }
 
     @Test(description = "Collapse expanded list on the API Testing page")
-    void colapseExpandedListOnTheAPITestingPage(){
+    void collapseExpandedListOnTheAPITestingPage(){
         new MainPage().acceptCookies();
         new HeaderPage().clickAPITestingButton()
                 .expandCollapsedList()

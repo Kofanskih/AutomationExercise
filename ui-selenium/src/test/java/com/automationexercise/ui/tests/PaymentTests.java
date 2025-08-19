@@ -4,14 +4,21 @@ import com.automationexercise.pageModels.LoginPageModel;
 import com.automationexercise.pageModels.PaymentPageModel;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+@Epic("Complete order")
+@Feature("Payment")
+@Story("Payment")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-013")
 public class PaymentTests extends BaseTest{
     private String title = "ORDER PLACED!";
     private String emptyInfoMessage = "Заполните это поле.";
     private String expectedMainURL = "https://automationexercise.com/";
 
-    @Test
+    @Test(description = "Pay and confirm order with correct data")
     void payAndConfirmOrderWithCorrectData() {
         new MainPage(driver)
                 .acceptCookies();
@@ -28,7 +35,7 @@ public class PaymentTests extends BaseTest{
                 .checkPlaceOrderTitle(title);
     }
 
-    @Test
+    @Test(description = "Verify info message when name on card is empty")
     void verifyInfoMessageWhenNameOnCardIsEmpty() {
         new MainPage(driver)
                 .acceptCookies();
@@ -45,7 +52,7 @@ public class PaymentTests extends BaseTest{
                 .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
 
-    @Test
+    @Test(description = "Verify info message when card number is empty")
     void verifyInfoMessageWhenCardNumberIsEmpty() {
         new MainPage(driver)
                 .acceptCookies();
@@ -62,7 +69,7 @@ public class PaymentTests extends BaseTest{
                 .checkShowValidationMessageWhenCardNumberIsEmpty(emptyInfoMessage);
     }
 
-    @Test
+    @Test(description = "Verify info message when cvc is empty")
     void verifyInfoMessageWhenCVCIsEmpty() {
         new MainPage(driver)
                 .acceptCookies();
@@ -79,7 +86,7 @@ public class PaymentTests extends BaseTest{
                 .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
     }
 
-    @Test
+    @Test(description = "Verify info message when month is empty")
     void verifyInfoMessageWhenMonthIsEmpty() {
         new MainPage(driver)
                 .acceptCookies();
@@ -96,7 +103,7 @@ public class PaymentTests extends BaseTest{
                 .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
     }
 
-    @Test
+    @Test(description = "Verify info message when year is empty")
     void verifyInfoMessageWhenYearIsEmpty() {
         new MainPage(driver)
                 .acceptCookies();
@@ -113,7 +120,7 @@ public class PaymentTests extends BaseTest{
                 .checkShowValidationMessageWhenYearIsEmpty(emptyInfoMessage);
     }
 
-    @Test
+    @Test(description = "Verify user is on the main page after finish payment")
     void verifyUserIsOnTheMainPageAfterFinishPayment() {
         new MainPage(driver)
                 .acceptCookies();

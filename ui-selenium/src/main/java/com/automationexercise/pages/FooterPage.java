@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ public class FooterPage extends BasePage{
         super(driver);
     }
 
+    @Step("Check that user is subscribed")
     public void checkUserIsSubscribed(RegistrationPageModel registrationPageModel, String message){
         waitUntilClickable(SUBSCRIBE_FIELD).sendKeys(registrationPageModel.getUserEmailAddress());
         waitUntilClickable(SUBSCRIBE_BUTTON).click();
@@ -25,6 +27,7 @@ public class FooterPage extends BasePage{
         assertEquals(message, actualText);
     }
 
+    @Step("Fill subscribe field with invalid email")
     public FooterPage fillSubscribeFieldWithInvalidEmail(RegistrationPageModel registrationPageModel){
         waitUntilClickable(SUBSCRIBE_FIELD).sendKeys(registrationPageModel.getUserEmailAddress());
         return this;
@@ -34,6 +37,7 @@ public class FooterPage extends BasePage{
         return driver.findElement(SUBSCRIBE_FIELD);
     }
 
+    @Step("Check validation message if user fill invalid email")
     public void checkShowValidationMessageUsingInvalidEmailForSubscription(String expectedMessage) {
         WebElement subscribeField = subscribeInput();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;

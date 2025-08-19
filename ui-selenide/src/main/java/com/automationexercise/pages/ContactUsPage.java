@@ -32,7 +32,7 @@ public class ContactUsPage extends BasePage{
 
     @Step("Click OK button")
     public ContactUsPage clickOKButton(){
-        Selenide.switchTo().alert().accept(); // [class="status alert alert-success"] Success! Your details have been submitted successfully. [class="fa fa-angle-double-left"]
+        Selenide.switchTo().alert().accept();
         return this;
     }
 
@@ -47,7 +47,7 @@ public class ContactUsPage extends BasePage{
         return this;
     }
 
-    @Step("Check the message was sent")
+    @Step("Check Home button doesn't appear")
     public void checkHomeButtonNotAppear(){
         HOME_BUTTON.shouldNot(Condition.exist);
     }

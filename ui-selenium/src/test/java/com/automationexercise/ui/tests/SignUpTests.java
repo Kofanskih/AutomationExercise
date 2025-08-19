@@ -4,8 +4,15 @@ import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.LoginPage;
 import com.automationexercise.pages.MainPage;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
+@Epic("Authentication")
+@Feature("User registration")
+@Story("Registration")
+@Severity(SeverityLevel.CRITICAL)
+@Owner("bukovtseva")
+@TmsLink("TC-002")
 public class SignUpTests extends BaseTest{
     private final String USER_LOGGED_IN_TEXT = "Logged in as";
     private final String SIGN_UP_ERROR_MESSAGE = "Email Address already exist!";
@@ -13,7 +20,7 @@ public class SignUpTests extends BaseTest{
     private final String INVALID_EMAIL_INFO_MESSAGE  = "Адрес электронной почты должен содержать символ \"@\". В адресе \"1test1testtest.com\" отсутствует символ \"@\".";
 
 
-    @Test
+    @Test(description = "User registration")
     void userSignUp(){
         new MainPage(driver)
                 .acceptCookies();
@@ -29,10 +36,9 @@ public class SignUpTests extends BaseTest{
                 .clickCreateAccountButton()
                 .clickContinueButton()
                 .checkUserLoggedInText(USER_LOGGED_IN_TEXT);
-
     }
 
-    @Test
+    @Test(description = "User sign up with exists data")
     void userSignUpWithExistData(){
         new MainPage(driver)
                 .acceptCookies();
@@ -41,10 +47,9 @@ public class SignUpTests extends BaseTest{
                 .fillSignUpFormWithExistsUser(new RegistrationPageModel().getExistsUserData());
         new LoginPage(driver)
                 .checkSignUpErrorMessage(SIGN_UP_ERROR_MESSAGE);
-
     }
 
-    @Test
+    @Test(description = "User sign up with empty name field")
     void userSignUpWithEmptySignUpNameField(){
         new MainPage(driver)
                 .acceptCookies();
@@ -52,10 +57,9 @@ public class SignUpTests extends BaseTest{
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithEmptyNameField(new RegistrationPageModel().getRandomRegistrationUserData())
                 .checkShowValidationMessageWhenSignUpNameIsEmpty(EMPTY_INFO_MESSAGE);
-
     }
 
-    @Test
+    @Test(description = "User sign up with empty email field")
     void userSignUpWithEmptySignUpEmailField(){
         new MainPage(driver)
                 .acceptCookies();
@@ -63,10 +67,9 @@ public class SignUpTests extends BaseTest{
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithEmptyEmailField(new RegistrationPageModel().getRandomRegistrationUserData())
                 .checkShowValidationMessageWhenSignUpEmailIsEmpty(EMPTY_INFO_MESSAGE);
-
     }
 
-    @Test
+    @Test(description = "User sign up with invalid email")
     void userSignUpWithInvalidSignUpEmailField(){
         new MainPage(driver)
                 .acceptCookies();
@@ -74,6 +77,5 @@ public class SignUpTests extends BaseTest{
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithInvalidEmail(new RegistrationPageModel().getInvalidEmail())
                 .checkShowValidationMessageWhenSignUpEmailIsInvalid(INVALID_EMAIL_INFO_MESSAGE);
-
     }
 }
