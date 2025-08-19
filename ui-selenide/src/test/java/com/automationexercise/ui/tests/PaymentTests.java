@@ -80,4 +80,18 @@ public class PaymentTests {
                 .fillPaymentFormWithEmptyCVC(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when month is empty")
+    void verifyInfoMessageWhenMonthIsEmpty() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyMonth(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
+    }
 }
