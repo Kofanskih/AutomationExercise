@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class PaymentPage extends BasePage{
@@ -18,6 +19,7 @@ public class PaymentPage extends BasePage{
     private final SelenideElement EXPIRY_YEAR_FIELD = $("[data-qa=\"expiry-year\"]");
     private final SelenideElement PAY_AND_CONFIRM_BUTTON = $("[data-qa=\"pay-button\"]");
     private final SelenideElement TITLE = $("[data-qa=\"order-placed\"]");
+    private final SelenideElement CONTINUE_BUTTON = $x("//a[@data-qa=\"continue-button\"]");
 
     @Step("Check URL on the Payment page")
     public void checkUrlOnThePaymentPage(String expectedUrl){
@@ -116,5 +118,30 @@ public class PaymentPage extends BasePage{
         String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
                 .executeScript("return arguments[0].validationMessage;", EXPIRY_MONTH_FIELD);
         assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Step("Fill payment form with empty year")
+    public PaymentPage fillPaymentFormWithEmptyYear(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.setValue(paymentPageModel.getNameOnCard());
+        CARD_NUMBER_FIELD.setValue(paymentPageModel.getCardNumber());
+        CVC_FIELD.sendKeys(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.sendKeys(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD.clear();
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if year is empty")
+    public void checkShowValidationMessageWhenYearIsEmpty(String expectedMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", EXPIRY_YEAR_FIELD);
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Step("Click continue button")
+    public MainPage clickContinueButton(){
+        CONTINUE_BUTTON.click();
+        return new MainPage();
     }
 }
