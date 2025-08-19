@@ -98,4 +98,23 @@ public class PaymentPage extends BasePage{
                 .executeScript("return arguments[0].validationMessage;", CVC_FIELD);
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Step("Fill payment form with empty month")
+    public PaymentPage fillPaymentFormWithEmptyMonth(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.setValue(paymentPageModel.getNameOnCard());
+        CARD_NUMBER_FIELD.setValue(paymentPageModel.getCardNumber());
+        CVC_FIELD.setValue(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.clear();
+        EXPIRY_YEAR_FIELD .sendKeys(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if month is empty")
+    public void checkShowValidationMessageWhenMonthIsEmpty(String expectedMessage) {
+        String actualMessage = (String) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+                .executeScript("return arguments[0].validationMessage;", EXPIRY_MONTH_FIELD);
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
