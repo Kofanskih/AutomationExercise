@@ -52,4 +52,32 @@ public class PaymentTests {
                 .fillPaymentFormWithEmptyName(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when card number is empty")
+    void verifyInfoMessageWhenCardNumberIsEmpty() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyCardNumber(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenCardNumberIsEmpty(emptyInfoMessage);
+    }
+
+    @Test(description = "Verify info message when cvc is empty")
+    void verifyInfoMessageWhenCVCIsEmpty() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyCVC(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
+    }
 }
