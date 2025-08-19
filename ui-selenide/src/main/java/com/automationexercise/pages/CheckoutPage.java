@@ -9,6 +9,8 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class CheckoutPage extends BasePage{
     private final SelenideElement REGISTER_LOGIN_BUTTON = $x("//p//a[@href=\"/login\"]");
+    private final SelenideElement PLACE_ORDER_BUTTON = $x("//a[@class=\"btn btn-default check_out\"]");
+
 
     @Step("Check URL on the Checkout page")
     public void checkUrlOnTheCheckoutPage(String expectedUrl) {
@@ -20,5 +22,11 @@ public class CheckoutPage extends BasePage{
     public LoginPage goToTheLoginPage(){
         REGISTER_LOGIN_BUTTON.click();
         return new LoginPage();
+    }
+
+    @Step("Click Place order button")
+    public PaymentPage clickPlaceOrderButton(){
+        PLACE_ORDER_BUTTON.click();
+        return new PaymentPage();
     }
 }
