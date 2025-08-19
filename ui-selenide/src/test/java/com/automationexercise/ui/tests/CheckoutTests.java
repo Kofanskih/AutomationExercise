@@ -42,4 +42,19 @@ public class CheckoutTests {
                 .clickPlaceOrderButton()
                 .checkUrlOnThePaymentPage(expectedPaymentURL);
     }
+
+    @Test(description = "Place order with no logged user")
+    void placeOrderWithNotLoggedUser() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .goToTheLoginPage()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickCartButton()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .checkUrlOnThePaymentPage(expectedPaymentURL);
+    }
 }
