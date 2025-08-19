@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 public class PaymentTests {
     private String title = "ORDER PLACED!";
+    private String emptyInfoMessage = "1Заполните это поле.";
 
     @BeforeMethod
     void preconditionMethod(){
@@ -36,5 +37,19 @@ public class PaymentTests {
                 .clickPlaceOrderButton()
                 .fillPaymentForm(new PaymentPageModel().existPaymentData())
                 .checkPlaceOrderTitle(title);
+    }
+
+    @Test(description = "Verify info message when name on card is empty")
+    void verifyInfoMessageWhenNameOnCardIsEmpty() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyName(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
 }
