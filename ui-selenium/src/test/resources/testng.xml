@@ -5,11 +5,17 @@
         <classes>
             <class name="com.automationexercise.ui.tests.APITestingTests"/>
             <class name="com.automationexercise.ui.tests.CartTests"/>
+            <class name="com.automationexercise.ui.tests.CheckoutTests"/>
+            <class name="com.automationexercise.ui.tests.ContactUsTests"/>
+            <class name="com.automationexercise.ui.tests.DeleteTests"/>
+            <class name="com.automationexercise.ui.tests.FooterTests"/>
             <class name="com.automationexercise.ui.tests.LoginTests"/>
             <class name="com.automationexercise.ui.tests.MainPageTests"/>
+            <class name="com.automationexercise.ui.tests.PaymentTests"/>
             <class name="com.automationexercise.ui.tests.ProductsTests"/>
             <class name="com.automationexercise.ui.tests.SignUpTests"/>
             <class name="com.automationexercise.ui.tests.TestCasesTests"/>
+            <class name="com.automationexercise.ui.tests.VideoTutorialsTests"/>
         </classes>
     </test>
     <listeners>
