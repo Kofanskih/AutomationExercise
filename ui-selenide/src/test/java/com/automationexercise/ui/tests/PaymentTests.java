@@ -12,7 +12,8 @@ import org.testng.annotations.Test;
 
 public class PaymentTests {
     private String title = "ORDER PLACED!";
-    private String emptyInfoMessage = "1Заполните это поле.";
+    private String emptyInfoMessage = "Заполните это поле.";
+    private String expectedMainURL = "https://automationexercise.com/";
 
     @BeforeMethod
     void preconditionMethod(){
@@ -93,5 +94,33 @@ public class PaymentTests {
                 .clickPlaceOrderButton()
                 .fillPaymentFormWithEmptyMonth(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
+    }
+
+    @Test(description = "Verify info message when year is empty")
+    void verifyInfoMessageWhenYearIsEmpty() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyYear(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenYearIsEmpty(emptyInfoMessage);
+    }
+
+    @Test(description = "Verify user is on the main page after finish payment")
+    void verifyUserIsOnTheMainPageAfterFinishPayment() {
+        new MainPage().acceptCookies();
+        new HeaderPage().clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage().clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentForm(new PaymentPageModel().existPaymentData())
+                .clickContinueButton().checkUrlOnTheMainPage(expectedMainURL);
     }
 }
