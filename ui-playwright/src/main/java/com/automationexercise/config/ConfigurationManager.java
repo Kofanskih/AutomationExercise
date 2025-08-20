@@ -1,4 +1,4 @@
-package com.automationexercise.utils;
+package com.automationexercise.config;
 
 import org.aeonbits.owner.ConfigCache;
 
