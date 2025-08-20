@@ -12,6 +12,7 @@
         <module>api-restassured</module>
         <module>ui-selenide</module>
         <module>ui-selenium</module>
+        <module>ui-playwright</module>
     </modules>
 
     <build>
