@@ -11,7 +11,7 @@ public class LoginPage extends BasePage{
     private final String LOGIN_EMAIL_ADDRESS_FIELD = "input[data-qa='login-email']";
     private final String PASSWORD_FIELD = "input[name='password']";
     private final String LOGIN_BUTTON = "button[data-qa='login-button']";
-    private final Locator LOGIN_ERROR_TEXT = page.locator("[style=\"color: red;\"]");
+    private final Locator LOGIN_ERROR_TEXT = page.locator("text=Your email or password is incorrect!");
 
     public LoginPage(Page page) {
         super(page);
