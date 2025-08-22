@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     private final String USER_LOGGED_IN_TEXT = "Logged in as";
     private final String LOGIN_ERROR_MESSAGE = "Your email or password is incorrect!";
-    private final String EMPTY_INFO_MESSAGE = "Заполните это поле.";
+    private final String EMPTY_INFO_MESSAGE = "1Заполните это поле.";
 
 
     @Test(description = "User can login with correct credentials")
@@ -41,6 +41,16 @@ public class LoginTests extends BaseTest {
                 .clickLoginButton()
                 .fillLoginFormWithEmptyEmailField(new LoginPageModel().myLogin())
                 .checkShowValidationMessageWhenLoginEmailIsEmpty(EMPTY_INFO_MESSAGE);
+    }
+
+    @Test(description = "User can't login with empty password field")
+    public void userLoginWithEmptyPasswordField(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginFormWithEmptyPasswordField(new LoginPageModel().myLogin())
+                .checkShowValidationMessageWhenPasswordIsEmpty(EMPTY_INFO_MESSAGE);
     }
 
 }
