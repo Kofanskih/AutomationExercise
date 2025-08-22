@@ -1,13 +1,17 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.LoginPageModel;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class LoginPage extends BasePage{
     private final String LOGIN_EMAIL_ADDRESS_FIELD = "input[name='email']";
     private final String PASSWORD_FIELD = "input[name='password']";
     private final String LOGIN_BUTTON = "button[data-qa='login-button']";
+    private final Locator LOGIN_ERROR_TEXT = page.locator("[style=\"color: red;\"]");
 
     public LoginPage(Page page) {
         super(page);
@@ -20,5 +24,11 @@ public class LoginPage extends BasePage{
         page.click(LOGIN_BUTTON);
 
         return new MainPage(page);
+    }
+
+    @Step("Check login error message")
+    public void checkLoginErrorMessage(String expected){
+        String actualText = LOGIN_ERROR_TEXT.innerText();
+        assertEquals(expected, actualText);
     }
 }
