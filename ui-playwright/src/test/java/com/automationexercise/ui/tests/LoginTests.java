@@ -9,8 +9,9 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     private final String USER_LOGGED_IN_TEXT = "Logged in as";
     private final String LOGIN_ERROR_MESSAGE = "Your email or password is incorrect!";
-    private final String EMPTY_INFO_MESSAGE = "1Заполните это поле.";
-
+    private final String EMPTY_INFO_MESSAGE = "Заполните это поле.";
+    private final String INVALID_EMAIL_INFO_MESSAGE  = "Адрес электронной почты должен содержать символ \"@\"."
+            + " В адресе \"1test1testtest.com\" отсутствует символ \"@\".";
 
     @Test(description = "User can login with correct credentials")
     public void userLogin(){
@@ -40,7 +41,7 @@ public class LoginTests extends BaseTest {
         new HeaderPage(page)
                 .clickLoginButton()
                 .fillLoginFormWithEmptyEmailField(new LoginPageModel().myLogin())
-                .checkShowValidationMessageWhenLoginEmailIsEmpty(EMPTY_INFO_MESSAGE);
+                .checkShowValidationMessageLoginEmail(EMPTY_INFO_MESSAGE);
     }
 
     @Test(description = "User can't login with empty password field")
@@ -53,4 +54,14 @@ public class LoginTests extends BaseTest {
                 .checkShowValidationMessageWhenPasswordIsEmpty(EMPTY_INFO_MESSAGE);
     }
 
+    @Test(description = "User can't login with invalid email")
+    public void userLoginWithInvalidEmail(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().invalidEmailLogin());
+        new LoginPage(page)
+                .checkShowValidationMessageLoginEmail(INVALID_EMAIL_INFO_MESSAGE);
+    }
 }
