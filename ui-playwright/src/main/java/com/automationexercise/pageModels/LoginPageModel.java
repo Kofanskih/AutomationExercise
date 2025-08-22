@@ -21,4 +21,11 @@ public class LoginPageModel {
         this.userPassword = "1234567";
         return this;
     }
+
+    @Step("Use invalid email login")
+    public LoginPageModel invalidEmailLogin(){
+        this.userEmailAddress = "1test1testtest.com";
+        this.userPassword = "1234567";
+        return this;
+    }
 }
