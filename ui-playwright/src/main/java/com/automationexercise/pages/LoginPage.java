@@ -22,7 +22,6 @@ public class LoginPage extends BasePage{
         page.fill(LOGIN_EMAIL_ADDRESS_FIELD, loginPageModel.getUserEmailAddress());
         page.fill(PASSWORD_FIELD, loginPageModel.getUserPassword());
         page.click(LOGIN_BUTTON);
-
         return new MainPage(page);
     }
 
@@ -36,7 +35,6 @@ public class LoginPage extends BasePage{
     public LoginPage fillLoginFormWithEmptyEmailField(LoginPageModel loginPageModel){
         page.fill(PASSWORD_FIELD, loginPageModel.getUserPassword());
         page.click(LOGIN_BUTTON);
-
         return this;
     }
     public String getValidationMessage(Locator element) {
@@ -47,9 +45,20 @@ public class LoginPage extends BasePage{
     public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedMessage) {
         Locator emailField = page.locator(LOGIN_EMAIL_ADDRESS_FIELD);
         String actualMessage = getValidationMessage(emailField);
-
         assertEquals(expectedMessage, actualMessage);
     }
 
+    @Step ("Fill login form with empty password field and click login button")
+    public LoginPage fillLoginFormWithEmptyPasswordField(LoginPageModel loginPageModel){
+        page.fill(LOGIN_EMAIL_ADDRESS_FIELD, loginPageModel.getUserEmailAddress());
+        page.click(LOGIN_BUTTON);
+        return this;
+    }
 
+    @Step("Check validation message if password field is empty")
+    public void checkShowValidationMessageWhenPasswordIsEmpty(String message) {
+        Locator passwordField = page.locator(PASSWORD_FIELD);
+        String actualMessage = getValidationMessage(passwordField);
+        assertEquals(message, actualMessage);
+    }
 }
