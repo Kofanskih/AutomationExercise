@@ -25,4 +25,10 @@ public interface ReadConfiguration extends Config {
     int timeout();
 
     boolean video();
+
+    @Key("viewport.width")
+    int viewportWidth();
+
+    @Key("viewport.height")
+    int viewportHeight();
 }
