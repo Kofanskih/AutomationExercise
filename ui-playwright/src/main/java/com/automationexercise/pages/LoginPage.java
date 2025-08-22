@@ -41,8 +41,8 @@ public class LoginPage extends BasePage{
         return (String) element.evaluate("el => el.validationMessage");
     }
 
-    @Step("Check validation message if login email field is empty")
-    public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedMessage) {
+    @Step("Check validation message in login email field")
+    public void checkShowValidationMessageLoginEmail(String expectedMessage) {
         Locator emailField = page.locator(LOGIN_EMAIL_ADDRESS_FIELD);
         String actualMessage = getValidationMessage(emailField);
         assertEquals(expectedMessage, actualMessage);
