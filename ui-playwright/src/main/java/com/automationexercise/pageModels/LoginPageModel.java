@@ -14,4 +14,11 @@ public class LoginPageModel {
         this.userPassword = "12345678";
         return this;
     }
+
+    @Step("Use incorrect login")
+    public LoginPageModel incorrectDataLogin(){
+        this.userEmailAddress = "1test1test@test.com";
+        this.userPassword = "1234567";
+        return this;
+    }
 }
