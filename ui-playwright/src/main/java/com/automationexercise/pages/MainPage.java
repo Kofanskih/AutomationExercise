@@ -21,6 +21,7 @@ public class MainPage extends BasePage{
     private final Locator MEN_BUTTON = page.locator("a[href='#Men']");
     private final Locator JEANS_MEN_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Jeans"));
     private final Locator BRANDS_HM_BUTTON = page.locator("a[href='/brand_products/H&M']");
+    private final Locator VIEW_CART_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Cart"));
 
     public MainPage(Page page) {
         super(page);
@@ -90,5 +91,11 @@ public class MainPage extends BasePage{
     public ProductsPage clickOnTheBrandsNMCategoryOnTheMainPage(){
         BRANDS_HM_BUTTON.click();
         return new ProductsPage(page);
+    }
+
+    @Step("Click the view cart button on the modal window")
+    public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
+        VIEW_CART_BUTTON.click();
+        return new CartPage(page);
     }
 }
