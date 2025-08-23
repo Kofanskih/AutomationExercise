@@ -18,6 +18,8 @@ public class MainPageTests extends BaseTest{
     private String menJeansTitle = "MEN - JEANS PRODUCTS";
     private String brandsHMTitle = "BRAND - H&M PRODUCTS";
     private String cartTitle = "Shopping Cart";
+    private String testCasesTitle = "TEST CASES";
+    private String apiTestingTitle = "APIS LIST FOR PRACTICE";
 
     @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
@@ -85,5 +87,21 @@ public class MainPageTests extends BaseTest{
                 .addItemToTheCartOnTheMainPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .checkUserOnTheCartPage(cartTitle);
+    }
+
+    @Test(description = "Go to the Test cases page through button on the carousel on the main page")
+    void goToTheTestCasesPageThroughCarouselOnTheMainPage(){
+        new MainPage(page)
+                .acceptCookies()
+                .clickOnTheTestCasesButtonOnTheCarousel()
+                .checkTitleOnTheTestCasesPage(testCasesTitle);
+    }
+
+    @Test(description = "Go to the API Testing page through button on the carousel on the main page")
+    void goToTheAPITestingPageThroughCarouselOnTheMainPage(){
+        new MainPage(page)
+                .acceptCookies()
+                .clickOnTheAPITestingButtonOnTheCarousel()
+                .checkTitleOnTheAPITestingPage(apiTestingTitle);
     }
 }
