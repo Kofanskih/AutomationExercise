@@ -43,4 +43,11 @@ public class RegistrationPageModel {
         this.userEmailAddress = "1test1test@test.com";
         return this;
     }
+
+    @Step("Use user data with invalid email")
+    public RegistrationPageModel getInvalidEmail(){
+        this.userFirstName = "Anastasiia";
+        this.userEmailAddress = "1test1testtest.com";
+        return this;
+    }
 }
