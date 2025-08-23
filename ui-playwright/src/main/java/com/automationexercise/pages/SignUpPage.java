@@ -98,5 +98,4 @@ public class SignUpPage extends BasePage{
         String actualText = SIGNUP_ERROR_MESSAGE.innerText();
         assertEquals(signUpErrorMessage, actualText);
     }
-
 }
