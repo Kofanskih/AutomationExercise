@@ -17,6 +17,7 @@ public class MainPage extends BasePage{
     private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");
     private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));//("[class=\"btn btn-success close-modal btn-block\"]");
     private final Locator MODAL_WINDOW_HIDDEN = page.locator("div.modal.fade");
+    private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(2);
 
     public MainPage(Page page) {
         super(page);
@@ -61,5 +62,17 @@ public class MainPage extends BasePage{
     @Step("Check that the modal window is closed on the Main page")
     public void checkModalWindowIsClosedOnTheMainPage(){
         assertFalse(MODAL_WINDOW_HIDDEN.isDisabled(), "Modal window should be closed but is still visible");
+    }
+
+    @Step("Click view product button on the Main page")
+    public MainPage clickViewProductOnTheMainPage(){
+        VIEW_PRODUCT_BUTTON.click();
+        return this;
+    }
+
+    @Step("Check URL on the Product page")
+    public void checkUrlOnTheProductPage(String expectedUrl){
+        String actualUrl = page.url();
+        Assert.assertEquals(actualUrl, expectedUrl);
     }
 }
