@@ -16,6 +16,7 @@ public class MainPageTests extends BaseTest{
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
     private String expectedProductURL = "https://automationexercise.com/product_details/3";
     private String menJeansTitle = "MEN - JEANS PRODUCTS";
+    private String brandsHMTitle = "BRAND - H&M PRODUCTS";
 
     @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
@@ -66,5 +67,13 @@ public class MainPageTests extends BaseTest{
                 .acceptCookies()
                 .clickOnTheMenJeansCategoryOnTheMainPage()
                 .checkTitleOnTheProductPage(menJeansTitle);
+    }
+
+    @Test(description = "Go to Brands H&M category from the main page")
+    void goToBrandsHMCategoryOnTheMainPage(){
+        new MainPage(page)
+                .acceptCookies()
+                .clickOnTheBrandsNMCategoryOnTheMainPage()
+                .checkTitleOnTheProductPage(brandsHMTitle);
     }
 }
