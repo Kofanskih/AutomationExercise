@@ -2,6 +2,7 @@ package com.automationexercise.ui.tests;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
 import com.automationexercise.pages.HeaderPage;
+import com.automationexercise.pages.LoginPage;
 import com.automationexercise.pages.MainPage;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
@@ -16,6 +17,8 @@ public class SignUpTests extends BaseTest{
     private String loggedUser = "Logged in as";
     private String signUpErrorMessage = "Email Address already exist!";
     private String emptyInformationMessage = "Заполните это поле.";
+    private String invalidEmailInformationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"1test1testtest.com\" отсутствует символ \"@\".";
+
 
     @Test(description = "User registration")
     void userSignUp(){
@@ -62,6 +65,17 @@ public class SignUpTests extends BaseTest{
         new HeaderPage(page)
                 .clickLoginButton()
                 .fillSignUpFormWithEmptyEmailField(new RegistrationPageModel().getRandomRegistrationUserData())
-                .checkShowValidationMessageWhenSignUpEmailIsEmpty(emptyInformationMessage);
+                .checkShowValidationMessageInSignUpEmail(emptyInformationMessage);
+    }
+
+    @Test(description = "User sign up with invalid email")
+    void userSignUpWithInvalidEmail(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillSignUpForm(new RegistrationPageModel().getInvalidEmail());
+        new LoginPage(page)
+                .checkShowValidationMessageInSignUpEmail(invalidEmailInformationMessage);
     }
 }
