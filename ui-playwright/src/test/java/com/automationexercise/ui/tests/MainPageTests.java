@@ -40,4 +40,13 @@ public class MainPageTests extends BaseTest{
                 .addItemToTheCartOnTheMainPage()
                 .checkProductAddedMessage(addedMessageOnTheModalWindow);
     }
+
+    @Test(description = "Click continue shopping after adding item")
+    void closeAddedModalWindowOnTheMainPage() {
+        new MainPage(page)
+                .acceptCookies()
+                .addItemToTheCartOnTheMainPage()
+                .clickContinueShoppingButtonOnTheModalWindowOnTheMainPage()
+                .checkModalWindowIsClosedOnTheMainPage();
+    }
 }
