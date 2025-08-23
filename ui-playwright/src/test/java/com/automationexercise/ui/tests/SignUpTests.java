@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-002")
 public class SignUpTests extends BaseTest{
     private String loggedUser = "Logged in as";
+    private String signUpErrorMessage = "Email Address already exist!";
 
     @Test(description = "User registration")
     void userSignUp(){
@@ -31,5 +32,15 @@ public class SignUpTests extends BaseTest{
                 .clickCreateAccountButton()
                 .clickContinueButton()
                 .checkUserLoggedInText(loggedUser);
+    }
+
+    @Test(description = "User sign up with exists data")
+    void userSignUpWithExistData(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillSignUpForm(new RegistrationPageModel().getExistsUserData())
+                .checkSignUpErrorMessage(signUpErrorMessage);
     }
 }
