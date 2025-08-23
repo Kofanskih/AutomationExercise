@@ -3,8 +3,8 @@ package com.automationexercise.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 
-import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class MainPage extends BasePage{
@@ -25,6 +25,12 @@ public class MainPage extends BasePage{
         String actualText = USER_LOGGED_IN_TEXT.innerText();
         assertTrue("Expected text to contain: '" + loggedInText + "' but was: '" + actualText + "'",
                 actualText.contains(loggedInText));
+    }
+
+    @Step("Check URL on the Main page")
+    public void checkUrlOnTheMainPage(String expectedUrl){
+        String actualUrl = page.url();
+        Assert.assertEquals(actualUrl, expectedUrl);
     }
 
 }
