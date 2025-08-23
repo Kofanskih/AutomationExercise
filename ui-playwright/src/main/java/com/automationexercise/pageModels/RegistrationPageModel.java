@@ -1,0 +1,39 @@
+package com.automationexercise.pageModels;
+
+import io.qameta.allure.Step;
+import lombok.Data;
+import net.datafaker.Faker;
+
+@Data
+public class RegistrationPageModel {
+    private Faker user = new Faker();
+    private String userName;
+    private String userEmailAddress;
+    private String userPassword;
+    private String userFirstName;
+    private String userLastName;
+    private String userCompany;
+    private String userAddress;
+    private String userAddress2;
+    private String userState;
+    private String userCity;
+    private String userZipCode;
+    private String userMobile;
+
+    @Step("Use random user registration data")
+    public RegistrationPageModel getRandomRegistrationUserData(){
+        this.userName = user.name().firstName();
+        this.userEmailAddress = user.internet().emailAddress();
+        this.userPassword = user.word().adjective().toLowerCase() + Math.random() + user.word().noun().toUpperCase() + Math.random();
+        this.userFirstName = user.name().firstName();
+        this.userLastName = user.name().lastName();
+        this.userCompany = user.company().name();
+        this.userAddress = user.address().streetName() + " " + user.address().buildingNumber();
+        this.userAddress2 = user.address().secondaryAddress();
+        this.userState = user.address().state();
+        this.userCity = user.address().city();
+        this.userZipCode = user.address().zipCode();
+        this.userMobile = user.phoneNumber().cellPhone();
+        return this;
+    }
+}
