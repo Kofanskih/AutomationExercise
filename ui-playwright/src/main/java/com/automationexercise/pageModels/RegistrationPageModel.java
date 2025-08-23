@@ -36,4 +36,11 @@ public class RegistrationPageModel {
         this.userMobile = user.phoneNumber().cellPhone();
         return this;
     }
+
+    @Step("Exists user data")
+    public RegistrationPageModel getExistsUserData(){
+        this.userFirstName = "Anastasiia";
+        this.userEmailAddress = "1test1test@test.com";
+        return this;
+    }
 }
