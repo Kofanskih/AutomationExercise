@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.LoginPageModel;
+import com.automationexercise.pageModels.RegistrationPageModel;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
@@ -12,6 +13,9 @@ public class LoginPage extends BasePage{
     private final String PASSWORD_FIELD = "input[name='password']";
     private final String LOGIN_BUTTON = "button[data-qa='login-button']";
     private final Locator LOGIN_ERROR_TEXT = page.locator("text=Your email or password is incorrect!");
+    private final Locator SIGN_UP_NAME_FIELD = page.locator("[data-qa=\"signup-name\"]");
+    private final Locator SIGNUP_EMAIL_ADDRESS_FIELD = page.locator("[data-qa=\"signup-email\"]");
+    private final Locator SIGNUP_BUTTON = page.locator("[data-qa=\"signup-button\"]");
 
     public LoginPage(Page page) {
         super(page);
@@ -60,5 +64,13 @@ public class LoginPage extends BasePage{
         Locator passwordField = page.locator(PASSWORD_FIELD);
         String actualMessage = getValidationMessage(passwordField);
         assertEquals(message, actualMessage);
+    }
+
+    @Step ("Fill sign up form and click sign up button")
+    public SignUpPage fillSignUpForm(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.fill(registrationPageModel.getUserFirstName());
+        SIGNUP_EMAIL_ADDRESS_FIELD.fill(registrationPageModel.getUserEmailAddress());
+        SIGNUP_BUTTON.click();
+        return new SignUpPage(page);
     }
 }
