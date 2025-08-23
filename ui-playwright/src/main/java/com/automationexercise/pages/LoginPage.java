@@ -73,4 +73,20 @@ public class LoginPage extends BasePage{
         SIGNUP_BUTTON.click();
         return new SignUpPage(page);
     }
+
+    @Step ("Fill sign up form with empty name field and click sign up button")
+    public LoginPage fillSignUpFormWithEmptyNameField(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.clear();
+        SIGNUP_EMAIL_ADDRESS_FIELD.fill(registrationPageModel.getUserEmailAddress());
+        SIGNUP_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if sign up name is empty")
+    public void checkShowValidationMessageWhenSignUpNameIsEmpty(String expectedInformationMessage) {
+        Locator signUpNameField = SIGN_UP_NAME_FIELD;
+        String actualMessage = getValidationMessage(signUpNameField);
+        assertEquals(expectedInformationMessage, actualMessage);
+    }
 }
