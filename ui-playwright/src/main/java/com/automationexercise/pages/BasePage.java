@@ -23,9 +23,4 @@ public abstract class BasePage {
         page.navigate(config().mainUrl());
         return new MainPage(page);
     }
-
-    @Step("Verify page title")
-    public String getPageTitle() {
-        return page.title();
-    }
 }
