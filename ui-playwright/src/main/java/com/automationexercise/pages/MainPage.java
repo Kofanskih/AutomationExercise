@@ -18,6 +18,8 @@ public class MainPage extends BasePage{
     private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));//("[class=\"btn btn-success close-modal btn-block\"]");
     private final Locator MODAL_WINDOW_HIDDEN = page.locator("div.modal.fade");
     private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(2);
+    private final Locator MEN_BUTTON = page.locator("a[href='#Men']");
+    private final Locator JEANS_MEN_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Jeans"));
 
     public MainPage(Page page) {
         super(page);
@@ -74,5 +76,12 @@ public class MainPage extends BasePage{
     public void checkUrlOnTheProductPage(String expectedUrl){
         String actualUrl = page.url();
         Assert.assertEquals(actualUrl, expectedUrl);
+    }
+
+    @Step("Click the Men Jeans on the Main page")
+    public ProductsPage clickOnTheMenJeansCategoryOnTheMainPage(){
+        MEN_BUTTON.click();
+        JEANS_MEN_BUTTON.click();
+        return new ProductsPage(page);
     }
 }
