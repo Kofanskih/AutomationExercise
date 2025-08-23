@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 public class SignUpTests extends BaseTest{
     private String loggedUser = "Logged in as";
     private String signUpErrorMessage = "Email Address already exist!";
+    private String emptyInformationMessage = "Заполните это поле.";
 
     @Test(description = "User registration")
     void userSignUp(){
@@ -42,5 +43,15 @@ public class SignUpTests extends BaseTest{
                 .clickLoginButton()
                 .fillSignUpForm(new RegistrationPageModel().getExistsUserData())
                 .checkSignUpErrorMessage(signUpErrorMessage);
+    }
+
+    @Test(description = "User sign up with empty name field")
+    void userSignUpWithEmptySignUpNameField(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillSignUpFormWithEmptyNameField(new RegistrationPageModel().getRandomRegistrationUserData())
+                .checkShowValidationMessageWhenSignUpNameIsEmpty(emptyInformationMessage);
     }
 }
