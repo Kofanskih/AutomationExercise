@@ -20,6 +20,7 @@ public class MainPage extends BasePage{
     private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(2);
     private final Locator MEN_BUTTON = page.locator("a[href='#Men']");
     private final Locator JEANS_MEN_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Jeans"));
+    private final Locator BRANDS_HM_BUTTON = page.locator("a[href='/brand_products/H&M']");
 
     public MainPage(Page page) {
         super(page);
@@ -82,6 +83,12 @@ public class MainPage extends BasePage{
     public ProductsPage clickOnTheMenJeansCategoryOnTheMainPage(){
         MEN_BUTTON.click();
         JEANS_MEN_BUTTON.click();
+        return new ProductsPage(page);
+    }
+
+    @Step("Click the Brands H&M on the Main page")
+    public ProductsPage clickOnTheBrandsNMCategoryOnTheMainPage(){
+        BRANDS_HM_BUTTON.click();
         return new ProductsPage(page);
     }
 }
