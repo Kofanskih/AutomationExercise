@@ -89,4 +89,20 @@ public class LoginPage extends BasePage{
         String actualMessage = getValidationMessage(signUpNameField);
         assertEquals(expectedInformationMessage, actualMessage);
     }
+
+    @Step ("Fill sign up form with empty email field and click sign up button")
+    public LoginPage fillSignUpFormWithEmptyEmailField(RegistrationPageModel registrationPageModel) {
+        SIGN_UP_NAME_FIELD.fill(registrationPageModel.getUserName());
+        SIGNUP_EMAIL_ADDRESS_FIELD.clear();
+        SIGNUP_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if sign up email is empty")
+    public void checkShowValidationMessageWhenSignUpEmailIsEmpty(String expectedInformationMessage) {
+        Locator signUpEmailField = SIGNUP_EMAIL_ADDRESS_FIELD;
+        String actualMessage = getValidationMessage(signUpEmailField);
+        assertEquals(expectedInformationMessage, actualMessage);
+    }
 }
