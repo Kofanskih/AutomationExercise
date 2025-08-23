@@ -22,6 +22,8 @@ public class MainPage extends BasePage{
     private final Locator JEANS_MEN_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Jeans"));
     private final Locator BRANDS_HM_BUTTON = page.locator("a[href='/brand_products/H&M']");
     private final Locator VIEW_CART_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Cart"));
+    private final Locator TEST_CASES_CAROUSEL_BUTTON = page.locator("div.carousel-inner a[href='/test_cases']").nth(0);
+    private final Locator API_TESTING_CAROUSEL_BUTTON = page.locator("div.carousel-inner a[href='/api_list']").nth(0);
 
     public MainPage(Page page) {
         super(page);
@@ -97,5 +99,17 @@ public class MainPage extends BasePage{
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
         VIEW_CART_BUTTON.click();
         return new CartPage(page);
+    }
+
+    @Step("Click the Test Cases button on the carousel")
+    public TestCasesPage clickOnTheTestCasesButtonOnTheCarousel(){
+        TEST_CASES_CAROUSEL_BUTTON.click();
+        return new TestCasesPage(page);
+    }
+
+    @Step("Click the API Testing button on the carousel")
+    public APITestingPage clickOnTheAPITestingButtonOnTheCarousel(){
+        API_TESTING_CAROUSEL_BUTTON.click();
+        return new APITestingPage(page);
     }
 }
