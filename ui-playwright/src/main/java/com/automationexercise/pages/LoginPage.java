@@ -100,7 +100,7 @@ public class LoginPage extends BasePage{
     }
 
     @Step("Check validation message if sign up email is empty")
-    public void checkShowValidationMessageWhenSignUpEmailIsEmpty(String expectedInformationMessage) {
+    public void checkShowValidationMessageInSignUpEmail(String expectedInformationMessage) {
         Locator signUpEmailField = SIGNUP_EMAIL_ADDRESS_FIELD;
         String actualMessage = getValidationMessage(signUpEmailField);
         assertEquals(expectedInformationMessage, actualMessage);
