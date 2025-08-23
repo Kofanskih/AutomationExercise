@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-003")
 public class MainPageTests extends BaseTest{
     private String expectedMainURL = "https://automationexercise.com/";
+    private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
 
     @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
@@ -30,5 +31,13 @@ public class MainPageTests extends BaseTest{
         new HeaderPage(page)
                 .clickHomeButton()
                 .checkUrlOnTheMainPage(expectedMainURL);
+    }
+
+    @Test(description = "Add item to the cart on the main page")
+    void addItemToTheCartOnTheMainPage() {
+        new MainPage(page)
+                .acceptCookies()
+                .addItemToTheCartOnTheMainPage()
+                .checkProductAddedMessage(addedMessageOnTheModalWindow);
     }
 }
