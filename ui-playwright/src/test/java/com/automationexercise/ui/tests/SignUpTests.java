@@ -54,4 +54,14 @@ public class SignUpTests extends BaseTest{
                 .fillSignUpFormWithEmptyNameField(new RegistrationPageModel().getRandomRegistrationUserData())
                 .checkShowValidationMessageWhenSignUpNameIsEmpty(emptyInformationMessage);
     }
+
+    @Test(description = "User sign up with empty email field")
+    void userSignUpWithEmptySignUpEmailField(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillSignUpFormWithEmptyEmailField(new RegistrationPageModel().getRandomRegistrationUserData())
+                .checkShowValidationMessageWhenSignUpEmailIsEmpty(emptyInformationMessage);
+    }
 }
