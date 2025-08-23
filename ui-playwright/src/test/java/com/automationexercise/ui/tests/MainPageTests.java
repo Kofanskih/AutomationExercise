@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 public class MainPageTests extends BaseTest{
     private String expectedMainURL = "https://automationexercise.com/";
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
+    private String expectedProductURL = "https://automationexercise.com/product_details/3";
 
     @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
@@ -48,5 +49,13 @@ public class MainPageTests extends BaseTest{
                 .addItemToTheCartOnTheMainPage()
                 .clickContinueShoppingButtonOnTheModalWindowOnTheMainPage()
                 .checkModalWindowIsClosedOnTheMainPage();
+    }
+
+    @Test(description = "Click view product details on the main page")
+    void viewProductDetailsOnTheMainPage(){
+        new MainPage(page)
+                .acceptCookies()
+                .clickViewProductOnTheMainPage()
+                .checkUrlOnTheProductPage(expectedProductURL);
     }
 }
