@@ -5,6 +5,8 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 public class SignUpPage extends BasePage{
     private final Locator FEMALE_RADIOBUTTON = page.locator("[id=\"id_gender2\"]");
     private final Locator DAYS_DROPDOWN = page.locator("[id=\"days\"]");
@@ -25,7 +27,7 @@ public class SignUpPage extends BasePage{
     private final Locator COUNTRY_DROPDOWN = page.locator("[id=\"country\"]");
     private final Locator CREATE_ACCOUNT_BUTTON = page.locator("[data-qa=\"create-account\"]");
     private final Locator CONTINUE_BUTTON = page.locator("[data-qa=\"continue-button\"]");
-    private final Locator SIGNUP_ERROR_MESSAGE = page.locator("[style=\"color: red;\"]");
+    private final Locator SIGNUP_ERROR_MESSAGE = page.locator("text=Email Address already exist!");
 
     public SignUpPage(Page page) {
         super(page);
@@ -89,6 +91,12 @@ public class SignUpPage extends BasePage{
     public MainPage clickContinueButton(){
         CONTINUE_BUTTON.click();
         return new MainPage(page);
+    }
+
+    @Step("Check Sign up error message")
+    public void checkSignUpErrorMessage(String signUpErrorMessage){
+        String actualText = SIGNUP_ERROR_MESSAGE.innerText();
+        assertEquals(signUpErrorMessage, actualText);
     }
 
 }
