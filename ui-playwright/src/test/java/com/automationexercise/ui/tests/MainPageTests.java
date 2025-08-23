@@ -22,4 +22,13 @@ public class MainPageTests extends BaseTest{
                 .clickLogo()
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
+
+    @Test(description = "Click home button on the main page")
+    void clickHomeButtonOnTheMainPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickHomeButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
+    }
 }
