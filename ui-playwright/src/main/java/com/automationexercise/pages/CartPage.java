@@ -11,6 +11,7 @@ public class CartPage extends BasePage{
     private final Locator TITLE = page.locator("li.active");
     private final Locator EMPTY_TITLE = page.locator("#empty_cart");
     private final Locator HERE_BUTTON = page.locator("text=here");
+    private final Locator DELETE_BUTTON = page.locator("a.cart_quantity_delete");
 
     public CartPage(Page page) {
         super(page);
@@ -33,5 +34,11 @@ public class CartPage extends BasePage{
     public ProductsPage clickHereButtonTheCartPage(){
         HERE_BUTTON.click();
         return new ProductsPage(page);
+    }
+
+    @Step("Delete item on the cart page")
+    public CartPage deleteItemFromTheCart(){
+        DELETE_BUTTON.click();
+        return this;
     }
 }
