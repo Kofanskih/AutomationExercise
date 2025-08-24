@@ -24,4 +24,15 @@ public class ContactUsTests extends BaseTest{
                 .fillMessageFormAndAcceptAlert(new ContactUsPageModel().messageForm())
                 .checkMessageWasSent(successfulMessage);
     }
+
+    @Test(description = "Cancel send contact message on the Contact us page")
+    void doNotSendContactMessage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickContactUsButton()
+                .fillMessageFormAndCancelAlert(new ContactUsPageModel().messageForm())
+                .clickCancelButton()
+                .checkHomeButtonNotAppear();
+    }
 }
