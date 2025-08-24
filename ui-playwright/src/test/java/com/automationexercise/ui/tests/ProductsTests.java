@@ -16,6 +16,7 @@ public class ProductsTests extends BaseTest{
     private String searchedResult = "Winter Top";
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
     private String expectedProductURL = "https://automationexercise.com/product_details/2";
+    private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
 
 
     @Test(description = "Search item on the Products page")
@@ -57,5 +58,15 @@ public class ProductsTests extends BaseTest{
                 .clickProductsButton()
                 .clickViewProductOnTheMainPage()
                 .checkUrlOnTheProductPage(expectedProductURL);
+    }
+
+    @Test(description = "Go to Kids Tops category from the Products page")
+    void goToTopsShirtsKidsCategoryOnTheProductsPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .clickOnTheKidsTopsCategoryOnTheProductsPage()
+                .checkTitleOnTheProductPage(kidsCategoryTitle);
     }
 }
