@@ -11,6 +11,8 @@ public class ProductsPage extends BasePage{
     private final Locator SEARCH_FIELD = page.locator("#search_product");
     private final Locator SEARCH_BUTTON = page.locator("#submit_search");
     private final Locator SEARCH_RESULT = page.getByText("Winter Top").first();
+    private final Locator ADD_ITEM_TO_CART = page.locator("a[data-product-id='3']").first();
+    private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");
 
     public ProductsPage(Page page) {
         super(page);
@@ -33,5 +35,17 @@ public class ProductsPage extends BasePage{
     public void checkSearchedItemOnTheProductsPage(String searchedItem){
         String actualText = SEARCH_RESULT.innerText();
         assertEquals(actualText, searchedItem);
+    }
+
+    @Step("Add item to the cart")
+    public ProductsPage addItemToTheCartOnTheProductsPage() {
+        ADD_ITEM_TO_CART.click();
+        return this;
+    }
+
+    @Step("Check added item on the Main page")
+    public void checkAddedItemOnTheProductsPage(String infoModalMessage) {
+        String actualText = ADDED_MODAL_WINDOW_TEXT.innerText();
+        assertEquals(actualText, infoModalMessage);
     }
 }
