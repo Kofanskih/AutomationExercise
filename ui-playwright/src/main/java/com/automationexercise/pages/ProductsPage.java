@@ -2,9 +2,10 @@ package com.automationexercise.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 import io.qameta.allure.Step;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
 public class ProductsPage extends BasePage{
     private final Locator CENTER_TEXT_TITLE = page.locator(".title.text-center");
@@ -13,6 +14,8 @@ public class ProductsPage extends BasePage{
     private final Locator SEARCH_RESULT = page.getByText("Winter Top").first();
     private final Locator ADD_ITEM_TO_CART = page.locator("a[data-product-id='3']").first();
     private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");
+    private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));//("[class=\"btn btn-success close-modal btn-block\"]");
+    private final Locator MODAL_WINDOW_HIDDEN = page.locator("div.modal.show");
 
     public ProductsPage(Page page) {
         super(page);
@@ -47,5 +50,16 @@ public class ProductsPage extends BasePage{
     public void checkAddedItemOnTheProductsPage(String infoModalMessage) {
         String actualText = ADDED_MODAL_WINDOW_TEXT.innerText();
         assertEquals(actualText, infoModalMessage);
+    }
+
+    @Step("Click continue shopping button on the modal window on the Main page")
+    public ProductsPage clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage(){
+        CONTINUE_SHOPPING_BUTTON.click();
+        return this;
+    }
+
+    @Step("Check that the modal window is closed on the Main page")
+    public void checkModalWindowIsClosedOnTheProductsPage(){
+        assertTrue(MODAL_WINDOW_HIDDEN.isDisabled(), "Modal window should be closed but is still visible");
     }
 }
