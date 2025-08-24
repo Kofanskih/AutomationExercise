@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 public class ProductsTests extends BaseTest{
     private String searchedItem = "Winter Top";
     private String searchedResult = "Winter Top";
+    private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
+
 
     @Test(description = "Search item on the Products page")
     void searchItemOnTheProductsPage(){
@@ -23,5 +25,15 @@ public class ProductsTests extends BaseTest{
                 .clickProductsButton()
                 .searchItemOnTheProductsPage(searchedItem)
                 .checkSearchedItemOnTheProductsPage(searchedResult);
+    }
+
+    @Test(description = "Add item to the cart on the Products page")
+    void addItemToTheCartOnTheProductsPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .checkAddedItemOnTheProductsPage(addedMessageOnTheModalWindow);
     }
 }
