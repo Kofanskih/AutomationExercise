@@ -33,4 +33,16 @@ public class CartTests extends BaseTest{
                 .clickHereButtonTheCartPage()
                 .checkUrlOnTheProductPage(expectedProductsURL);
     }
+
+    @Test(description = "Delete the item from the cart")
+    void deleteItemFromTheCart() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .deleteItemFromTheCart()
+                .checkTheCartIsEmpty(emptyCartTitle);
+    }
 }
