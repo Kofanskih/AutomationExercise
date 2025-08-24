@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-005")
 public class CartTests extends BaseTest{
     private String emptyCartTitle = "Cart is empty!";
+    private String expectedProductsURL = "https://automationexercise.com/products";
 
     @Test(description = "User go to the empty cart")
     void goToTheEmptyCart(){
@@ -21,5 +22,15 @@ public class CartTests extends BaseTest{
         new HeaderPage(page)
                 .clickCartButton()
                 .checkTheCartIsEmpty(emptyCartTitle);
+    }
+
+    @Test(description = "Go to the Products page from the empty cart")
+    void goToTheProductsPageUsingHereButtonInTheEmptyCart(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickCartButton()
+                .clickHereButtonTheCartPage()
+                .checkUrlOnTheProductPage(expectedProductsURL);
     }
 }
