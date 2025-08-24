@@ -14,4 +14,10 @@ public class SubscriptionPageModel {
         this.userEmailAddress = user.internet().emailAddress();
         return this;
     }
+
+    @Step("Use user data with invalid subscribe email")
+    public SubscriptionPageModel getInvalidSubscribeEmail(){
+        this.userEmailAddress = "test.com";
+        return this;
+    }
 }
