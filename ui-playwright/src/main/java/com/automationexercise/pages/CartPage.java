@@ -10,6 +10,7 @@ import static org.testng.AssertJUnit.assertTrue;
 public class CartPage extends BasePage{
     private final Locator TITLE = page.locator("li.active");
     private final Locator EMPTY_TITLE = page.locator("#empty_cart");
+    private final Locator HERE_BUTTON = page.locator("text=here");
 
     public CartPage(Page page) {
         super(page);
@@ -26,5 +27,11 @@ public class CartPage extends BasePage{
         String actualText = EMPTY_TITLE.innerText();
         assertTrue("Expected text to contain: '" + title + "' but was: '" + actualText + "'",
                 actualText.contains(title));
+    }
+
+    @Step("Click here button on the empty cart page")
+    public ProductsPage clickHereButtonTheCartPage(){
+        HERE_BUTTON.click();
+        return new ProductsPage(page);
     }
 }
