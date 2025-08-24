@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 public class CartTests extends BaseTest{
     private String emptyCartTitle = "Cart is empty!";
     private String expectedProductsURL = "https://automationexercise.com/products";
-    private String expectedCheckoutURL = "1https://automationexercise.com/checkout";
+    private String expectedCheckoutURL = "https://automationexercise.com/checkout";
 
     @Test(description = "User go to the empty cart")
     void goToTheEmptyCart(){
@@ -59,6 +59,23 @@ public class CartTests extends BaseTest{
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .checkUrlOnTheCheckoutPage(expectedCheckoutURL);
+    }
+
+    @Test(description = "Proceed to checkout with no logged in user")
+    void proceedToCheckoutWithNotLoggedUser() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .goToTheLoginPage()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickCartButton()
                 .clickToCheckoutButtonOnTheCartPage()
                 .checkUrlOnTheCheckoutPage(expectedCheckoutURL);
     }
