@@ -16,7 +16,7 @@ public class ContactUsTests extends BaseTest{
     private String successfulMessage = "Success! Your details have been submitted successfully.";
     private String expectedMainURL = "https://automationexercise.com/";
     private String invalidEmailValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"brbrbbrbr.com\" отсутствует символ \"@\".";
-
+    private String emptyEmailValidationMessage = "Заполните это поле.";
 
     @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
@@ -57,5 +57,15 @@ public class ContactUsTests extends BaseTest{
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageFormInvalidEmail())
                 .checkShowValidationMessageInEmailField(invalidEmailValidationMessage);
+    }
+
+    @Test(description = "Fill contact form with empty email field")
+    void fillContactUsFormWithEmptyEmailField(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickContactUsButton()
+                .fillMessageForm(new ContactUsPageModel().messageFormEmptyEmail())
+                .checkShowValidationMessageInEmailField(emptyEmailValidationMessage);
     }
 }
