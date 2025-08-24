@@ -20,6 +20,7 @@ public class ProductsPage extends BasePage{
     private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(1);
     private final Locator KIDS_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Kids"));
     private final Locator TOP_SHIRTS_KIDS_BUTTON = page.locator("[href='/category_products/5']");
+    private final Locator BRANDS_MADAME_BUTTON = page.locator("[href='/brand_products/Madame']");
 
     public ProductsPage(Page page) {
         super(page);
@@ -83,6 +84,12 @@ public class ProductsPage extends BasePage{
     public ProductsPage clickOnTheKidsTopsCategoryOnTheProductsPage(){
         KIDS_BUTTON.click();
         TOP_SHIRTS_KIDS_BUTTON.click();
+        return this;
+    }
+
+    @Step("Click on the Brands Madame category on the Products page")
+    public ProductsPage clickOnTheBrandsMadameCategoryOnTheProductsPage(){
+        BRANDS_MADAME_BUTTON.click();
         return this;
     }
 }
