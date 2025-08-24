@@ -24,4 +24,19 @@ public class FooterPage extends BasePage{
         assertEquals(message, actualText);
     }
 
+    @Step("Fill subscribe field with invalid email")
+    public FooterPage fillSubscribeFieldWithInvalidEmail(SubscriptionPageModel subscriptionPageModel){
+        SUBSCRIBE_FIELD.fill(subscriptionPageModel.getUserEmailAddress());
+        return this;
+    }
+    public String getValidationMessage(Locator element) {
+        return (String) element.evaluate("el => el.validationMessage");
+    }
+
+    @Step("Check validation message if user fill invalid email")
+    public void checkShowValidationMessageUsingInvalidEmailForSubscription(String expectedMessage) {
+        Locator subscribeField = SUBSCRIBE_FIELD;
+        String actualMessage = getValidationMessage(subscribeField);
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
