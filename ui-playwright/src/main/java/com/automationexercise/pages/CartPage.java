@@ -12,6 +12,7 @@ public class CartPage extends BasePage{
     private final Locator EMPTY_TITLE = page.locator("#empty_cart");
     private final Locator HERE_BUTTON = page.locator("text=here");
     private final Locator DELETE_BUTTON = page.locator("a.cart_quantity_delete");
+    private final Locator PROCEED_TO_CHECKOUT_BUTTON = page.locator("text=Proceed To Checkout");
 
     public CartPage(Page page) {
         super(page);
@@ -40,5 +41,11 @@ public class CartPage extends BasePage{
     public CartPage deleteItemFromTheCart(){
         DELETE_BUTTON.click();
         return this;
+    }
+
+    @Step("Click checkout button on the cart page")
+    public CheckoutPage clickToCheckoutButtonOnTheCartPage(){
+        PROCEED_TO_CHECKOUT_BUTTON.click();
+        return new CheckoutPage(page);
     }
 }
