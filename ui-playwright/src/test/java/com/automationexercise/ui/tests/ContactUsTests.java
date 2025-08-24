@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 public class ContactUsTests extends BaseTest{
     private String successfulMessage = "Success! Your details have been submitted successfully.";
     private String expectedMainURL = "https://automationexercise.com/";
+    private String invalidEmailValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"brbrbbrbr.com\" отсутствует символ \"@\".";
+
 
     @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
@@ -45,5 +47,15 @@ public class ContactUsTests extends BaseTest{
                 .fillMessageFormAndAcceptAlert(new ContactUsPageModel().messageForm())
                 .clickHomeButton()
                 .checkUrlOnTheMainPage(expectedMainURL);
+    }
+
+    @Test(description = "Fill contact form with invalid email")
+    void fillContactUsFormWithInvalidEmail(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickContactUsButton()
+                .fillMessageForm(new ContactUsPageModel().messageFormInvalidEmail())
+                .checkShowValidationMessageInEmailField(invalidEmailValidationMessage);
     }
 }
