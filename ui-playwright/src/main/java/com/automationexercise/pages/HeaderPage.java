@@ -8,6 +8,7 @@ public class HeaderPage extends BasePage{
     private final Locator LOGO = page.locator("//div[@class=\"logo pull-left\"]");
     private final Locator HOME_BUTTON = page.locator(".fa.fa-home");
     private final Locator LOGIN_BUTTON = page.locator("text=Signup / Login");
+    private final Locator PRODUCTS_BUTTON = page.locator("a[href='/products']");
 
 
     public HeaderPage(Page page) {
@@ -30,5 +31,11 @@ public class HeaderPage extends BasePage{
     public LoginPage clickLoginButton() {
         LOGIN_BUTTON.click();
         return new LoginPage(page);
+    }
+
+    @Step("Click the Products button on the header")
+    public ProductsPage clickProductsButton(){
+        PRODUCTS_BUTTON.click();
+        return new ProductsPage(page);
     }
 }

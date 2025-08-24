@@ -15,13 +15,13 @@ public class MainPage extends BasePage{
     private final Locator USER_LOGGED_IN_TEXT = page.locator("text=Logged in as");
     private final Locator ADD_ITEM_TO_CART = page.locator("a[data-product-id='3']").first();
     private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");
-    private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));//("[class=\"btn btn-success close-modal btn-block\"]");
+    private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));
     private final Locator MODAL_WINDOW_HIDDEN = page.locator("div.modal.fade");
     private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(2);
     private final Locator MEN_BUTTON = page.locator("a[href='#Men']");
     private final Locator JEANS_MEN_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Jeans"));
     private final Locator BRANDS_HM_BUTTON = page.locator("a[href='/brand_products/H&M']");
-    private final Locator VIEW_CART_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Cart"));
+    private final Locator VIEW_CART_BUTTON = page.locator("[href='/view_cart']").nth(1);
     private final Locator TEST_CASES_CAROUSEL_BUTTON = page.locator("div.carousel-inner a[href='/test_cases']").nth(0);
     private final Locator API_TESTING_CAROUSEL_BUTTON = page.locator("div.carousel-inner a[href='/api_list']").nth(0);
 
