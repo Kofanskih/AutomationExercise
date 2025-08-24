@@ -4,6 +4,7 @@ import com.automationexercise.pageModels.ContactUsPageModel;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
+import org.testng.AssertJUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -72,5 +73,26 @@ public class ContactUsPage extends BasePage{
     public MainPage clickHomeButton(){
         HOME_BUTTON.click();
         return new MainPage(page);
+    }
+
+    @Step("Fill message form")
+    public ContactUsPage fillMessageForm(ContactUsPageModel contactUsPageModel){
+        NAME_FIELD.fill(contactUsPageModel.getUserName());
+        EMAIL_FIELD.fill(contactUsPageModel.getUserEmailAddress());
+        SUBJECT_FIELD.fill(contactUsPageModel.getUserSubject());
+        MESSAGE_FIELD.fill(contactUsPageModel.getUserMessage());
+        SUBMIT_BUTTON.click();
+        return this;
+    }
+
+    public String getValidationMessage(Locator element) {
+        return (String) element.evaluate("el => el.validationMessage");
+    }
+
+    @Step("Check validation message shows")
+    public void checkShowValidationMessageInEmailField(String expectedMessage) {
+        Locator emailField = EMAIL_FIELD;
+        String actualMessage = getValidationMessage(emailField);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 }
