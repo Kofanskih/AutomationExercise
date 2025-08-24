@@ -15,6 +15,7 @@ public class ProductsTests extends BaseTest{
     private String searchedItem = "Winter Top";
     private String searchedResult = "Winter Top";
     private String addedMessageOnTheModalWindow = "Your product has been added to cart.";
+    private String expectedProductURL = "https://automationexercise.com/product_details/2";
 
 
     @Test(description = "Search item on the Products page")
@@ -46,5 +47,15 @@ public class ProductsTests extends BaseTest{
                 .addItemToTheCartOnTheProductsPage()
                 .clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage()
                 .checkModalWindowIsClosedOnTheProductsPage();
+    }
+
+    @Test(description = "Click view product details on the products page")
+    void viewProductDetailsOnTheProductsPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .clickViewProductOnTheMainPage()
+                .checkUrlOnTheProductPage(expectedProductURL);
     }
 }
