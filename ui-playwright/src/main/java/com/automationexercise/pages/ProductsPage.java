@@ -15,9 +15,11 @@ public class ProductsPage extends BasePage{
     private final Locator SEARCH_RESULT = page.getByText("Winter Top").first();
     private final Locator ADD_ITEM_TO_CART = page.locator("a[data-product-id='3']").first();
     private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");
-    private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));//("[class=\"btn btn-success close-modal btn-block\"]");
+    private final Locator CONTINUE_SHOPPING_BUTTON = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue Shopping"));
     private final Locator MODAL_WINDOW_HIDDEN = page.locator("div.modal.show");
     private final Locator VIEW_PRODUCT_BUTTON = page.locator("i.fa.fa-plus-square").nth(1);
+    private final Locator KIDS_BUTTON = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName(" Kids"));
+    private final Locator TOP_SHIRTS_KIDS_BUTTON = page.locator("[href='/category_products/5']");
 
     public ProductsPage(Page page) {
         super(page);
@@ -75,5 +77,12 @@ public class ProductsPage extends BasePage{
     public void checkUrlOnTheProductPage(String expectedUrl){
         String actualUrl = page.url();
         Assert.assertEquals(actualUrl, expectedUrl);
+    }
+
+    @Step("Click on the Kids Tops category on the Products page")
+    public ProductsPage clickOnTheKidsTopsCategoryOnTheProductsPage(){
+        KIDS_BUTTON.click();
+        TOP_SHIRTS_KIDS_BUTTON.click();
+        return this;
     }
 }
