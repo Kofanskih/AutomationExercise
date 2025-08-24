@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-008")
 public class ContactUsTests extends BaseTest{
     private String successfulMessage = "Success! Your details have been submitted successfully.";
+    private String expectedMainURL = "https://automationexercise.com/";
 
     @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
@@ -32,7 +33,17 @@ public class ContactUsTests extends BaseTest{
         new HeaderPage(page)
                 .clickContactUsButton()
                 .fillMessageFormAndCancelAlert(new ContactUsPageModel().messageForm())
-                .clickCancelButton()
                 .checkHomeButtonNotAppear();
+    }
+
+    @Test(description = "Go to the Home page after sending contact message")
+    void goToTheHomePageAfterSendingContactMessage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickContactUsButton()
+                .fillMessageFormAndAcceptAlert(new ContactUsPageModel().messageForm())
+                .clickHomeButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
     }
 }
