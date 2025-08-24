@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-007")
 public class FooterTests extends BaseTest{
     private String successfulSubscriptionValidationMessage = "You have been successfully subscribed!";
+    private String errorValidationMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"test.com\" отсутствует символ \"@\".";
 
     @Test(description = "User subscribed")
     void userSubscribe(){
@@ -21,5 +22,14 @@ public class FooterTests extends BaseTest{
                 .acceptCookies();
         new FooterPage(page)
                 .checkUserIsSubscribed(new SubscriptionPageModel().getSubscribeEmail(), successfulSubscriptionValidationMessage);
+    }
+
+    @Test(description = "Try to subscribe with invalid email")
+    void userSubscribeWithInvalidEmail(){
+        new MainPage(page)
+                .acceptCookies();
+        new FooterPage(page)
+                .fillSubscribeFieldWithInvalidEmail(new SubscriptionPageModel().getInvalidSubscribeEmail())
+                .checkShowValidationMessageUsingInvalidEmailForSubscription(errorValidationMessage);
     }
 }
