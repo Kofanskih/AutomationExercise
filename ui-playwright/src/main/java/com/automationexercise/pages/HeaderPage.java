@@ -7,8 +7,10 @@ import io.qameta.allure.Step;
 public class HeaderPage extends BasePage{
     private final Locator LOGO = page.locator("//div[@class=\"logo pull-left\"]");
     private final Locator HOME_BUTTON = page.locator(".fa.fa-home");
-    private final Locator LOGIN_BUTTON = page.locator("text=Signup / Login");
     private final Locator PRODUCTS_BUTTON = page.locator("a[href='/products']");
+    private final Locator CART_BUTTON = page.locator(".fa.fa-shopping-cart").first();
+    private final Locator LOGIN_BUTTON = page.locator("text=Signup / Login");
+
 
 
     public HeaderPage(Page page) {
@@ -37,5 +39,11 @@ public class HeaderPage extends BasePage{
     public ProductsPage clickProductsButton(){
         PRODUCTS_BUTTON.click();
         return new ProductsPage(page);
+    }
+
+    @Step("Click the Cart button on the header")
+    public CartPage clickCartButton(){
+        CART_BUTTON.click();
+        return new CartPage(page);
     }
 }
