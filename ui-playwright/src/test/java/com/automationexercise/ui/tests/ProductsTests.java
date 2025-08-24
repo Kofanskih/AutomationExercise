@@ -36,4 +36,15 @@ public class ProductsTests extends BaseTest{
                 .addItemToTheCartOnTheProductsPage()
                 .checkAddedItemOnTheProductsPage(addedMessageOnTheModalWindow);
     }
+
+    @Test(description = "Click continue shopping after adding item")
+    void closeAddedModalWindowOnTheProductsPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage()
+                .checkModalWindowIsClosedOnTheProductsPage();
+    }
 }
