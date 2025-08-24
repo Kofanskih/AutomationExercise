@@ -18,6 +18,7 @@ public class ProductsTests extends BaseTest{
     private String expectedProductURL = "https://automationexercise.com/product_details/2";
     private String kidsCategoryTitle = "KIDS - TOPS & SHIRTS PRODUCTS";
     private String madameCategoryTitle = "BRAND - MADAME PRODUCTS";
+    private String cartTitle = "Shopping Cart";
 
 
     @Test(description = "Search item on the Products page")
@@ -79,5 +80,16 @@ public class ProductsTests extends BaseTest{
                 .clickProductsButton()
                 .clickOnTheBrandsMadameCategoryOnTheProductsPage()
                 .checkTitleOnTheProductPage(madameCategoryTitle);
+    }
+
+    @Test(description = "Go to the cart after adding item on the Products page")
+    void goToTheCartAfterAddingItemOnTheProductsPage() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .checkUserOnTheCartPage(cartTitle);
     }
 }
