@@ -67,4 +67,10 @@ public class ContactUsPage extends BasePage{
         int count = HOME_BUTTON.count();
         assertTrue(count == 0, "Button HOME is displayed");
     }
+
+    @Step("Click Home button")
+    public MainPage clickHomeButton(){
+        HOME_BUTTON.click();
+        return new MainPage(page);
+    }
 }
