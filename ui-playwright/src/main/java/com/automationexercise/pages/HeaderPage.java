@@ -10,6 +10,7 @@ public class HeaderPage extends BasePage{
     private final Locator PRODUCTS_BUTTON = page.locator("a[href='/products']");
     private final Locator CART_BUTTON = page.locator(".fa.fa-shopping-cart").first();
     private final Locator LOGIN_BUTTON = page.locator("text=Signup / Login");
+    private final Locator DELETE_ACCOUNT_BUTTON = page.locator(".fa.fa-trash-o");
 
 
 
@@ -45,5 +46,11 @@ public class HeaderPage extends BasePage{
     public CartPage clickCartButton(){
         CART_BUTTON.click();
         return new CartPage(page);
+    }
+
+    @Step("Click the Delete button on the header")
+    public DeletePage clickDeleteAccountButton(){
+        DELETE_ACCOUNT_BUTTON.click();
+        return new DeletePage(page);
     }
 }
