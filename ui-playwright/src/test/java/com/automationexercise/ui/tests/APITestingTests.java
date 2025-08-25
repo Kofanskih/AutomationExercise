@@ -33,4 +33,14 @@ public class APITestingTests extends BaseTest{
                 .checkTheListIsExpanded();
     }
 
+    @Test(description = "Collapse expanded list on the API Testing page")
+    void collapseExpandedListOnTheAPITestingPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickAPITestingButton()
+                .expandCollapsedList()
+                .collapseExpandedList()
+                .checkTheListIsCollapsed();
+    }
 }
