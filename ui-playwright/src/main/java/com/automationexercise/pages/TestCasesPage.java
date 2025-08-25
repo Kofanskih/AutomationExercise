@@ -5,9 +5,12 @@ import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class TestCasesPage extends BasePage{
     private final Locator CENTER_TEXT_TITLE = page.locator(".title.text-center");
+    private final Locator LIST = page.locator("a[href='#collapse1']");
+    private final Locator EXPANDED_BLOCK = page.locator("div[id='collapse1'] ul[class='list-group']");
 
     public TestCasesPage(Page page) {
         super(page);
@@ -17,5 +20,16 @@ public class TestCasesPage extends BasePage{
     public void checkTitleOnTheTestCasesPage(String title){
         String actualText = CENTER_TEXT_TITLE.innerText();
         assertEquals(actualText, title);
+    }
+
+    @Step("Expand the collapsed list")
+    public TestCasesPage expandCollapsedList(){
+        LIST.click();
+        return this;
+    }
+
+    @Step("Check the list is expanded")
+    public void checkTheListIsExpanded(){
+        assertTrue(EXPANDED_BLOCK.isVisible(), "Block should be expanded but is not visible");
     }
 }
