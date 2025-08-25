@@ -23,4 +23,14 @@ public class TestCasesTests extends BaseTest{
                 .clickTestCasesButton()
                 .checkTitleOnTheTestCasesPage(testCasesTitle);
     }
+
+    @Test(description = "Expand list on the Test cases page")
+    void expandListOnTheTestCasesPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickTestCasesButton()
+                .expandCollapsedList()
+                .checkTheListIsExpanded();
+    }
 }
