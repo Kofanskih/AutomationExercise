@@ -33,4 +33,15 @@ public class TestCasesTests extends BaseTest{
                 .expandCollapsedList()
                 .checkTheListIsExpanded();
     }
+
+    @Test(description = "Collapse expanded list on the Test cases page")
+    void collapseExpandedListOnTheTestCasesPage(){
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickTestCasesButton()
+                .expandCollapsedList()
+                .collapseExpandedList()
+                .checkTheListIsCollapsed();
+    }
 }
