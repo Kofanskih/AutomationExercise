@@ -13,6 +13,7 @@ public class HeaderPage extends BasePage{
     private final Locator DELETE_ACCOUNT_BUTTON = page.locator(".fa.fa-trash-o");
     private final Locator TEST_CASES_BUTTON = page.locator("a[href='/test_cases']").first();
     private final Locator API_TESTING_BUTTON = page.locator("a[href='/api_list']").first();
+    private final Locator VIDEO_TUTORIALS_BUTTON = page.locator("[href='https://www.youtube.com/c/AutomationExercise']");
     private final Locator CONTACT_US_BUTTON = page.locator("a[href='/contact_us']");
 
     public HeaderPage(Page page) {
@@ -65,6 +66,12 @@ public class HeaderPage extends BasePage{
     public APITestingPage clickAPITestingButton(){
         API_TESTING_BUTTON.click();
         return new APITestingPage(page);
+    }
+
+    @Step("Click the Video Tutorials button on the header")
+    public VideoTutorialsPage clickVideoTutorialsButton(){
+        VIDEO_TUTORIALS_BUTTON.click();
+        return new VideoTutorialsPage(page);
     }
 
     @Step("Click the Contact Us button on the header")
