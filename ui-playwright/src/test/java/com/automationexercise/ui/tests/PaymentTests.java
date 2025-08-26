@@ -50,4 +50,21 @@ public class PaymentTests extends BaseTest{
                 .fillPaymentFormWithEmptyName(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when card number is empty")
+    void verifyInfoMessageWhenCardNumberIsEmpty() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyCardNumber(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenCardNumberIsEmpty(emptyInfoMessage);
+    }
 }
