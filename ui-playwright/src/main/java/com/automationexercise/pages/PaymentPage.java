@@ -117,4 +117,22 @@ public class PaymentPage extends BasePage{
         String actualMessage = getValidationMessage(field);
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
+
+    @Step("Fill payment form with empty year")
+    public PaymentPage fillPaymentFormWithEmptyYear(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.fill(paymentPageModel.getNameOnCard());
+        CARD_NUMBER_FIELD.fill(paymentPageModel.getCardNumber());
+        CVC_FIELD.fill(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.fill(paymentPageModel.getMonth());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    @Step("Check validation message if year is empty")
+    public void checkShowValidationMessageWhenYearIsEmpty(String expectedMessage) {
+        Locator field = EXPIRY_YEAR_FIELD;
+        String actualMessage = getValidationMessage(field);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
 }
