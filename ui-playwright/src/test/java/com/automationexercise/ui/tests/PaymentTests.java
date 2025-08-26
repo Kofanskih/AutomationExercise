@@ -67,4 +67,21 @@ public class PaymentTests extends BaseTest{
                 .fillPaymentFormWithEmptyCardNumber(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenCardNumberIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when cvc is empty")
+    void verifyInfoMessageWhenCVCIsEmpty() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyCVC(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
+    }
 }
