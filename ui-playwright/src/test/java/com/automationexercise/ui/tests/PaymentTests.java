@@ -84,4 +84,21 @@ public class PaymentTests extends BaseTest{
                 .fillPaymentFormWithEmptyCVC(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenCVCIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when month is empty")
+    void verifyInfoMessageWhenMonthIsEmpty() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyMonth(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
+    }
 }
