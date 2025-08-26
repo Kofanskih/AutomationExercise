@@ -101,4 +101,21 @@ public class PaymentTests extends BaseTest{
                 .fillPaymentFormWithEmptyMonth(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenMonthIsEmpty(emptyInfoMessage);
     }
+
+    @Test(description = "Verify info message when year is empty")
+    void verifyInfoMessageWhenYearIsEmpty() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyYear(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenYearIsEmpty(emptyInfoMessage);
+    }
 }
