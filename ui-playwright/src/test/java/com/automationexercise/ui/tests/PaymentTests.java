@@ -15,7 +15,8 @@ import org.testng.annotations.Test;
 @TmsLink("TC-013")
 public class PaymentTests extends BaseTest{
     private String title = "ORDER PLACED!";
-    private String emptyInfoMessage = "1Заполните это поле.";
+    private String emptyInfoMessage = "Заполните это поле.";
+    private String expectedMainURL = "https://automationexercise.com/";
 
     @Test(description = "Pay and confirm order with correct data")
     void payAndConfirmOrderWithCorrectData() {
@@ -117,5 +118,23 @@ public class PaymentTests extends BaseTest{
                 .clickPlaceOrderButton()
                 .fillPaymentFormWithEmptyYear(new PaymentPageModel().existPaymentData())
                 .checkShowValidationMessageWhenYearIsEmpty(emptyInfoMessage);
+    }
+
+    @Test(description = "Verify user is on the main page after finish payment")
+    void verifyUserIsOnTheMainPageAfterFinishPayment() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentForm(new PaymentPageModel().existPaymentData())
+                .clickContinueButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
     }
 }
