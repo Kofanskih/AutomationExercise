@@ -30,4 +30,22 @@ public class CheckoutTests extends BaseTest{
                 .clickPlaceOrderButton()
                 .checkUrlOnThePaymentPage(expectedPaymentURL);
     }
+
+    @Test(description = "Place order with no logged user")
+    void placeOrderWithNotLoggedUser() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .goToTheLoginPage()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickCartButton()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .checkUrlOnThePaymentPage(expectedPaymentURL);
+    }
 }
