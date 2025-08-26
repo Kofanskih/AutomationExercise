@@ -4,6 +4,7 @@ import com.automationexercise.pageModels.PaymentPageModel;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
+import org.testng.AssertJUnit;
 
 import static org.testng.Assert.assertEquals;
 
@@ -42,5 +43,27 @@ public class PaymentPage extends BasePage{
     public void checkPlaceOrderTitle(String title) {
         String actualText = TITLE.innerText();
         assertEquals(actualText, title);
+    }
+
+    @Step("Fill payment form with empty name on card")
+    public PaymentPage fillPaymentFormWithEmptyName(PaymentPageModel paymentPageModel){
+        CARD_NUMBER_FIELD.fill(paymentPageModel.getCardNumber());
+        CVC_FIELD.fill(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.fill(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD.fill(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+
+        return this;
+    }
+
+    public String getValidationMessage(Locator element) {
+        return (String) element.evaluate("el => el.validationMessage");
+    }
+
+    @Step("Check validation message if name on card is empty")
+    public void checkShowValidationMessageWhenNameOnCardIsEmpty(String expectedMessage) {
+        Locator field = NAME_ON_CARD_FIELD;
+        String actualMessage = getValidationMessage(field);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
 }
