@@ -66,4 +66,21 @@ public class PaymentPage extends BasePage{
         String actualMessage = getValidationMessage(field);
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
     }
+
+    @Step("Fill payment form with empty card number")
+    public PaymentPage fillPaymentFormWithEmptyCardNumber(PaymentPageModel paymentPageModel){
+        NAME_ON_CARD_FIELD.fill(paymentPageModel.getNameOnCard());
+        CVC_FIELD.fill(paymentPageModel.getCvc());
+        EXPIRY_MONTH_FIELD.fill(paymentPageModel.getMonth());
+        EXPIRY_YEAR_FIELD.fill(paymentPageModel.getYear());
+        PAY_AND_CONFIRM_BUTTON.click();
+        return this;
+    }
+
+    @Step("Check validation message if card name is empty")
+    public void checkShowValidationMessageWhenCardNumberIsEmpty(String expectedMessage) {
+        Locator field = CARD_NUMBER_FIELD;
+        String actualMessage = getValidationMessage(field);
+        AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
 }
