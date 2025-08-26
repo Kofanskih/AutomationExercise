@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 @TmsLink("TC-013")
 public class PaymentTests extends BaseTest{
     private String title = "ORDER PLACED!";
+    private String emptyInfoMessage = "1Заполните это поле.";
 
     @Test(description = "Pay and confirm order with correct data")
     void payAndConfirmOrderWithCorrectData() {
@@ -31,5 +32,22 @@ public class PaymentTests extends BaseTest{
                 .clickPlaceOrderButton()
                 .fillPaymentForm(new PaymentPageModel().existPaymentData())
                 .checkPlaceOrderTitle(title);
+    }
+
+    @Test(description = "Verify info message when name on card is empty")
+    void verifyInfoMessageWhenNameOnCardIsEmpty() {
+        new MainPage(page)
+                .acceptCookies();
+        new HeaderPage(page)
+                .clickLoginButton()
+                .fillLoginForm(new LoginPageModel().myLogin());
+        new HeaderPage(page)
+                .clickProductsButton()
+                .addItemToTheCartOnTheProductsPage()
+                .clickOnTheViewCartButtonOnTheModalWindow()
+                .clickToCheckoutButtonOnTheCartPage()
+                .clickPlaceOrderButton()
+                .fillPaymentFormWithEmptyName(new PaymentPageModel().existPaymentData())
+                .checkShowValidationMessageWhenNameOnCardIsEmpty(emptyInfoMessage);
     }
 }
