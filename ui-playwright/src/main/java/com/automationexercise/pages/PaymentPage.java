@@ -16,6 +16,7 @@ public class PaymentPage extends BasePage{
     private final Locator EXPIRY_YEAR_FIELD = page.locator("[data-qa='expiry-year']");
     private final Locator PAY_AND_CONFIRM_BUTTON = page.locator("[data-qa='pay-button']");
     private final Locator TITLE = page.locator("[data-qa='order-placed']");
+    private final Locator CONTINUE_BUTTON = page.locator("[data-qa='continue-button']");
 
 
     public PaymentPage(Page page) {
@@ -52,7 +53,6 @@ public class PaymentPage extends BasePage{
         EXPIRY_MONTH_FIELD.fill(paymentPageModel.getMonth());
         EXPIRY_YEAR_FIELD.fill(paymentPageModel.getYear());
         PAY_AND_CONFIRM_BUTTON.click();
-
         return this;
     }
 
@@ -125,7 +125,6 @@ public class PaymentPage extends BasePage{
         CVC_FIELD.fill(paymentPageModel.getCvc());
         EXPIRY_MONTH_FIELD.fill(paymentPageModel.getMonth());
         PAY_AND_CONFIRM_BUTTON.click();
-
         return this;
     }
 
@@ -134,5 +133,11 @@ public class PaymentPage extends BasePage{
         Locator field = EXPIRY_YEAR_FIELD;
         String actualMessage = getValidationMessage(field);
         AssertJUnit.assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Step("Click continue button")
+    public MainPage clickContinueButton(){
+        CONTINUE_BUTTON.click();
+        return new MainPage(page);
     }
 }
