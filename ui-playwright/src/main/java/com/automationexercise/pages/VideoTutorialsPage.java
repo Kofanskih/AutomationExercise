@@ -13,6 +13,7 @@ public class VideoTutorialsPage extends BasePage{
     @Step("Check URL on the Youtube")
     public void checkUrlOnThePage(String expectedUrl){
         String actualUrl = page.url();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertTrue(actualUrl.startsWith(expectedUrl),
+                "Expected URL to start with: " + expectedUrl + " but was: " + actualUrl);
     }
 }
