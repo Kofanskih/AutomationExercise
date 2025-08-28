@@ -10,7 +10,7 @@ public class APITestingPage extends BasePage{
     private final Locator CENTER_TEXT_TITLE = page.locator(".title.text-center");
     private final Locator LIST = page.locator("a[href='#collapse1']");
     private final Locator EXPANDED_BLOCK = page.locator("div[id='collapse1'] ul[class='list-group']");
-    private final Locator COLLAPSED_BLOCK = page.locator("div#collapse1.panel-collapse.collapsing");
+    private final Locator COLLAPSED_BLOCK = page.locator("div#collapse1.panel-collapse.collapse");
 
     public APITestingPage(Page page) {
         super(page);
@@ -42,6 +42,6 @@ public class APITestingPage extends BasePage{
 
     @Step("Check the list is collapsed")
     public void checkTheListIsCollapsed(){
-        assertTrue(COLLAPSED_BLOCK.isVisible(), "Block should be collapsed but is visible");
+        assertFalse(COLLAPSED_BLOCK.isVisible(), "Block should be collapsed but is visible");
     }
 }

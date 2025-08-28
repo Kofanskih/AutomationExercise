@@ -4,14 +4,13 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class TestCasesPage extends BasePage{
     private final Locator CENTER_TEXT_TITLE = page.locator(".title.text-center");
     private final Locator LIST = page.locator("a[href='#collapse1']");
     private final Locator EXPANDED_BLOCK = page.locator("div[id='collapse1'] ul[class='list-group']");
-    private final Locator COLLAPSED_BLOCK = page.locator("div#collapse1.panel-collapse.collapsing");
+    private final Locator COLLAPSED_BLOCK = page.locator("div#collapse1.panel-collapse.collapse");
 
     public TestCasesPage(Page page) {
         super(page);
@@ -43,6 +42,6 @@ public class TestCasesPage extends BasePage{
 
     @Step("Check the list is collapsed")
     public void checkTheListIsCollapsed(){
-        assertTrue(COLLAPSED_BLOCK.isVisible(), "Block should be collapsed but is visible");
+        assertFalse(COLLAPSED_BLOCK.isVisible(), "Block should be collapsed but is visible");
     }
 }

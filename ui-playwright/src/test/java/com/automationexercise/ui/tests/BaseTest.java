@@ -1,6 +1,5 @@
 package com.automationexercise.ui.tests;
 
-import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.BrowserManager;
 import com.microsoft.playwright.Browser;
@@ -15,7 +14,6 @@ public abstract class BaseTest {
     protected Browser browser;
     protected BrowserContext context;
     protected Page page;
-    protected BasePage basePage;
 
     @BeforeMethod
     public void setUp() {
@@ -23,7 +21,10 @@ public abstract class BaseTest {
         browser = BrowserManager.getBrowser(playwright);
         context = BrowserManager.createContext(browser);
         page = context.newPage();
-        new MainPage(page).open();
+
+        MainPage mainPage = new MainPage(page);
+        mainPage.configurePage(page);
+        mainPage.open();
     }
 
     @AfterMethod

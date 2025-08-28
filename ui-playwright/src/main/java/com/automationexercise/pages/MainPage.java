@@ -11,7 +11,7 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class MainPage extends BasePage{
-    private final Locator ACCEPT_COOKIES_BUTTON = page.locator(".fc-button-label").filter(new Locator.FilterOptions().setHasText("Соглашаюсь"));
+    private final Locator ACCEPT_COOKIES_BUTTON = page.locator("button.fc-cta-consent");
     private final Locator USER_LOGGED_IN_TEXT = page.locator("text=Logged in as");
     private final Locator ADD_ITEM_TO_CART = page.locator("a[data-product-id='3']").first();
     private final Locator ADDED_MODAL_WINDOW_TEXT = page.locator("text=Your product has been added to cart.");

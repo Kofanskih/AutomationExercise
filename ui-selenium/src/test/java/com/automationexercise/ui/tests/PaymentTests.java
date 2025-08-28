@@ -134,6 +134,7 @@ public class PaymentTests extends BaseTest{
                 .clickToCheckoutButtonOnTheCartPage()
                 .clickPlaceOrderButton()
                 .fillPaymentForm(new PaymentPageModel().existPaymentData())
-                .clickContinueButton().checkUrlOnTheMainPage(expectedMainURL);
+                .clickContinueButton()
+                .checkUrlOnTheMainPage(expectedMainURL);
     }
 }

@@ -54,10 +54,6 @@ public class PaymentPage extends BasePage{
         return driver.findElement(PAY_AND_CONFIRM_BUTTON);
     }
 
-    private WebElement placeOrderTitle() {
-        return driver.findElement(TITLE);
-    }
-
     @Step("Fill payment form")
     public PaymentPage fillPaymentForm(PaymentPageModel paymentPageModel){
         nameInput().sendKeys(paymentPageModel.getNameOnCard());
@@ -72,7 +68,7 @@ public class PaymentPage extends BasePage{
 
     @Step("Check place order title")
     public void checkPlaceOrderTitle(String title) {
-        String actualText = placeOrderTitle().getText();
+        String actualText = waitUntilVisible(TITLE).getText();
         assertEquals(actualText, title);
     }
 
