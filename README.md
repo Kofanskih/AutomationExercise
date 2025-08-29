@@ -1,39 +1,51 @@
 # Demo QA Automation Project
 
-This repository is a **demo project** created to showcase my skills in **test automation** for both UI and API testing.  
+This repository is a demo project created to showcase my skills in test automation for both **UI** and **API** testing.  
 It contains multiple independent modules, each demonstrating the use of a popular automation framework.
 
-## Project Structure
+---
 
-- **UI Testing**
-  - `ui-selenium` – classic WebDriver-based UI tests
-  - `ui-selenide` – concise and readable UI tests using the Selenide framework
-  - `ui-playwright` – modern and fast UI tests with Microsoft Playwright
+## 📂 Project Structure
 
-- **API Testing**
-  - `api-restassured` – automated API tests for REST endpoints
+### UI Testing
+- **ui-selenium** – classic WebDriver-based UI tests
+- **ui-selenide** – concise and readable UI tests using the Selenide framework
+- **ui-playwright** – modern and fast UI tests with Microsoft Playwright
 
-## Technologies Used
+### API Testing
+- **api-restassured** – automated API tests for REST endpoints
+
+---
+
+## 🛠️ Technologies Used
 
 - **Java 17+**
 - **Maven**
 - **TestNG**
 - **Selenium / Selenide / Playwright**
 - **Rest-Assured**
-- **Allure Report** for test reporting
+- **Allure Report** for reporting
+- **Jenkins (CI/CD)** – *planned integration*
+- **Docker** – *planned integration*
 
-## Goals
+---
+
+## 🎯 Goals
 
 The main goal of this project is to demonstrate:
 - Strong knowledge of modern test automation tools
 - Ability to design modular and maintainable test frameworks
 - Skills in writing clean, readable, and reliable tests
-- Experience with both **UI** and **API** automation approaches
+- Experience with both UI and API automation approaches
 
-## How to Run
+---
 
-Each module is independent and can be executed separately.  
+## ▶️ How to Run
+
+Each module is independent and can be executed separately.
+
 Examples:
+
 ```bash
 # Run UI tests
 mvn test -pl ui-selenium
@@ -42,3 +54,23 @@ mvn test -pl ui-playwright
 
 # Run API tests
 mvn test -pl api-restassured
+```
+
+---
+
+## 🚀 Roadmap
+
+This project is actively evolving. Planned improvements include:
+
+- Full CI/CD integration with Jenkins pipelines
+- Dockerized test execution for easier setup
+- Expanding test coverage with more complex scenarios
+- Adding parallel execution for faster runs
+- Experimenting with new automation tools and libraries
+
+---
+
+## 📌 Notes
+
+This repository is a demo project and is continuously being updated.
+Some parts may remain in progress as I explore and add new features.
