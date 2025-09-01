@@ -40,6 +40,34 @@ The main goal of this project is to demonstrate:
 
 ---
 
+## 🧩 Dependencies Overview
+
+### 🔹 Common
+- **TestNG** – testing framework
+- **AspectJ Weaver** – AOP support (used by Allure & proxies)
+- **Allure (testng / selenide / commons)** – reporting integration
+- **DataFaker** – random test data generation
+- **Lombok** – boilerplate code reduction
+- **Owner** – configuration via properties
+
+### 🔹 UI: Selenium
+- **Selenium Java** – classic WebDriver API
+- **WebDriverManager** – automatic driver management
+
+### 🔹 UI: Selenide
+- **Selenide** – simplified UI testing wrapper over Selenium
+
+### 🔹 UI: Playwright
+- **Playwright (Java)** – modern UI automation with high speed
+
+### 🔹 API: Rest-Assured
+- **Rest-Assured** – API testing library
+- **Jackson (annotations + databind)** – JSON serialization/deserialization
+- **Jsoup** – HTML parsing
+
+---
+
+
 ## ▶️ How to Run
 
 Each module is independent and can be executed separately.
