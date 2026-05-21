@@ -12,9 +12,7 @@ public class APITestingPage extends BasePage{
     private final By EXPANDED_BLOCK = By.xpath("//div[@id=\"collapse1\"]/ul[@class=\"list-group\"]");
     private final By COLLAPSED_BLOCK = By.xpath("//div[@id=\"collapse1\"][@class=\"panel-collapse collapsing\"]");
 
-    public APITestingPage(WebDriver driver) {
-        super(driver);
-    }
+    public APITestingPage() {}
 
     @Step("Check correct title on the API Testing page")
     public void checkTitleOnTheAPITestingPage(String title){
