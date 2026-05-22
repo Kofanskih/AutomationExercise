@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -23,8 +24,7 @@ public class ProductsPage extends BasePage{
     private final By BRANDS_MADAME_BUTTON = By.cssSelector("[href=\"/brand_products/Madame\"]");
     private final By VIEW_CART_BUTTON = By.xpath("(//p[@class=\"text-center\"])[2]");
 
-    public ProductsPage(WebDriver driver) {
-        super(driver);
+    public ProductsPage() {
     }
 
     @Step("Check title on the product page")
@@ -48,8 +48,8 @@ public class ProductsPage extends BasePage{
 
     @Step("Add item to the cart on the Products page")
     public ProductsPage addItemToTheCartOnTheProductsPage(){
-        WebElement element = driver.findElement(ADD_ITEM_TO_CART);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = DriverManager.getDriver().findElement(ADD_ITEM_TO_CART);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         waitUntilClickable(ADD_ITEM_TO_CART).click();
         return this;
     }
@@ -71,7 +71,7 @@ public class ProductsPage extends BasePage{
     }
 
     public WebElement modalWindowIsHiddenElement(){
-        return driver.findElement(MODAL_WINDOW_HIDDEN);
+        return DriverManager.getDriver().findElement(MODAL_WINDOW_HIDDEN);
     }
 
     @Step("Check that modal window is closed")
@@ -81,15 +81,15 @@ public class ProductsPage extends BasePage{
 
     @Step("Click view product button on the Products page")
     public ProductsPage clickViewProductOnTheProductsPage(){
-        WebElement element = driver.findElement(VIEW_PRODUCT_BUTTON);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = DriverManager.getDriver().findElement(VIEW_PRODUCT_BUTTON);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         waitUntilClickable(VIEW_PRODUCT_BUTTON).click();
         return this;
     }
 
     @Step("Check URL on the Products page")
     public void checkUrlOnTheProductPage(String expectedUrl){
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = DriverManager.getDriver().getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
     }
 
@@ -102,8 +102,8 @@ public class ProductsPage extends BasePage{
 
     @Step("Click on the Brands Madame category on the Products page")
     public ProductsPage clickOnTheBrandsMadameCategoryOnTheProductsPage(){
-        WebElement element = driver.findElement(BRANDS_MADAME_BUTTON);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = DriverManager.getDriver().findElement(BRANDS_MADAME_BUTTON);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         waitUntilClickable(BRANDS_MADAME_BUTTON).click();
         return this;
     }
@@ -111,6 +111,6 @@ public class ProductsPage extends BasePage{
     @Step("Click on the view cart button on the Modal window")
     public CartPage clickOnTheViewCartButtonOnTheModalWindow() {
         waitUntilVisible(VIEW_CART_BUTTON).click();
-        return new CartPage(driver);
+        return new CartPage();
     }
 }
