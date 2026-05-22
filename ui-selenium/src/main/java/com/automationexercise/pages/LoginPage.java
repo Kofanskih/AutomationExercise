@@ -2,10 +2,10 @@ package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.LoginPageModel;
 import com.automationexercise.pageModels.RegistrationPageModel;
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -20,39 +20,37 @@ public class LoginPage extends BasePage{
     private final By SIGNUP_BUTTON = By.cssSelector("[data-qa=\"signup-button\"]");
     private final By SIGNUP_ERROR_MESSAGE = By.cssSelector("[style=\"color: red;\"]");
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
+    public LoginPage() {}
 
     private WebElement emailInput() {
-        return driver.findElement(LOGIN_EMAIL_ADDRESS_FIELD);
+        return DriverManager.getDriver().findElement(LOGIN_EMAIL_ADDRESS_FIELD);
     }
 
     private WebElement passwordInput() {
-        return driver.findElement(PASSWORD_FIELD);
+        return DriverManager.getDriver().findElement(PASSWORD_FIELD);
     }
 
     private WebElement loginButton() {
-        return driver.findElement(LOGIN_BUTTON);
+        return DriverManager.getDriver().findElement(LOGIN_BUTTON);
     }
 
     private WebElement signUpNameInput() {
-        return driver.findElement(SIGN_UP_NAME_FIELD);
+        return DriverManager.getDriver().findElement(SIGN_UP_NAME_FIELD);
     }
 
     private WebElement signUpEmailInput() {
-        return driver.findElement(SIGNUP_EMAIL_ADDRESS_FIELD);
+        return DriverManager.getDriver().findElement(SIGNUP_EMAIL_ADDRESS_FIELD);
     }
 
     private WebElement signUpButton() {
-        return driver.findElement(SIGNUP_BUTTON);
+        return DriverManager.getDriver().findElement(SIGNUP_BUTTON);
     }
 
     public String getLoginErrorText() {
-        return driver.findElement(LOGIN_ERROR_TEXT).getText();
+        return DriverManager.getDriver().findElement(LOGIN_ERROR_TEXT).getText();
     }
     public String getSignUpErrorText() {
-        return driver.findElement(SIGNUP_ERROR_MESSAGE).getText();
+        return DriverManager.getDriver().findElement(SIGNUP_ERROR_MESSAGE).getText();
     }
 
     @Step ("Fill login form and click login button")
@@ -61,7 +59,7 @@ public class LoginPage extends BasePage{
         passwordInput().sendKeys(loginPageModel.getUserPassword());
         loginButton().click();
 
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     @Step ("Fill login form with empty email field and click login button")
@@ -76,7 +74,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if login email field is empty")
     public void checkShowValidationMessageWhenLoginEmailIsEmpty(String expectedMessage) {
         WebElement emailField = emailInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", emailField);
@@ -95,7 +93,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if password field is empty")
     public void checkShowValidationMessageWhenLoginPasswordIsEmpty(String expectedMessage) {
         WebElement passwordField = passwordInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", passwordField);
@@ -111,7 +109,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if email is invalid")
     public void checkShowValidationMessageWhenEmailIsInvalid(String expectedMessage) {
         WebElement emailField = emailInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", emailField);
@@ -124,7 +122,7 @@ public class LoginPage extends BasePage{
         signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
         signUpButton().click();
 
-        return new SignUpPage(driver);
+        return new SignUpPage();
     }
 
     @Step ("Fill sign up form with exists user and click sign up button")
@@ -133,7 +131,7 @@ public class LoginPage extends BasePage{
         signUpEmailInput().sendKeys(registrationPageModel.getUserEmailAddress());
         signUpButton().click();
 
-        return new SignUpPage(driver);
+        return new SignUpPage();
     }
 
     @Step("Check sign up error message")
@@ -154,7 +152,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if sign up name is empty")
     public void checkShowValidationMessageWhenSignUpNameIsEmpty(String expectedMessage) {
         WebElement signUpName = signUpNameInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", signUpName);
@@ -173,7 +171,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if sign up email is empty")
     public void checkShowValidationMessageWhenSignUpEmailIsEmpty(String expectedMessage) {
         WebElement signUpEmail = signUpEmailInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", signUpEmail);
@@ -192,7 +190,7 @@ public class LoginPage extends BasePage{
     @Step("Check validation message if sign up email is invalid")
     public void checkShowValidationMessageWhenSignUpEmailIsInvalid(String expectedMessage) {
         WebElement signUpEmail = signUpEmailInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", signUpEmail);
