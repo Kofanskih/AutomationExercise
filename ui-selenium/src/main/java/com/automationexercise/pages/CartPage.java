@@ -2,7 +2,6 @@ package com.automationexercise.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.assertEquals;
 
@@ -13,9 +12,7 @@ public class CartPage extends BasePage{
     private final By DELETE_BUTTON = By.xpath("//a[@class=\"cart_quantity_delete\"]");
     private final By PROCEED_TO_CHECKOUT_BUTTON = By.xpath("//div//a[@class=\"btn btn-default check_out\"]");
 
-    public CartPage(WebDriver driver) {
-        super(driver);
-    }
+    public CartPage() {}
 
     @Step("Check that user is on the cart page")
     public void checkUserOnTheCartPage(String title) {
@@ -32,7 +29,7 @@ public class CartPage extends BasePage{
     @Step("Click here button on the empty cart page")
     public ProductsPage clickHereButtonTheCartPage(){
         waitUntilClickable(HERE_BUTTON).click();
-        return new ProductsPage(driver);
+        return new ProductsPage();
     }
 
     @Step("Delete item on the cart page")
@@ -44,6 +41,6 @@ public class CartPage extends BasePage{
     @Step("Click checkout button on the cart page")
     public CheckoutPage clickToCheckoutButtonOnTheCartPage(){
         waitUntilClickable(PROCEED_TO_CHECKOUT_BUTTON).click();
-        return new CheckoutPage(driver);
+        return new CheckoutPage();
     }
 }
