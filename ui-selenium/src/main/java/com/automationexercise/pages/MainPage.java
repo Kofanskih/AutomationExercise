@@ -1,9 +1,9 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static org.testng.Assert.assertEquals;
@@ -24,9 +24,7 @@ public class MainPage extends BasePage{
     private final By TEST_CASES_CAROUSEL_BUTTON = By.xpath("//div[@class=\"carousel-inner\"]//a[@href=\"/test_cases\"]");
     private final By API_TESTING_CAROUSEL_BUTTON = By.xpath("//div[@class=\"carousel-inner\"]//a[@href=\"/api_list\"]");
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
+    public MainPage(){}
 
     @Step("User accepts cookies")
     public MainPage acceptCookies() {
@@ -46,7 +44,7 @@ public class MainPage extends BasePage{
 
     @Step("Check URL on the Main page")
     public void checkUrlOnTheMainPage(String expectedUrl){
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = DriverManager.getDriver().getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
     }
 
@@ -73,7 +71,7 @@ public class MainPage extends BasePage{
     }
 
     public WebElement modalWindowIsHiddenElement(){
-        return driver.findElement(MODAL_WINDOW_HIDDEN);
+        return DriverManager.getDriver().findElement(MODAL_WINDOW_HIDDEN);
     }
 
     @Step("Check that the modal window is closed on the Main page")
@@ -83,15 +81,15 @@ public class MainPage extends BasePage{
 
     @Step("Click view product button on the Main page")
     public MainPage clickViewProductOnTheMainPage(){
-        WebElement element = driver.findElement(VIEW_PRODUCT_BUTTON);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = DriverManager.getDriver().findElement(VIEW_PRODUCT_BUTTON);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         waitUntilClickable(VIEW_PRODUCT_BUTTON).click();
         return this;
     }
 
     @Step("Check URL on the Product page")
     public void checkUrlOnTheProductPage(String expectedUrl){
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = DriverManager.getDriver().getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
     }
 
@@ -99,32 +97,32 @@ public class MainPage extends BasePage{
     public ProductsPage clickOnTheMenJeansCategoryOnTheMainPage(){
         waitUntilClickable(MEN_BUTTON).click();
         waitUntilVisible(JEANS_MEN_BUTTON).click();
-        return new ProductsPage(driver);
+        return new ProductsPage();
     }
 
     @Step("Click the Brands H&M on the Main page")
     public ProductsPage clickOnTheBrandsNMCategoryOnTheMainPage(){
-        WebElement element = driver.findElement(BRANDS_HM_BUTTON);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement element = DriverManager.getDriver().findElement(BRANDS_HM_BUTTON);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         waitUntilClickable(BRANDS_HM_BUTTON).click();
-        return new ProductsPage(driver);
+        return new ProductsPage();
     }
 
     @Step("Click the view cart button on the modal window")
     public CartPage clickOnTheViewCartButtonOnTheModalWindow(){
         waitUntilClickable(VIEW_CART_BUTTON).click();
-        return new CartPage(driver);
+        return new CartPage();
     }
 
     @Step("Click the Test Cases button on the carousel")
     public TestCasesPage clickOnTheTestCasesButtonOnTheCarousel(){
         waitUntilClickable(TEST_CASES_CAROUSEL_BUTTON).click();
-        return new TestCasesPage(driver);
+        return new TestCasesPage();
     }
 
     @Step("Click the API Testing button on the carousel")
     public APITestingPage clickOnTheAPITestingButtonOnTheCarousel(){
         waitUntilClickable(API_TESTING_CAROUSEL_BUTTON).click();
-        return new APITestingPage(driver);
+        return new APITestingPage();
     }
 }
