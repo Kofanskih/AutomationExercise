@@ -2,7 +2,7 @@ package com.automationexercise.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 
 import static org.testng.Assert.assertEquals;
 
@@ -12,9 +12,7 @@ public class TestCasesPage extends BasePage{
     private final By EXPANDED_BLOCK = By.xpath("//div[@id=\"collapse1\"]/ul[@class=\"list-group\"]");
     private final By COLLAPSED_BLOCK = By.xpath("//div[@id=\"collapse1\"][@class=\"panel-collapse collapsing\"]");
 
-    public TestCasesPage(WebDriver driver) {
-        super(driver);
-    }
+    public TestCasesPage() {}
 
     @Step("Check correct title on the Test cases page")
     public void checkTitleOnTheTestCasesPage(String title){
