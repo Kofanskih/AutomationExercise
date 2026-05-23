@@ -22,9 +22,9 @@ public class LoginTests extends BaseTest{
 
     @Test(description = "User can login with correct credentials")
     public void userLogin(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin())
                 .checkUserLoggedInText(USER_LOGGED_IN_TEXT);
@@ -32,20 +32,20 @@ public class LoginTests extends BaseTest{
 
     @Test(description = "User can't login with incorrect credentials")
     public void userLoginWithIncorrectCredentials(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().incorrectDataLogin());
-        new LoginPage(driver)
+        new LoginPage()
                 .checkLoginErrorMessage(LOGIN_ERROR_MESSAGE);
     }
 
     @Test(description = "User can't login with empty email field")
     public void userLoginWithEmptyEmailField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginFormWithEmptyEmailField(new LoginPageModel().existUserLogin())
                 .checkShowValidationMessageWhenLoginEmailIsEmpty(EMPTY_INFO_MESSAGE);
@@ -53,9 +53,9 @@ public class LoginTests extends BaseTest{
 
     @Test(description = "User can't login with empty password field")
     public void userLoginWithEmptyPasswordField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginFormWithEmptyPasswordField(new LoginPageModel().existUserLogin())
                 .checkShowValidationMessageWhenLoginPasswordIsEmpty(EMPTY_INFO_MESSAGE);
@@ -63,12 +63,12 @@ public class LoginTests extends BaseTest{
 
     @Test(description = "User can't login with invalid email")
     public void userLoginWithInvalidEmail(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().invalidEmailLogin());
-        new LoginPage(driver)
+        new LoginPage()
                 .checkShowValidationMessageWhenEmailIsInvalid(INVALID_EMAIL_INFO_MESSAGE);
     }
 }
