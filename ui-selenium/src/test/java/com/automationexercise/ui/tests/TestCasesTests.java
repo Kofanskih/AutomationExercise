@@ -16,18 +16,18 @@ public class TestCasesTests extends BaseTest{
 
     @Test(description = "User go to the Test cases page")
     void goToTheTestCasesPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickTestCasesButton()
                 .checkTitleOnTheTestCasesPage(testCasesTitle);
     }
 
     @Test(description = "Expand list on the Test cases page")
     void expandListOnTheTestCasesPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickTestCasesButton()
                 .expandCollapsedList()
                 .checkTheListIsExpanded();
@@ -35,9 +35,9 @@ public class TestCasesTests extends BaseTest{
 
     @Test(description = "Collapse expanded list on the Test cases page")
     void collapseExpandedListOnTheTestCasesPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickTestCasesButton()
                 .expandCollapsedList()
                 .collapseExpandedList()

@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,9 +16,7 @@ public class FooterPage extends BasePage{
     private final By SUBSCRIBE_BUTTON = By.cssSelector("[id=\"subscribe\"]");
     private final By SUCCESS_SUBSCRIBE_MESSAGE = By.xpath("//div[@class=\"alert-success alert\"]");
 
-    public FooterPage(WebDriver driver) {
-        super(driver);
-    }
+    public FooterPage() {}
 
     @Step("Check that user is subscribed")
     public void checkUserIsSubscribed(RegistrationPageModel registrationPageModel, String message){
@@ -34,13 +33,13 @@ public class FooterPage extends BasePage{
     }
 
     private WebElement subscribeInput() {
-        return driver.findElement(SUBSCRIBE_FIELD);
+        return DriverManager.getDriver().findElement(SUBSCRIBE_FIELD);
     }
 
     @Step("Check validation message if user fill invalid email")
     public void checkShowValidationMessageUsingInvalidEmailForSubscription(String expectedMessage) {
         WebElement subscribeField = subscribeInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", subscribeField);

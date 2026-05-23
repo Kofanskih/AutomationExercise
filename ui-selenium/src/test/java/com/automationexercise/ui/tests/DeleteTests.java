@@ -21,9 +21,9 @@ public class DeleteTests extends BaseTest{
 
     @Test(description = "Delete user account")
     public void deleteUser(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpForm(new RegistrationPageModel().getRegistrationUserDataForDeleting())
                 .chooseGenderFemale()
@@ -34,7 +34,7 @@ public class DeleteTests extends BaseTest{
                 .markSpecialOfferCheckbox()
                 .clickCreateAccountButton()
                 .clickContinueButton();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickDeleteAccountButton()
                 .clickContinueButtonOnTheDeletePage()
                 .checkUrlOnTheMainPage(expectedMainURL);
@@ -42,9 +42,9 @@ public class DeleteTests extends BaseTest{
 
     @Test(description = "Check title after deleting account")
     void checkTitleAfterDeletingAccount(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpForm(new RegistrationPageModel().getRegistrationUserDataForDeleting())
                 .chooseGenderFemale()
@@ -55,16 +55,16 @@ public class DeleteTests extends BaseTest{
                 .markSpecialOfferCheckbox()
                 .clickCreateAccountButton()
                 .clickContinueButton();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickDeleteAccountButton()
                 .checkTitleAfterDeletingAccount(title);
     }
 
     @Test(description = "Try to login with deleting account")
     void userTryToLoginAfterDeletingAccount(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpForm(new RegistrationPageModel().getRegistrationUserDataForDeleting())
                 .chooseGenderFemale()
@@ -75,13 +75,13 @@ public class DeleteTests extends BaseTest{
                 .markSpecialOfferCheckbox()
                 .clickCreateAccountButton()
                 .clickContinueButton();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickDeleteAccountButton()
                 .clickContinueButtonOnTheDeletePage();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().loginForDelete());
-        new LoginPage(driver)
+        new LoginPage()
                 .checkLoginErrorMessage(loginErrorMessage);
     }
 }

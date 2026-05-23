@@ -1,10 +1,10 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.RegistrationPageModel;
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class SignUpPage extends BasePage{
@@ -32,100 +32,98 @@ public class SignUpPage extends BasePage{
     private final By CREATE_ACCOUNT_BUTTON = By.cssSelector("[data-qa='create-account']");
     private final By CONTINUE_BUTTON = By.cssSelector("[data-qa='continue-button']");
 
-    public SignUpPage(WebDriver driver) {
-        super(driver);
-    }
+    public SignUpPage() {}
 
     private WebElement femaleRadioButton() {
-        return driver.findElement(FEMALE_RADIOBUTTON);
+        return DriverManager.getDriver().findElement(FEMALE_RADIOBUTTON);
     }
 
     private WebElement daysDropdown() {
-        return driver.findElement(DAYS_DROPDOWN);
+        return DriverManager.getDriver().findElement(DAYS_DROPDOWN);
     }
 
     private WebElement dayValue() {
-        return driver.findElement(DAY_VALUE);
+        return DriverManager.getDriver().findElement(DAY_VALUE);
     }
 
     private WebElement monthsDropdown() {
-        return driver.findElement(MONTHS_DROPDOWN);
+        return DriverManager.getDriver().findElement(MONTHS_DROPDOWN);
     }
 
     private WebElement monthValue() {
-        return driver.findElement(MONTH_VALUE);
+        return DriverManager.getDriver().findElement(MONTH_VALUE);
     }
 
     private WebElement yearsDropdown() {
-        return driver.findElement(YEARS_DROPDOWN);
+        return DriverManager.getDriver().findElement(YEARS_DROPDOWN);
     }
 
     private WebElement yearValue() {
-        return driver.findElement(YEAR_VALUE);
+        return DriverManager.getDriver().findElement(YEAR_VALUE);
     }
 
     private WebElement newsletterCheckbox() {
-        return driver.findElement(NEWSLETTER_CHECKBOX);
+        return DriverManager.getDriver().findElement(NEWSLETTER_CHECKBOX);
     }
 
     private WebElement specialOfferCheckbox() {
-        return driver.findElement(SPECIAL_OFFER_CHECKBOX);
+        return DriverManager.getDriver().findElement(SPECIAL_OFFER_CHECKBOX);
     }
 
     private WebElement passwordField() {
-        return driver.findElement(PASSWORD_FIELD);
+        return DriverManager.getDriver().findElement(PASSWORD_FIELD);
     }
 
     private WebElement firstNameField() {
-        return driver.findElement(FIRST_NAME_FIELD);
+        return DriverManager.getDriver().findElement(FIRST_NAME_FIELD);
     }
 
     private WebElement lastNameField() {
-        return driver.findElement(LAST_NAME_FIELD);
+        return DriverManager.getDriver().findElement(LAST_NAME_FIELD);
     }
 
     private WebElement companyField() {
-        return driver.findElement(COMPANY_FIELD);
+        return DriverManager.getDriver().findElement(COMPANY_FIELD);
     }
 
     private WebElement addressField() {
-        return driver.findElement(ADDRESS_FIELD);
+        return DriverManager.getDriver().findElement(ADDRESS_FIELD);
     }
 
     private WebElement address2Field() {
-        return driver.findElement(ADDRESS2_FIELD);
+        return DriverManager.getDriver().findElement(ADDRESS2_FIELD);
     }
 
     private WebElement stateField() {
-        return driver.findElement(STATE_FIELD);
+        return DriverManager.getDriver().findElement(STATE_FIELD);
     }
 
     private WebElement cityField() {
-        return driver.findElement(CITY_FIELD);
+        return DriverManager.getDriver().findElement(CITY_FIELD);
     }
 
     private WebElement zipcodeField() {
-        return driver.findElement(ZIPCODE_FIELD);
+        return DriverManager.getDriver().findElement(ZIPCODE_FIELD);
     }
 
     private WebElement mobileField() {
-        return driver.findElement(MOBILE_FIELD);
+        return DriverManager.getDriver().findElement(MOBILE_FIELD);
     }
 
     private WebElement countryDropdown() {
-        return driver.findElement(COUNTRY_DROPDOWN);
+        return DriverManager.getDriver().findElement(COUNTRY_DROPDOWN);
     }
 
     private WebElement countryValue() {
-        return driver.findElement(COUNTRY_VALUE);
+        return DriverManager.getDriver().findElement(COUNTRY_VALUE);
     }
 
     private WebElement createAccountButton() {
-        return driver.findElement(CREATE_ACCOUNT_BUTTON);
+        return DriverManager.getDriver().findElement(CREATE_ACCOUNT_BUTTON);
     }
 
     private WebElement continueButton() {
-        return driver.findElement(CONTINUE_BUTTON);
+        return DriverManager.getDriver().findElement(CONTINUE_BUTTON);
     }
 
     @Step("Choose female gender")
@@ -182,7 +180,7 @@ public class SignUpPage extends BasePage{
     @Step("Click create account button")
     public SignUpPage clickCreateAccountButton() {
         WebElement button = createAccountButton();
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", button);
         button.click();
         return this;
     }
@@ -190,6 +188,6 @@ public class SignUpPage extends BasePage{
     @Step("Click continue account button")
     public MainPage clickContinueButton(){
         continueButton().click();
-        return new MainPage(driver);
+        return new MainPage();
     }
 }

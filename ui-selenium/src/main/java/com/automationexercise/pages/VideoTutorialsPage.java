@@ -1,19 +1,17 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.assertEquals;
 
 public class VideoTutorialsPage extends BasePage{
 
-    public VideoTutorialsPage(WebDriver driver) {
-        super(driver);
-    }
+    public VideoTutorialsPage() {}
 
     @Step("Check URL on the Youtube")
     public void checkUrlOnThePage(String expectedUrl){
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = DriverManager.getDriver().getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
     }
 }

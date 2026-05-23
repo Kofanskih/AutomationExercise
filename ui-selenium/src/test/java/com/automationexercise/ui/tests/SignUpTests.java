@@ -22,9 +22,9 @@ public class SignUpTests extends BaseTest{
 
     @Test(description = "User registration")
     void userSignUp(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpForm(new RegistrationPageModel().getRandomRegistrationUserData())
                 .chooseGenderFemale()
@@ -40,20 +40,20 @@ public class SignUpTests extends BaseTest{
 
     @Test(description = "User sign up with exists data")
     void userSignUpWithExistData(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithExistsUser(new RegistrationPageModel().getExistsUserData());
-        new LoginPage(driver)
+        new LoginPage()
                 .checkSignUpErrorMessage(SIGN_UP_ERROR_MESSAGE);
     }
 
     @Test(description = "User sign up with empty name field")
     void userSignUpWithEmptySignUpNameField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithEmptyNameField(new RegistrationPageModel().getRandomRegistrationUserData())
                 .checkShowValidationMessageWhenSignUpNameIsEmpty(EMPTY_INFO_MESSAGE);
@@ -61,9 +61,9 @@ public class SignUpTests extends BaseTest{
 
     @Test(description = "User sign up with empty email field")
     void userSignUpWithEmptySignUpEmailField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithEmptyEmailField(new RegistrationPageModel().getRandomRegistrationUserData())
                 .checkShowValidationMessageWhenSignUpEmailIsEmpty(EMPTY_INFO_MESSAGE);
@@ -71,9 +71,9 @@ public class SignUpTests extends BaseTest{
 
     @Test(description = "User sign up with invalid email")
     void userSignUpWithInvalidSignUpEmailField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillSignUpFormWithInvalidEmail(new RegistrationPageModel().getInvalidEmail())
                 .checkShowValidationMessageWhenSignUpEmailIsInvalid(INVALID_EMAIL_INFO_MESSAGE);

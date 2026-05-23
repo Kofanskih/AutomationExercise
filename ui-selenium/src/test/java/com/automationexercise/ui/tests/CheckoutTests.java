@@ -17,12 +17,12 @@ public class CheckoutTests extends BaseTest{
 
     @Test(description = "Place order with logged user")
     void placeOrderWithLoggedUser() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -33,16 +33,16 @@ public class CheckoutTests extends BaseTest{
 
     @Test(description = "Place order with no logged user")
     void placeOrderWithNotLoggedUser() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .clickToCheckoutButtonOnTheCartPage()
                 .goToTheLoginPage()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickCartButton()
                 .clickToCheckoutButtonOnTheCartPage()
                 .clickPlaceOrderButton()

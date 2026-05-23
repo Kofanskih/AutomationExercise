@@ -16,9 +16,9 @@ public class VideoTutorialsTests extends BaseTest{
 
     @Test(description = "Go to the Video Tutorials page")
     void goToTheVideoTutorialsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickVideoTutorialsButton()
                 .checkUrlOnThePage(expectedURL);
     }

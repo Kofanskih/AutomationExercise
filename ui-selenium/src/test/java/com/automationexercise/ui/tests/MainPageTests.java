@@ -23,25 +23,25 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Click logo on the main page")
     void clickLogoOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLogo()
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
     @Test(description = "Click home button on the main page")
     void clickHomeButtonOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickHomeButton()
                 .checkUrlOnTheMainPage(expectedMainURL);
     }
 
     @Test(description = "Add item to the cart on the main page")
     void addItemToTheCartOnTheMainPage() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .addItemToTheCartOnTheMainPage()
                 .checkProductAddedMessage(addedMessageOnTheModalWindow);
@@ -49,7 +49,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Click continue shopping after adding item")
     void closeAddedModalWindowOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .addItemToTheCartOnTheMainPage()
                 .clickContinueShoppingButtonOnTheModalWindowOnTheMainPage()
@@ -58,7 +58,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Click view product details on the main page")
     void viewProductDetailsOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .clickViewProductOnTheMainPage()
                 .checkUrlOnTheProductPage(expectedProductURL);
@@ -66,7 +66,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Go to Men Jeans category from the main page")
     void goToMenJeansCategoryOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .clickOnTheMenJeansCategoryOnTheMainPage()
                 .checkTitleOnTheProductPage(menJeansTitle);
@@ -74,7 +74,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Go to Brands H&M category from the main page")
     void goToBrandsHMCategoryOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .clickOnTheBrandsNMCategoryOnTheMainPage()
                 .checkTitleOnTheProductPage(brandsHMTitle);
@@ -82,7 +82,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Go to the cart after adding item on the main page")
     void goToTheCartAfterAddingItemOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .addItemToTheCartOnTheMainPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -91,7 +91,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Go to the Test cases page through button on the carousel on the main page")
     void goToTheTestCasesPageThroughCarouselOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .clickOnTheTestCasesButtonOnTheCarousel()
                 .checkTitleOnTheTestCasesPage(testCasesTitle);
@@ -99,7 +99,7 @@ public class MainPageTests extends BaseTest{
 
     @Test(description = "Go to the API Testing page through button on the carousel on the main page")
     void goToTheAPITestingPageThroughCarouselOnTheMainPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies()
                 .clickOnTheAPITestingButtonOnTheCarousel()
                 .checkTitleOnTheAPITestingPage(apiTestingTitle);

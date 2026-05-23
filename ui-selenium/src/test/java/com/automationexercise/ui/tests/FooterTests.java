@@ -18,17 +18,17 @@ public class FooterTests extends BaseTest{
 
     @Test(description = "User subscribed")
     void userSubscribe(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new FooterPage(driver)
+        new FooterPage()
                 .checkUserIsSubscribed(new RegistrationPageModel().getSubscribeEmail(), successfulSubscriptionValidationMessage);
     }
 
     @Test(description = "Try to subscribe with invalid email")
     void userSubscribeWithInvalidEmail(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new FooterPage(driver)
+        new FooterPage()
                 .fillSubscribeFieldWithInvalidEmail(new RegistrationPageModel().getInvalidSubscribeEmail())
                 .checkShowValidationMessageUsingInvalidEmailForSubscription(errorValidationMessage);
     }

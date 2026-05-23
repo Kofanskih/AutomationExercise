@@ -1,10 +1,10 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.pageModels.ContactUsPageModel;
+import com.automationexercise.utils.DriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.AssertJUnit;
 
@@ -22,28 +22,26 @@ public class ContactUsPage extends BasePage{
     private final By ALERT_SUCCESS = By.cssSelector("[class=\"status alert alert-success\"]");
     private final By HOME_BUTTON = By.cssSelector("[class=\"fa fa-angle-double-left\"]");
 
-    public ContactUsPage(WebDriver driver) {
-        super(driver);
-    }
+    public ContactUsPage() {}
 
     private WebElement nameInput() {
-        return driver.findElement(NAME_FIELD);
+        return DriverManager.getDriver().findElement(NAME_FIELD);
     }
 
     private WebElement emailInput() {
-        return driver.findElement(EMAIL_FIELD);
+        return DriverManager.getDriver().findElement(EMAIL_FIELD);
     }
 
     private WebElement subjectInput() {
-        return driver.findElement(SUBJECT_FIELD);
+        return DriverManager.getDriver().findElement(SUBJECT_FIELD);
     }
 
     private WebElement messageInput() {
-        return driver.findElement(MESSAGE_FIELD);
+        return DriverManager.getDriver().findElement(MESSAGE_FIELD);
     }
 
     private WebElement submitButton() {
-        return driver.findElement(SUBMIT_BUTTON);
+        return DriverManager.getDriver().findElement(SUBMIT_BUTTON);
     }
 
     @Step("Fill message form")
@@ -58,7 +56,7 @@ public class ContactUsPage extends BasePage{
 
     @Step("Click OK button")
     public ContactUsPage clickOKButton() {
-        driver.switchTo().alert().accept();
+        DriverManager.getDriver().switchTo().alert().accept();
         return this;
     }
 
@@ -70,26 +68,26 @@ public class ContactUsPage extends BasePage{
 
     @Step("Click Cancel button")
     public ContactUsPage clickCancelButton(){
-        driver.switchTo().alert().dismiss();
+        DriverManager.getDriver().switchTo().alert().dismiss();
         return this;
     }
 
     @Step("Check Home button doesn't appear")
     public void checkHomeButtonNotAppear() {
-        List<WebElement> elements = driver.findElements(HOME_BUTTON);
+        List<WebElement> elements = DriverManager.getDriver().findElements(HOME_BUTTON);
         assertTrue(elements.isEmpty(), "Button HOME is displayed");
     }
 
     @Step("Click Home button")
     public MainPage clickHomeButton(){
         waitUntilClickable(HOME_BUTTON).click();
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     @Step("Check validation message shows")
     public void checkShowValidationMessageInEmailField(String expectedMessage) {
         WebElement emailField = emailInput();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverManager.getDriver();
 
         String actualMessage = (String) jsExecutor.executeScript(
                 "return arguments[0].validationMessage;", emailField);
