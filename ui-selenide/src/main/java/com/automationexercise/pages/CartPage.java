@@ -14,7 +14,7 @@ public class CartPage extends BasePage{
     private final SelenideElement EMPTY_TITLE = $x("//b[contains(., 'Cart is empty!')]");
     private final SelenideElement HERE_BUTTON = $x("//u[contains(., 'here')]");
     private final SelenideElement DELETE_BUTTON = $x("//a[@class=\"cart_quantity_delete\"]");
-    private final SelenideElement PROCEED_TO_CHECKOUT_BUTTON = $x("//div//a[@class=\"btn btn-default check_out\"]");
+    private final SelenideElement PROCEED_TO_CHECKOUT_BUTTON = $("[class=\"btn btn-default check_out\"]");
 
     @Step("Check that user is on the cart page")
     public void checkUserOnTheCartPage(String title) {
