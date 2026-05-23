@@ -21,9 +21,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Search item on the Products page")
     void searchItemOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .searchItemOnTheProductsPage(searchedItem)
                 .checkSearchedItemOnTheProductsPage(searchedItem);
@@ -31,9 +31,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Add item to the cart on the Products page")
     void addItemToTheCartOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .checkAddedItemOnTheProductsPage(addedMessageOnTheModalWindow);
@@ -41,9 +41,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Click continue shopping after adding item")
     void closeAddedModalWindowOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickContinueShoppingButtonOnTheModalWindowOnTheProductsPage()
@@ -52,9 +52,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Click view product details on the main page")
     void viewProductDetailsOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .clickViewProductOnTheProductsPage()
                 .checkUrlOnTheProductPage(expectedProductURL);
@@ -62,9 +62,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Go to Kids Tops category from the Products page")
     void goToTopsShirtsKidsCategoryOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .clickOnTheKidsTopsCategoryOnTheProductsPage()
                 .checkTitleOnTheProductPage(kidsCategoryTitle);
@@ -72,9 +72,9 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Go to Brands Madame category from the Products page")
     void goToBrandsMadameCategoryOnTheProductsPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .clickOnTheBrandsMadameCategoryOnTheProductsPage()
                 .checkTitleOnTheProductPage(madameCategoryTitle);
@@ -82,9 +82,10 @@ public class ProductsTests extends BaseTest{
 
     @Test(description = "Go to the cart after adding item on the Products page")
     void goToTheCartAfterAddingItemOnTheProductsPage() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver).clickProductsButton()
+        new HeaderPage()
+                .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .checkUserOnTheCartPage(cartTitle);

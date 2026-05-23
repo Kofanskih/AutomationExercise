@@ -20,12 +20,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Pay and confirm order with correct data")
     void payAndConfirmOrderWithCorrectData() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -37,12 +37,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify info message when name on card is empty")
     void verifyInfoMessageWhenNameOnCardIsEmpty() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -54,12 +54,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify info message when card number is empty")
     void verifyInfoMessageWhenCardNumberIsEmpty() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -71,12 +71,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify info message when cvc is empty")
     void verifyInfoMessageWhenCVCIsEmpty() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -88,12 +88,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify info message when month is empty")
     void verifyInfoMessageWhenMonthIsEmpty() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -105,12 +105,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify info message when year is empty")
     void verifyInfoMessageWhenYearIsEmpty() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -122,12 +122,12 @@ public class PaymentTests extends BaseTest{
 
     @Test(description = "Verify user is on the main page after finish payment")
     void verifyUserIsOnTheMainPageAfterFinishPayment() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
