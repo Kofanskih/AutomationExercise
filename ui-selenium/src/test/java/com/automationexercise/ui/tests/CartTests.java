@@ -19,18 +19,18 @@ public class CartTests extends BaseTest{
 
     @Test(description = "User go to the empty cart")
     void goToTheEmptyCart(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickCartButton()
                 .checkTheCartIsEmpty(emptyCartTitle);
     }
 
     @Test(description = "Go to the Products page from the empty cart")
     void goToTheProductsPageUsingHereButtonInTheEmptyCart(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickCartButton()
                 .clickHereButtonTheCartPage()
                 .checkUrlOnTheProductPage(expectedProductsURL);
@@ -38,9 +38,9 @@ public class CartTests extends BaseTest{
 
     @Test(description = "Delete the item from the cart")
     void deleteItemFromTheCart() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -50,12 +50,12 @@ public class CartTests extends BaseTest{
 
     @Test(description = "Logged in user is proceed to checkout")
     void proceedToCheckoutWithLoggedUser() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickLoginLogoutButton()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
@@ -65,16 +65,16 @@ public class CartTests extends BaseTest{
 
     @Test(description = "Proceed to checkout with no logged in user")
     void proceedToCheckoutWithNotLoggedUser() {
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickProductsButton()
                 .addItemToTheCartOnTheProductsPage()
                 .clickOnTheViewCartButtonOnTheModalWindow()
                 .clickToCheckoutButtonOnTheCartPage()
                 .goToTheLoginPage()
                 .fillLoginForm(new LoginPageModel().existUserLogin());
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickCartButton()
                 .clickToCheckoutButtonOnTheCartPage()
                 .checkUrlOnTheCheckoutPage(expectedCheckoutURL);
