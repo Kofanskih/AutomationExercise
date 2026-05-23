@@ -6,10 +6,17 @@ import com.automationexercise.pages.BasePage;
 import com.automationexercise.pages.HeaderPage;
 import com.automationexercise.pages.MainPage;
 import com.automationexercise.utils.ConfigurateBrowserSettings;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Complete order")
+@Feature("Payment")
+@Story("Payment")
+@Severity(SeverityLevel.BLOCKER)
+@Owner("bukovtseva")
+@TmsLink("TC-013")
 public class PaymentTests {
     private String title = "ORDER PLACED!";
     private String emptyInfoMessage = "Заполните это поле.";

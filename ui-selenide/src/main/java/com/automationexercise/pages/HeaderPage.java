@@ -3,13 +3,14 @@ package com.automationexercise.pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HeaderPage extends BasePage{
     private final SelenideElement LOGO = $("[alt=\"Website for automation practice\"]");
     private final SelenideElement HOME_BUTTON = $("[class=\"fa fa-home\"]");
     private final SelenideElement LOGIN_LOGOUT_BUTTON = $("[class=\"fa fa-lock\"]");
-    private final SelenideElement PRODUCTS_BUTTON = $("[href=\"/products\"]");
+    private final SelenideElement PRODUCTS_BUTTON = $(byText("Products"));
     private final SelenideElement CART_BUTTON = $("[class=\"fa fa-shopping-cart\"]");
     private final SelenideElement DELETE_ACCOUNT_BUTTON = $("[class=\"fa fa-trash-o\"]");
     private final SelenideElement TEST_CASES_BUTTON = $("[href=\"/test_cases\"]");
