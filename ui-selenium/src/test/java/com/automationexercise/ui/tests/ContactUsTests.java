@@ -20,9 +20,9 @@ public class ContactUsTests extends BaseTest{
 
     @Test(description = "Send contact message on the Contact us page")
     void sendContactMessage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageForm())
                 .clickOKButton()
@@ -31,9 +31,9 @@ public class ContactUsTests extends BaseTest{
 
     @Test(description = "Cancel send contact message on the Contact us page")
     void doNotSendContactMessage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageForm())
                 .clickCancelButton()
@@ -42,9 +42,9 @@ public class ContactUsTests extends BaseTest{
 
     @Test(description = "Go to the Home page after sending contact message")
     void goToTheHomePageAfterSendingContactMessage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageForm())
                 .clickOKButton()
@@ -54,9 +54,9 @@ public class ContactUsTests extends BaseTest{
 
     @Test(description = "Fill contact form with invalid email")
     void fillContactUsFormWithInvalidEmail(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageFormInvalidEmail())
                 .checkShowValidationMessageInEmailField(invalidEmailValidationMessage);
@@ -64,9 +64,9 @@ public class ContactUsTests extends BaseTest{
 
     @Test(description = "Fill contact form with empty email field")
     void fillContactUsFormWithEmptyEmailField(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickContactUsButton()
                 .fillMessageForm(new ContactUsPageModel().messageFormEmptyEmail())
                 .checkShowValidationMessageInEmailField(emptyEmailValidationMessage);
