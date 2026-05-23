@@ -15,18 +15,18 @@ public class APITestingTests extends BaseTest{
 
     @Test(description = "User go to the API Testing page")
     void goToTheAPITestingPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickAPITestingButton()
                 .checkTitleOnTheAPITestingPage(APITestingTitle);
     }
 
     @Test(description = "Expand list on the API Testing page")
     void expandListOnTheAPITestingPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickAPITestingButton()
                 .expandCollapsedList()
                 .checkTheListIsExpanded();
@@ -34,9 +34,9 @@ public class APITestingTests extends BaseTest{
 
     @Test(description = "Collapse expanded list on the API Testing page")
     void collapseExpandedListOnTheAPITestingPage(){
-        new MainPage(driver)
+        new MainPage()
                 .acceptCookies();
-        new HeaderPage(driver)
+        new HeaderPage()
                 .clickAPITestingButton()
                 .expandCollapsedList()
                 .collapseExpandedList()
